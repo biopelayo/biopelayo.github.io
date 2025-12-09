@@ -36,7 +36,6 @@
       background: radial-gradient(circle at top, #11231a 0, #050607 45%, #050607 100%);
       color: var(--fg);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
     }
 
     a {
@@ -51,6 +50,7 @@
     }
 
     /* NAVBAR */
+
     .navbar {
       position: sticky;
       top: 0;
@@ -99,7 +99,6 @@
       position: relative;
       color: var(--muted);
       padding-bottom: 2px;
-      transition: color 0.2s ease;
     }
 
     .nav-links a::after {
@@ -123,12 +122,13 @@
     }
 
     /* HERO */
+
     .hero {
       margin-top: 24px;
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       gap: 32px;
-      align-items: start;
+      align-items: center;
     }
 
     .hero-card {
@@ -269,19 +269,12 @@
       border: 1px solid var(--border-soft);
       padding: 14px 16px 12px 16px;
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     }
 
     .card-title {
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 4px;
-      color: var(--fg);
     }
 
     .card-body {
@@ -307,9 +300,9 @@
     }
 
     /* SECTION LAYOUTS */
+
     section {
       margin-top: 40px;
-      scroll-margin-top: 20px;
     }
 
     .section-header {
@@ -330,7 +323,6 @@
     .section-sub {
       font-size: 13px;
       color: var(--muted);
-      text-align: right;
     }
 
     .grid {
@@ -347,55 +339,13 @@
       color: #d7e3dc;
     }
 
-    /* WORKFLOW VISUALIZATION */
-    .workflow {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 8px;
-      margin: 20px 0;
-    }
-
-    .workflow-step {
-      background: rgba(27, 94, 32, 0.1);
-      border: 1px solid rgba(27, 94, 32, 0.3);
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-      position: relative;
-    }
-
-    .workflow-step::after {
-      content: "→";
-      position: absolute;
-      right: -12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent);
-      opacity: 0.5;
-    }
-
-    .workflow-step:last-child::after {
-      display: none;
-    }
-
-    .step-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .step-desc {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
     /* CONTACT / FOOTER */
+
     .contact-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 6px;
     }
 
     .contact-chip {
@@ -408,13 +358,6 @@
       border: 1px solid #222b30;
       font-size: 12px;
       color: #d0dde4;
-      transition: all 0.2s ease;
-    }
-
-    .contact-chip:hover {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-      transform: translateY(-1px);
     }
 
     .contact-chip span.icon {
@@ -438,64 +381,10 @@
       color: var(--muted);
       text-decoration: underline;
       text-decoration-color: rgba(155, 164, 173, 0.4);
-      transition: color 0.2s ease;
-    }
-
-    footer a:hover {
-      color: var(--fg);
-    }
-
-    /* CODE BLOCKS */
-    .code-block {
-      background: #0a0e0f;
-      border: 1px solid #1a2227;
-      border-radius: 8px;
-      padding: 12px;
-      font-family: 'Monaco', 'Courier New', monospace;
-      font-size: 11px;
-      color: #8fbcbb;
-      overflow-x: auto;
-      margin: 10px 0;
-    }
-
-    .code-comment {
-      color: #5e81ac;
-    }
-
-    .code-function {
-      color: #88c0d0;
-    }
-
-    /* PROGRESS TRACKER */
-    .progress-tracker {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 15px;
-    }
-
-    .progress-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-    }
-
-    .progress-bar {
-      flex: 1;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), #3ba24a);
-      border-radius: 2px;
     }
 
     /* RESPONSIVE */
+
     @media (max-width: 820px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -512,27 +401,6 @@
       .hero-badge {
         position: static;
         margin-top: 12px;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .section-sub {
-        text-align: left;
-      }
-
-      .workflow {
-        grid-template-columns: 1fr;
-      }
-
-      .workflow-step::after {
-        content: "↓";
-        right: 50%;
-        top: auto;
-        bottom: -12px;
-        transform: translateX(50%) rotate(90deg);
       }
     }
 
@@ -556,10 +424,6 @@
       }
 
       footer {
-        flex-direction: column;
-      }
-
-      .hero-actions {
         flex-direction: column;
       }
     }
@@ -628,7 +492,7 @@
           <div class="card-title">Thesis – H3K79 in Arabidopsis</div>
           <div class="card-body">
             Mapping histone H3K79 methylation and acetylation across leaf ontogeny
-            (YNG/BOT/FLOR/SEN) and stress-related datasets, with an emphasis on
+            (YNG/BOT/FLOR/SEN) and selected stress-related datasets, with an emphasis on
             reproducible data processing and FAIR sharing.
           </div>
           <div class="card-tags">
@@ -696,24 +560,6 @@
           This site will progressively host my thesis materials, open datasets,
           code repositories, teaching resources and a blog-style lab notebook.
         </p>
-        
-        <div class="progress-tracker">
-          <div class="progress-item">
-            <span>Thesis writing</span>
-            <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
-            <span>75%</span>
-          </div>
-          <div class="progress-item">
-            <span>EpiProfile_PLANTS docs</span>
-            <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
-            <span>60%</span>
-          </div>
-          <div class="progress-item">
-            <span>Dataset publication</span>
-            <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
-            <span>90%</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -740,189 +586,167 @@
             <span class="tag-soft">ZenoTOF 7600</span>
             <span class="tag-soft">Evosep One</span>
             <span class="tag-soft">qsmooth · limma</span>
-            <span class="tag-soft">PRIDE: PXDxxxxxx</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">Stress-induced hPTM reprogramming</div>
+          <div class="card-title">PXD046034 – Histone PTMs under genotoxic stress</div>
           <p class="card-body">
-            Investigating histone modification dynamics under abiotic stress
-            (drought, heat, UV) and pathogen challenge in Arabidopsis.
-            Comparative analysis with publicly available datasets.
+            Reanalysis of a public ZenoTOF dataset with EpiProfile_PLANTS to
+            quantify histone PTMs under chromatin-instability conditions, with a
+            strong focus on transparent conversion (WIFF → mzML → MS1/MS2) and
+            reproducible statistics.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">Time series</span>
-            <span class="tag-soft">Phytohormones</span>
-            <span class="tag-soft">Cross-study meta</span>
-            <span class="tag-soft">FAIR re-analysis</span>
+            <span class="tag-soft">PRIDE reanalysis</span>
+            <span class="tag-soft">EpiProfile_PLANTS</span>
+            <span class="tag-soft">Open workflows</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">WIFF-to-mzML conversion suite</div>
+          <div class="card-title">EpiProfile_PLANTS – multi-species layouts</div>
           <p class="card-body">
-            A Snakemake pipeline for batch conversion of SCIEX WIFF files to
-            open mzML format, with embedded metadata extraction and QC reports.
-            Works on HPC and local clusters.
+            Building and curating histone peptide catalogs and layouts for
+            <em>Arabidopsis</em>, <em>Marchantia polymorpha</em> and
+            <em>Chlamydomonas reinhardtii</em>, with a view towards a
+            cross-species “core histone panel” for evolutionary comparisons.
+          </p>
+          <div class="card-tags">
+            <span class="tag-soft">Histone catalogs</span>
+            <span class="tag-soft">Multi-species</span>
+            <span class="tag-soft">Evolutionary perspective</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">K-CHOPORE (long-read transcriptomics)</div>
+          <p class="card-body">
+            Contribution to K-CHOPORE, a Snakemake-based workflow for long-read
+            RNA-seq and Nanopore data, used as a reference for designing
+            FAIR-compliant bioinformatics pipelines and documentation.
           </p>
           <div class="card-tags">
             <span class="tag-soft">Snakemake</span>
-            <span class="tag-soft">ThermoRawFileParser</span>
-            <span class="tag-soft">MSConvert</span>
-            <span class="tag-soft">Multi-threading</span>
+            <span class="tag-soft">Long-read RNA-seq</span>
+            <span class="tag-soft">FAIR principles</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EPIPROFILE_PLANTS -->
+    <section id="epiprofile">
+      <div class="section-header">
+        <div class="section-title">EpiProfile_PLANTS ecosystem</div>
+        <div class="section-sub">
+          From WIFF files to histone PTM matrices, QC and biological interpretation.
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <p class="highlight">
+          EpiProfile_PLANTS is my adaptation of EpiProfile 2.0 for plants, including
+          species-specific histone definitions, curated retention-time windows and
+          utilities to audit the full LC–MS/MS acquisition chain.
+        </p>
+        <p class="card-body" style="margin-bottom:8px;">
+          The goal is to provide an end-to-end workflow that makes it easy to
+          reproduce analyses from vendor WIFF/WIFFSCAN files all the way to
+          figures in the thesis and associated papers, while keeping every step
+          documented and versioned.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-title">1. Conversion &amp; pre-processing</div>
+          <p class="card-body">
+            Standardised conversion of WIFF/WIFFSCAN to mzML (profile/centroid),
+            extraction of MS1/MS2 traces and storage of LC–MS/MS acquisition
+            reports as a core reproducibility layer.
+          </p>
+          <div class="card-tags">
+            <span class="tag-soft">ProteoWizard msconvert</span>
+            <span class="tag-soft">Docker / WSL2</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">Histone PTM database (Plants)</div>
+          <div class="card-title">2. Quantification with EpiProfile_PLANTS</div>
           <p class="card-body">
-            Curated database of plant histone modifications with evidence levels,
-            quantitative values across conditions, and cross-species conservation
-            analysis. Web interface in development.
+            Adapted MATLAB code with plant-specific layouts, histone peptide
+            catalogs and panel-based quantification of hPTMs, including emerging
+            marks on H3K79 in <em>Arabidopsis</em>.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">SQLite + REST</span>
-            <span class="tag-soft">Shiny/R</span>
-            <span class="tag-soft">API</span>
-            <span class="tag-soft">18 plant species</span>
+            <span class="tag-soft">GPL-3.0</span>
+            <span class="tag-soft">Histone PTMs</span>
           </div>
         </article>
-      </div>
 
-      <div class="card" style="margin-top: 20px;">
-        <div class="card-title">Typical Workflow: From Sample to Insight</div>
-        <div class="workflow">
-          <div class="workflow-step">
-            <div class="step-title">Plant Material</div>
-            <div class="step-desc">Arabidopsis rosettes, nuclei isolation</div>
+        <article class="card">
+          <div class="card-title">3. Downstream analysis &amp; QC</div>
+          <p class="card-body">
+            R-based pipelines for normalisation (qsmooth, ComBat), exploratory
+            analysis, differential testing and visualisation, together with
+            small demonstration datasets for teaching and methods papers.
+          </p>
+          <div class="card-tags">
+            <span class="tag-soft">R / Bioconductor</span>
+            <span class="tag-soft">QC dashboards</span>
           </div>
-          <div class="workflow-step">
-            <div class="step-title">Histone Extraction</div>
-            <div class="step-desc">Acid extraction, propionylation</div>
-          </div>
-          <div class="workflow-step">
-            <div class="step-title">LC-MS/MS</div>
-            <div class="step-desc">Evosep One + ZenoTOF 7600</div>
-          </div>
-          <div class="workflow-step">
-            <div class="step-title">Data Conversion</div>
-            <div class="step-desc">WIFF → mzML, metadata capture</div>
-          </div>
-          <div class="workflow-step">
-            <div class="step-title">Quantification</div>
-            <div class="step-desc">EpiProfile_PLANTS, manual validation</div>
-          </div>
-          <div class="workflow-step">
-            <div class="step-title">Analysis</div>
-            <div class="step-desc">R stats, visualization, interpretation</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EPIPROFILE -->
-    <section id="epiprofile">
-      <div class="section-header">
-        <div class="section-title">EpiProfile_PLANTS Ecosystem</div>
-        <div class="section-sub">
-          Extending Yuanliang's EpiProfile 2.0 for plant histone proteomics
-        </div>
-      </div>
-
-      <div class="card">
-        <p class="card-body" style="margin-bottom: 8px;">
-          EpiProfile_PLANTS is a MATLAB-based suite for relative quantification of
-          histone peptides from bottom-up proteomics data. The plant version adds:
-        </p>
-        <ul style="color: var(--muted); font-size: 13px; padding-left: 20px; margin: 8px 0;">
-          <li>Predefined histone catalogs for Arabidopsis, Marchantia, Chlamydomonas</li>
-          <li>Custom retention time windows optimized for plant histone peptides</li>
-          <li>QC reports with plant-specific metrics and visualization</li>
-          <li>Batch processing for large-scale experiments</li>
-          <li>Export formats compatible with downstream R/Python analysis</li>
-        </ul>
-        
-        <div class="code-block">
-          <span class="code-comment"># Example workflow call (MATLAB)</span><br>
-          <span class="code-function">results</span> = epiprofile_plants(<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'sample_list.csv',<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'species', 'arabidopsis',<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'output_dir', './quant_results/',<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'qc_report', true<br>
-          );
-        </div>
-
-        <div class="card-tags" style="margin-top: 12px;">
-          <span class="tag-soft">MATLAB Runtime 2021b+</span>
-          <span class="tag-soft">Standalone executable</span>
-          <span class="tag-soft">mzML input</span>
-          <span class="tag-soft">CSV/JSON output</span>
-          <span class="tag-soft">Docker available</span>
-        </div>
-
-        <div class="hero-actions" style="margin-top: 16px;">
-          <a class="btn-primary" href="https://github.com/biopelayo/epiprofile_plants" target="_blank">
-            View on GitHub
-          </a>
-          <a class="btn-ghost" href="#">
-            Documentation (in progress)
-          </a>
-          <a class="btn-ghost" href="#">
-            Example dataset
-          </a>
-        </div>
+        </article>
       </div>
     </section>
 
     <!-- TEACHING -->
     <section id="teaching">
       <div class="section-header">
-        <div class="section-title">Teaching &amp; Outreach</div>
+        <div class="section-title">Teaching &amp; training</div>
         <div class="section-sub">
-          Training materials, courses, and public engagement
+          Helping biologists become comfortable with code and reproducible analysis.
         </div>
       </div>
 
       <div class="grid">
         <article class="card">
-          <div class="card-title">Introduction to Bioinformatics (IAAP)</div>
+          <div class="card-title">Python for Bioinformatics (IAAP)</div>
           <p class="card-body">
-            Yearly course for biology PhD students at University of Oviedo.
-            Covers Linux basics, NGS data handling, R for omics, and reproducible
-            research practices.
+            A 20-hour hands-on course for public-sector researchers, covering
+            environment setup (WSL2, conda, VS Code), core Python syntax and
+            basic genomics data handling with Biopython and command-line tools.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">80h total</span>
+            <span class="tag-soft">Python</span>
+            <span class="tag-soft">WSL2</span>
             <span class="tag-soft">Hands-on</span>
-            <span class="tag-soft">Dockerized envs</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">Código Biológico (outreach)</div>
+          <div class="card-title">Linux / R / workflows for omics</div>
           <p class="card-body">
-            Planned outreach project explaining computational biology concepts
-            through interactive examples and visualizations. Aimed at high school
-            students and general public.
+            Short courses and workshops introducing Linux for scientists, R and
+            Bioconductor for omics data, and first steps in workflow management
+            with Snakemake for real biological projects.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">Jupyter notebooks</span>
-            <span class="tag-soft">Spanish/English</span>
-            <span class="tag-soft">Open access</span>
+            <span class="tag-soft">Linux for research</span>
+            <span class="tag-soft">R / Bioconductor</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">Plant Epigenomics Workshop</div>
+          <div class="card-title">Código Biológico (in progress)</div>
           <p class="card-body">
-            Specialized workshop on histone PTM analysis using EpiProfile_PLANTS.
-            From raw data to biological interpretation in 3 days.
+            A developing outreach project aimed at explaining the many “codes” in
+            biology – genetic, epigenetic, chromatin and computational – through
+            blog posts, small projects and teaching material aligned with this site.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">Advanced</span>
-            <span class="tag-soft">MS data required</span>
-            <span class="tag-soft">Small groups</span>
+            <span class="tag-soft">Outreach</span>
+            <span class="tag-soft">Blog &amp; tutorials</span>
           </div>
         </article>
       </div>
@@ -931,114 +755,58 @@
     <!-- CONTACT -->
     <section id="contact">
       <div class="section-header">
-        <div class="section-title">Contact &amp; Links</div>
+        <div class="section-title">Contact &amp; links</div>
         <div class="section-sub">
-          Get in touch, browse code, or explore datasets
+          Best ways to follow the work, reuse the code or get in touch.
         </div>
       </div>
 
       <div class="card">
         <p class="card-body">
-          I'm based at the Department of Organisms and Systems Biology (University of Oviedo).
-          Always open to discussing plant epigenomics, reproducible workflows, or
-          collaborative projects.
+          If you are interested in plant epigenomics, histone proteomics,
+          reproducible workflows or training collaborations, feel free to reach
+          out. I am always keen to discuss datasets, methods and potential
+          collaborations.
         </p>
-        
+
         <div class="contact-links">
-          <a href="mailto:pelayo.gonzalez@uniovi.es" class="contact-chip">
+          <a class="contact-chip" href="mailto:your.email@example.com">
             <span class="icon">✉️</span>
-            <span>pelayo.gonzalez@uniovi.es</span>
+            <span>Email</span>
           </a>
-          
-          <a href="https://github.com/biopelayo" target="_blank" class="contact-chip">
-            <span class="icon">💻</span>
-            <span>GitHub / biopelayo</span>
+
+          <a class="contact-chip" href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer">
+            <span class="icon">🐙</span>
+            <span>GitHub</span>
           </a>
-          
-          <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" class="contact-chip">
-            <span class="icon">📚</span>
+
+          <a class="contact-chip" href="https://orcid.org/0000-0001-9409-1457" target="_blank" rel="noopener noreferrer">
+            <span class="icon">🧬</span>
             <span>ORCID</span>
           </a>
-          
-          <a href="https://twitter.com/biopelayo" target="_blank" class="contact-chip">
-            <span class="icon">🐦</span>
-            <span>Twitter / @biopelayo</span>
-          </a>
-          
-          <a href="https://www.researchgate.net/profile/Pelayo-Gonzalez-de-Lena" target="_blank" class="contact-chip">
-            <span class="icon">🔬</span>
-            <span>ResearchGate</span>
-          </a>
-          
-          <a href="https://scholar.google.com/citations?user=XXXXXXX" target="_blank" class="contact-chip">
-            <span class="icon">🎓</span>
-            <span>Google Scholar</span>
+
+          <!-- Placeholder LinkedIn: update with your actual profile URL -->
+          <a class="contact-chip" href="#" aria-disabled="true">
+            <span class="icon">🔗</span>
+            <span>LinkedIn (coming soon)</span>
           </a>
         </div>
-
-        <p class="card-body" style="margin-top: 16px; font-size: 12px;">
-          <em>Note: This website is a living document and will be updated regularly
-          with thesis progress, new tools, and datasets. Last update: March 2024.</em>
-        </p>
       </div>
     </section>
   </main>
 
   <footer>
     <div>
-      Pelayo González de Lena &copy; 2024 &middot; 
-      Plant Epigenomics &amp; Bioinformatics
+      &copy; <span id="year"></span> Pelayo González de Lena · biopelayo
     </div>
     <div>
-      Built with HTML/CSS &middot; 
-      Hosted on <a href="https://pages.github.com">GitHub Pages</a> &middot;
-      <a href="#top">Back to top ↑</a>
+      Built as a lightweight static site, deployed via GitHub Pages.
     </div>
+
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </footer>
-
-  <script>
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 20,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Add active state to nav links on scroll
-    window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('.nav-links a');
-      
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 100)) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Simple console greeting
-    console.log('🌱 Pelayo González de Lena – Plant Epigenomics & Bioinformatics');
-    console.log('💻 Website loaded. Connect: https://github.com/biopelayo');
-  </script>
 </body>
 </html>
