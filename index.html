@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pelayo González de Lena – Plant Epigenomics & Bioinformatics</title>
+  <title>Pelayo González de Lena – Plant Epigenomics, Histone Proteomics & Bioinformatics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Pelayo González de Lena" />
   <meta
     name="description"
-    content="Personal website of Pelayo González de Lena (biopelayo). Plant epigenomics, histone proteomics, bioinformatics workflows and teaching."
+    content="Personal website of Pelayo González de Lena (biopelayo). Plant epigenomics, quantitative histone PTM proteomics, and reproducible workflows (WIFF/RAW → mzML → hDP/hPF/hPTM matrices)."
   />
+  <link rel="canonical" href="https://biopelayo.github.io/" />
+
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pelayo González de Lena – Plant Epigenomics & Histone Proteomics" />
+  <meta property="og:description" content="Quantitative histone PTM maps in plants + reproducible pipelines (vendor files → mzML → EpiProfile_PLANTS → hDP/hPF/hPTM matrices)." />
+  <meta property="og:url" content="https://biopelayo.github.io/" />
+  <meta name="twitter:card" content="summary" />
 
   <style>
     :root {
@@ -24,24 +33,18 @@
       --max-width: 1000px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--fg);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     main {
       max-width: var(--max-width);
@@ -65,6 +68,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
     }
 
     .nav-brand {
@@ -75,17 +79,16 @@
       letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--muted);
+      flex-wrap: wrap;
     }
 
-    .nav-brand span {
-      font-weight: 600;
-      color: var(--fg);
-    }
+    .nav-brand span { font-weight: 600; color: var(--fg); }
 
     .nav-links {
       display: flex;
       gap: 18px;
       font-size: 14px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -107,15 +110,8 @@
       transition: width 0.18s ease-out;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--fg);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+    .nav-links a:hover, .nav-links a.active { color: var(--fg); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
     /* HERO */
     .hero {
@@ -161,7 +157,7 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.7;
-      max-width: 520px;
+      max-width: 560px;
     }
 
     .hero-tags {
@@ -187,8 +183,7 @@
       margin-top: 8px;
     }
 
-    .btn-primary,
-    .btn-ghost {
+    .btn-primary, .btn-ghost {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -207,9 +202,7 @@
       color: #ffffff;
     }
 
-    .btn-primary:hover {
-      background: #274f33;
-    }
+    .btn-primary:hover { background: #274f33; }
 
     .btn-ghost {
       background: #ffffff;
@@ -217,9 +210,7 @@
       color: var(--fg);
     }
 
-    .btn-ghost:hover {
-      background: #f1f3f5;
-    }
+    .btn-ghost:hover { background: #f1f3f5; }
 
     .hero-badge {
       position: absolute;
@@ -231,14 +222,11 @@
       border: 1px solid #d2e1d7;
       font-size: 11px;
       color: #4a5c50;
-      max-width: 220px;
+      max-width: 260px;
       line-height: 1.5;
     }
 
-    .hero-badge strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
+    .hero-badge strong { color: var(--accent); font-weight: 600; }
 
     .hero-side {
       display: flex;
@@ -330,14 +318,6 @@
       gap: 14px;
     }
 
-    .highlight {
-      border-left: 3px solid var(--accent);
-      padding-left: 10px;
-      margin-bottom: 8px;
-      font-size: 13px;
-      color: #3e5142;
-    }
-
     /* WORKFLOW VISUALIZATION */
     .workflow {
       display: grid;
@@ -365,9 +345,7 @@
       opacity: 0.5;
     }
 
-    .workflow-step:last-child::after {
-      display: none;
-    }
+    .workflow-step:last-child::after { display: none; }
 
     .step-title {
       font-size: 12px;
@@ -381,35 +359,27 @@
       color: var(--muted);
     }
 
-    /* PROGRESS TRACKER */
-    .progress-tracker {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 14px;
-    }
-
-    .progress-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
+    /* ROADMAP */
+    .roadmap {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
       color: var(--muted);
+      font-size: 13px;
     }
-
-    .progress-bar {
-      flex: 1;
-      height: 4px;
-      background: #edf0f3;
-      border-radius: 2px;
-      overflow: hidden;
+    .roadmap li { margin: 6px 0; }
+    .status {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #d7dde2;
+      background: #f5f7f9;
+      color: #49515a;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
     }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 2px;
-    }
+    .status.done { border-color: #c6ddce; background: var(--accent-soft); color: var(--accent); }
 
     /* CODE BLOCKS */
     .code-block {
@@ -422,15 +392,11 @@
       color: #2e3b4e;
       overflow-x: auto;
       margin: 10px 0;
+      white-space: pre;
     }
 
-    .code-comment {
-      color: #66748a;
-    }
-
-    .code-function {
-      color: #245a7a;
-    }
+    .code-comment { color: #66748a; }
+    .code-function { color: #245a7a; }
 
     /* CONTACT / FOOTER */
     .contact-links {
@@ -453,14 +419,8 @@
       transition: background 0.15s ease, border-color 0.15s ease;
     }
 
-    .contact-chip:hover {
-      background: #edf1f5;
-      border-color: var(--accent);
-    }
-
-    .contact-chip span.icon {
-      font-size: 14px;
-    }
+    .contact-chip:hover { background: #edf1f5; border-color: var(--accent); }
+    .contact-chip span.icon { font-size: 14px; }
 
     footer {
       max-width: var(--max-width);
@@ -482,42 +442,17 @@
       transition: color 0.2s ease;
     }
 
-    footer a:hover {
-      color: var(--fg);
-    }
+    footer a:hover { color: var(--fg); }
 
     /* RESPONSIVE */
     @media (max-width: 820px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: 1;
-      }
-
-      .hero-side {
-        order: 2;
-      }
-
-      .hero-badge {
-        position: static;
-        margin-top: 12px;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .section-sub {
-        text-align: left;
-      }
-
-      .workflow {
-        grid-template-columns: 1fr;
-      }
-
+      .hero { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { order: 1; }
+      .hero-side { order: 2; }
+      .hero-badge { position: static; margin-top: 12px; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .section-sub { text-align: left; }
+      .workflow { grid-template-columns: 1fr; }
       .workflow-step::after {
         content: "↓";
         right: 50%;
@@ -528,31 +463,18 @@
     }
 
     @media (max-width: 640px) {
-      .navbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
+      .navbar-inner { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .nav-links { flex-wrap: wrap; }
+      .hero-title { font-size: 24px; }
+      main { margin-top: 16px; }
+      footer { flex-direction: column; }
+      .hero-actions { flex-direction: column; }
+    }
 
-      .nav-links {
-        flex-wrap: wrap;
-      }
-
-      .hero-title {
-        font-size: 24px;
-      }
-
-      main {
-        margin-top: 16px;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+      .card:hover { transform: none; }
     }
   </style>
 </head>
@@ -564,7 +486,7 @@
         <span>Pelayo González de Lena</span>
         <span style="opacity:0.7;">&middot; biopelayo</span>
       </div>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Primary">
         <a href="#bio">Bio</a>
         <a href="#research">Research</a>
         <a href="#epiprofile">EpiProfile_PLANTS</a>
@@ -578,82 +500,78 @@
     <!-- HERO -->
     <section id="top" class="hero">
       <div class="hero-card">
-        <div class="hero-pill">Plant epigenomics &amp; bioinformatics</div>
+        <div class="hero-pill">Plant epigenomics &amp; quantitative histone proteomics</div>
+
         <h1 class="hero-title">
-          Histone PTMs, <br />Arabidopsis &amp; reproducible pipelines.
+          Histone PTMs in plants, <br />from peptideforms to biology.
         </h1>
+
         <p class="hero-subtitle">
-          I build quantitative maps of histone post-translational modifications in
-          <em>Arabidopsis thaliana</em> and develop open workflows to go from vendor
-          WIFF files to biological interpretation – with a special focus on
-          H3K79 and plant senescence.
+          I study how histone post-translational modifications (hPTMs) encode developmental
+          transitions in <em>Arabidopsis thaliana</em>, with a particular emphasis on H3K79.
+          I also build reproducible workflows to go from vendor files (e.g., WIFF/RAW) to mzML,
+          quantitative histone matrices, and downstream statistical interpretation.
         </p>
 
         <div class="hero-tags">
-          <span class="chip">Histone proteomics</span>
-          <span class="chip">EpiProfile_PLANTS</span>
-          <span class="chip">WIFF → mzML → biology</span>
+          <span class="chip">hDP / hPF / hPTM matrices</span>
+          <span class="chip">Propionylation-based bottom-up LC–MS/MS</span>
+          <span class="chip">WIFF/RAW → mzML → MS1/MS2</span>
           <span class="chip">R · MATLAB · Snakemake</span>
         </div>
 
         <div class="hero-actions">
-          <a class="btn-primary" href="#epiprofile">
-            View EpiProfile_PLANTS ecosystem
-          </a>
-          <a class="btn-ghost" href="#research">
-            Thesis &amp; projects overview
-          </a>
+          <a class="btn-primary" href="#epiprofile">EpiProfile_PLANTS ecosystem</a>
+          <a class="btn-ghost" href="#research">Thesis projects overview</a>
         </div>
 
         <div class="hero-badge">
-          Currently writing a PhD thesis on
-          <strong>H3K79 in Arabidopsis</strong>, integrating bottom-up histone
-          proteomics, reproducible workflows and open datasets.
+          PhD work centered on <strong>Arabidopsis</strong> leaf ontogeny/senescence and
+          robust quantification of histone peptideforms.
         </div>
       </div>
 
       <aside class="hero-side">
-        <div class="pill-section">NOW</div>
+        <div class="pill-section">CURRENT FOCUS</div>
 
         <article class="card">
-          <div class="card-title">Thesis – H3K79 in Arabidopsis</div>
+          <div class="card-title">Thesis – Arabidopsis rosette ontogeny &amp; H3K79</div>
           <div class="card-body">
-            Mapping histone H3K79 methylation and acetylation across leaf ontogeny
-            (YNG/BOT/FLOR/SEN) and selected stress-related datasets, with an emphasis on
-            reproducible data processing and FAIR sharing.
+            Stage-resolved profiling (YNG/BOT/FLOR/SEN) to identify senescence-associated
+            shifts in histone PTMs, combining conservative QC, explicit assumptions, and
+            reproducible processing.
           </div>
           <div class="card-tags">
             <span class="tag-soft">Leaf senescence</span>
-            <span class="tag-soft">BGSR gradient</span>
-            <span class="tag-soft">PRIDE datasets</span>
+            <span class="tag-soft">Ontogeny gradient</span>
+            <span class="tag-soft">PTM modules</span>
           </div>
         </article>
 
         <article class="card">
           <div class="card-title">EpiProfile_PLANTS</div>
           <div class="card-body">
-            A plant-focused extension of EpiProfile 2.0, adding species-specific
-            histone catalogs, curated layouts and QC utilities for
-            <em>Arabidopsis</em>, <em>Marchantia</em> and <em>Chlamydomonas</em>.
+            Plant-oriented, auditable extension of EpiProfile 2.0 (GPL-3.0) for relative
+            quantification of histone peptides and peptideforms, with curated catalogs,
+            layouts and cohort-level QC utilities.
           </div>
           <div class="card-tags">
             <span class="tag-soft">GPL-3.0</span>
             <span class="tag-soft">MATLAB / Runtime</span>
-            <span class="tag-soft">WIFF workflows</span>
+            <span class="tag-soft">Traceability</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">Teaching &amp; outreach</div>
+          <div class="card-title">Teaching &amp; practical training</div>
           <div class="card-body">
-            Training biologists in Linux, Python and R for omics data, and
-            preparing a broader outreach project tentatively called
-            <strong>Código Biológico</strong>.
+            Hands-on training for biologists: Linux, Python and R for omics data,
+            with an emphasis on reproducible analysis habits and workflow thinking.
           </div>
           <div class="card-tags">
-            <span class="tag-soft">IAAP</span>
-            <span class="tag-soft">University of Oviedo</span>
-            <span class="tag-soft">Hands-on courses</span>
+            <span class="tag-soft">Workshops</span>
+            <span class="tag-soft">Hands-on</span>
+            <span class="tag-soft">Reproducibility</span>
           </div>
         </article>
       </aside>
@@ -664,53 +582,41 @@
       <div class="section-header">
         <div class="section-title">Bio</div>
         <div class="section-sub">
-          Computational biologist working at the intersection of plant
-          epigenomics, proteomics and open workflows.
+          Computational biologist working at the intersection of plant chromatin, proteomics and reproducible workflows.
         </div>
       </div>
 
       <div class="card">
         <p class="card-body" style="margin-bottom:8px;">
-          I am a PhD candidate at the University of Oviedo (UNIOVI) working on
-          plant epigenomics and quantitative histone proteomics. My main focus is
-          to understand how histone post-translational modifications (hPTMs) encode
-          developmental and stress-related information in plants, with
-          <strong>H3K79</strong> as a central motif.
-        </p>
-        <p class="card-body" style="margin-bottom:8px;">
-          Alongside the experimental work, I design and maintain an ecosystem of
-          reproducible tools – from WIFF/mzML conversion and QC to histone peptide
-          quantification and downstream statistical analyses – aiming to make plant
-          epiproteomics <em>transparent, auditable and reusable</em>.
-        </p>
-        <p class="card-body">
-          This site will progressively host my thesis materials, open datasets,
-          code repositories, teaching resources and a blog-style lab notebook.
+          I am a PhD candidate at the University of Oviedo (UNIOVI) working on plant epigenomics
+          and quantitative histone proteomics. My research focuses on how combinatorial histone
+          marks change across development and senescence, using propionylation-based bottom-up
+          LC–MS/MS and conservative quantification strategies.
         </p>
 
-        <div class="progress-tracker">
-          <div class="progress-item">
-            <span>Thesis writing</span>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 70%"></div>
-            </div>
-            <span>70%</span>
-          </div>
-          <div class="progress-item">
-            <span>EpiProfile_PLANTS docs</span>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 50%"></div>
-            </div>
-            <span>50%</span>
-          </div>
-          <div class="progress-item">
-            <span>Dataset publication</span>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 80%"></div>
-            </div>
-            <span>80%</span>
-          </div>
+        <p class="card-body" style="margin-bottom:8px;">
+          A core part of my work is making the computational layer explicit:
+          what is assumed, what is measured, how uncertainty enters, and how results can be audited.
+          In practice, this means reproducible conversion (vendor files → mzML), standardized intermediate
+          artifacts (MS1/MS2 extraction), and clear outputs for downstream analysis (hDP/hPF/hPTM matrices).
+        </p>
+
+        <p class="card-body" style="margin-bottom:10px;">
+          This website is a living index of my thesis-related projects, open-source code,
+          reanalyses of public datasets and teaching material.
+        </p>
+
+        <div class="card-tags">
+          <span class="tag-soft">Plant epiproteomics</span>
+          <span class="tag-soft">hPF-level quantification</span>
+          <span class="tag-soft">FAIR-minded pipelines</span>
         </div>
+
+        <ul class="roadmap" aria-label="Roadmap">
+          <li><span class="status">In progress</span> Public-facing documentation and end-to-end tutorial (conversion → quantification → interpretation)</li>
+          <li><span class="status">In progress</span> Curated example outputs (QC, heatmaps, PCA, and an XIC atlas-style supplement)</li>
+          <li><span class="status done">Done</span> Core multi-species scaffolding for plant histone catalogs/layouts (expanding over time)</li>
+        </ul>
       </div>
     </section>
 
@@ -719,98 +625,93 @@
       <div class="section-header">
         <div class="section-title">Research &amp; projects</div>
         <div class="section-sub">
-          A selection of ongoing work linked to the thesis and collaborative
-          projects.
+          Thesis-linked projects and reproducible reanalyses of public datasets.
         </div>
       </div>
 
       <div class="grid">
         <article class="card">
-          <div class="card-title">BGSR Ontogeny Atlas (Arabidopsis rosette)</div>
+          <div class="card-title">Arabidopsis rosette ontogeny atlas</div>
           <p class="card-body">
-            Bottom-up histone proteomics across four rosette stages
-            (YNG/BOT/FLOR/SEN) in <em>Arabidopsis thaliana</em>. Includes a
-            dedicated QC pipeline, differential analysis at peptide and PTM level,
-            and a focus on senescence-associated hPTMs.
+            Bottom-up histone proteomics across four rosette stages (YNG/BOT/FLOR/SEN),
+            aiming to identify robust senescence-associated shifts in histone PTMs.
+            The analysis emphasizes conservative QC, explicit normalization choices,
+            and PTM summaries derived from peptideforms.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">ZenoTOF 7600</span>
-            <span class="tag-soft">Evosep One</span>
-            <span class="tag-soft">qsmooth · limma</span>
+            <span class="tag-soft">Ontogeny</span>
+            <span class="tag-soft">Senescence</span>
+            <span class="tag-soft">QC-first</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">PXD046034 – Histone PTMs under genotoxic stress</div>
+          <div class="card-title">Public PRIDE reanalyses (Arabidopsis histone PTMs)</div>
           <p class="card-body">
-            Reanalysis of a public ZenoTOF dataset with EpiProfile_PLANTS to
-            quantify histone PTMs under chromatin-instability conditions, with a
-            strong focus on transparent conversion (WIFF → mzML → MS1/MS2) and
-            reproducible statistics.
+            Reanalysis of multiple public datasets with the same processing contract
+            (conversion → extraction → quantification → audit → statistics), to test
+            robustness across instruments, batches and biological contexts.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">PRIDE reanalysis</span>
-            <span class="tag-soft">EpiProfile_PLANTS</span>
-            <span class="tag-soft">Open workflows</span>
+            <span class="tag-soft">PXD014739</span>
+            <span class="tag-soft">PXD046788</span>
+            <span class="tag-soft">PXD046034</span>
           </div>
         </article>
 
         <article class="card">
-          <div class="card-title">EpiProfile_PLANTS – multi-species layouts</div>
+          <div class="card-title">Cross-species “core histone panel” (in progress)</div>
           <p class="card-body">
-            Building and curating histone peptide catalogs and layouts for
-            <em>Arabidopsis</em>, <em>Marchantia polymorpha</em> and
-            <em>Chlamydomonas reinhardtii</em>, with a view towards a
-            cross-species “core histone panel” for evolutionary comparisons.
+            Curating peptide catalogs/layouts for evolutionary comparisons across plant and algal systems,
+            targeting conserved regions and reporting “core” PTM readouts in a consistent format.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">Histone catalogs</span>
-            <span class="tag-soft">Multi-species</span>
-            <span class="tag-soft">Evolutionary perspective</span>
+            <span class="tag-soft">Arabidopsis</span>
+            <span class="tag-soft">Marchantia</span>
+            <span class="tag-soft">Chlamydomonas</span>
           </div>
         </article>
 
         <article class="card">
           <div class="card-title">K-CHOPORE (long-read transcriptomics)</div>
           <p class="card-body">
-            Contribution to K-CHOPORE, a Snakemake-based workflow for long-read
-            RNA-seq and Nanopore data, used as a reference for designing
-            FAIR-compliant bioinformatics pipelines and documentation.
+            Contribution to a Snakemake-based workflow for long-read RNA-seq/Nanopore data.
+            This serves as a reference point for designing FAIR-oriented pipelines and documentation.
           </p>
           <div class="card-tags">
             <span class="tag-soft">Snakemake</span>
             <span class="tag-soft">Long-read RNA-seq</span>
-            <span class="tag-soft">FAIR principles</span>
+            <span class="tag-soft">Reproducibility</span>
           </div>
         </article>
       </div>
 
       <div class="card" style="margin-top: 20px;">
-        <div class="card-title">Typical workflow: from sample to insight</div>
+        <div class="card-title">Typical workflow: from sample to interpretable matrices</div>
         <div class="workflow">
           <div class="workflow-step">
             <div class="step-title">Plant material</div>
-            <div class="step-desc">Arabidopsis rosettes, nuclei isolation</div>
+            <div class="step-desc">Rosettes / defined stages</div>
           </div>
           <div class="workflow-step">
-            <div class="step-title">Histone extraction</div>
-            <div class="step-desc">Acid extraction, propionylation</div>
+            <div class="step-title">Histones</div>
+            <div class="step-desc">Acid extraction + propionylation</div>
           </div>
           <div class="workflow-step">
             <div class="step-title">LC–MS/MS</div>
-            <div class="step-desc">Evosep One + ZenoTOF 7600</div>
+            <div class="step-desc">Bottom-up DDA acquisition</div>
           </div>
           <div class="workflow-step">
-            <div class="step-title">Data conversion</div>
-            <div class="step-desc">WIFF → mzML, metadata capture</div>
+            <div class="step-title">Conversion</div>
+            <div class="step-desc">Vendor files → mzML + QC</div>
           </div>
           <div class="workflow-step">
             <div class="step-title">Quantification</div>
-            <div class="step-desc">EpiProfile_PLANTS, manual validation</div>
+            <div class="step-desc">EpiProfile_PLANTS (hPF-level)</div>
           </div>
           <div class="workflow-step">
             <div class="step-title">Analysis</div>
-            <div class="step-desc">R-based statistics, visualisation</div>
+            <div class="step-desc">hDP/hPF/hPTM + stats in R</div>
           </div>
         </div>
       </div>
@@ -821,48 +722,50 @@
       <div class="section-header">
         <div class="section-title">EpiProfile_PLANTS ecosystem</div>
         <div class="section-sub">
-          From WIFF files to histone PTM matrices, QC and interpretation.
+          Plant-oriented EpiProfile 2.0 extension: quantification + QC + audit-ready outputs.
         </div>
       </div>
 
       <div class="card">
         <p class="card-body" style="margin-bottom: 8px;">
-          EpiProfile_PLANTS is a MATLAB-based suite for relative quantification of
-          histone peptides from bottom-up proteomics data. The plant version adds:
+          EpiProfile_PLANTS is a MATLAB-based suite for relative quantification of histone peptides
+          and peptideforms from propionylation-based bottom-up proteomics.
+          The key output layers are:
         </p>
+
         <ul style="color: var(--muted); font-size: 13px; padding-left: 22px; margin: 8px 0;">
-          <li>Predefined histone catalogs for Arabidopsis, Marchantia, Chlamydomonas</li>
-          <li>Curated retention time windows for plant histone peptides</li>
-          <li>QC reports with acquisition and processing checks</li>
-          <li>Batch processing for multi-condition experiments</li>
-          <li>Export formats compatible with downstream R/Python analysis</li>
+          <li><strong>hDP</strong>: peptide backbones (sequence-level units)</li>
+          <li><strong>hPF</strong>: peptideforms / PTM states (combinatorial forms per peptide)</li>
+          <li><strong>hPTM</strong>: site-level summaries derived from hPF marginals</li>
         </ul>
 
-        <div class="code-block">
-          <span class="code-comment">% Example workflow call (MATLAB)</span><br />
-          <span class="code-function">results</span> = epiprofile_plants( ...<br />
-          &nbsp;&nbsp;'sample_list.csv', ...<br />
-          &nbsp;&nbsp;'species', 'arabidopsis', ...<br />
-          &nbsp;&nbsp;'output_dir', './quant_results/', ...<br />
-          &nbsp;&nbsp;'qc_report', true ...<br />
-          );
+        <p class="card-body" style="margin-bottom: 8px;">
+          The plant extension focuses on curated species catalogs/layouts and on making the processing contract explicit:
+          deterministic inputs, traceable intermediates (mzML → MS1/MS2), and QC artifacts that help interpret failures
+          (e.g., retention time drift, empty windows, layout mismatches).
+        </p>
+
+        <div class="code-block" aria-label="Minimal conceptual pipeline">
+<span class="code-comment"># Conceptual pipeline (tool-agnostic)</span>
+vendor files (WIFF/RAW) → mzML → MS1/MS2 extraction → EpiProfile_PLANTS
+→ hDP/hPF/hPTM matrices + QC + audit artifacts → downstream statistics (R/Python)
         </div>
 
         <div class="card-tags" style="margin-top: 8px;">
           <span class="tag-soft">MATLAB / Runtime</span>
           <span class="tag-soft">mzML input</span>
-          <span class="tag-soft">CSV output</span>
-          <span class="tag-soft">QC utilities</span>
+          <span class="tag-soft">Audit/QC artifacts</span>
+          <span class="tag-soft">hDP/hPF/hPTM</span>
         </div>
 
         <div class="hero-actions" style="margin-top: 14px;">
-          <a class="btn-primary" href="https://github.com/biopelayo/epiprofile-plants" target="_blank">
+          <a class="btn-primary" href="https://github.com/biopelayo/epiprofile-plants" target="_blank" rel="noopener noreferrer">
             View on GitHub
           </a>
-          <a class="btn-ghost" href="#">
+          <a class="btn-ghost" href="#" aria-disabled="true">
             Documentation (in progress)
           </a>
-          <a class="btn-ghost" href="#">
+          <a class="btn-ghost" href="#" aria-disabled="true">
             Example dataset (in progress)
           </a>
         </div>
@@ -874,7 +777,7 @@
       <div class="section-header">
         <div class="section-title">Teaching &amp; outreach</div>
         <div class="section-sub">
-          Helping biologists become comfortable with code and reproducible analysis.
+          Practical training for biologists: code, environments, and reproducible habits.
         </div>
       </div>
 
@@ -882,9 +785,8 @@
         <article class="card">
           <div class="card-title">Python for Bioinformatics (IAAP)</div>
           <p class="card-body">
-            A 20-hour hands-on course for public-sector researchers, covering
-            environment setup (WSL2, conda, VS Code), core Python syntax and
-            basic genomics data handling with Biopython and command-line tools.
+            A hands-on course covering environment setup (WSL2, conda, VS Code),
+            core Python patterns for data handling, and realistic examples from genomics/omics workflows.
           </p>
           <div class="card-tags">
             <span class="tag-soft">Python</span>
@@ -896,12 +798,11 @@
         <article class="card">
           <div class="card-title">Linux / R / workflows for omics</div>
           <p class="card-body">
-            Short courses and workshops introducing Linux for scientists, R and
-            Bioconductor for omics data, and first steps in workflow management
-            with Snakemake for real biological projects.
+            Short courses on Linux for scientists, R/Bioconductor for omics data,
+            and workflow management basics (Snakemake), with emphasis on reproducibility and documentation.
           </p>
           <div class="card-tags">
-            <span class="tag-soft">Linux for research</span>
+            <span class="tag-soft">Linux</span>
             <span class="tag-soft">R / Bioconductor</span>
           </div>
         </article>
@@ -909,9 +810,8 @@
         <article class="card">
           <div class="card-title">Código Biológico (in progress)</div>
           <p class="card-body">
-            A developing outreach project aimed at explaining the many “codes” in
-            biology – genetic, epigenetic, chromatin and computational – through
-            blog posts, small projects and teaching material aligned with this site.
+            An outreach project about the different “codes” in biology (genetic, epigenetic,
+            chromatin and computational), to be developed as blog posts and small reproducible tutorials.
           </p>
           <div class="card-tags">
             <span class="tag-soft">Outreach</span>
@@ -926,52 +826,50 @@
       <div class="section-header">
         <div class="section-title">Contact &amp; links</div>
         <div class="section-sub">
-          Best ways to follow the work, reuse the code or get in touch.
+          Best ways to reuse the code, follow updates, or get in touch.
         </div>
       </div>
 
       <div class="card">
         <p class="card-body">
-          I'm based at the Department of Organisms and Systems Biology (University of Oviedo).
-          Always open to discussing plant epigenomics, reproducible workflows, or
-          collaborative projects.
+          Based at the Department of Organisms and Systems Biology (University of Oviedo).
+          Open to discussions around plant chromatin, histone PTM proteomics, and reproducible workflows.
         </p>
 
         <div class="contact-links">
           <a href="mailto:pelayo.gonzalez@uniovi.es" class="contact-chip">
-            <span class="icon">✉️</span>
+            <span class="icon" aria-hidden="true">✉️</span>
             <span>pelayo.gonzalez@uniovi.es</span>
           </a>
 
-          <a href="https://github.com/biopelayo" target="_blank" class="contact-chip">
-            <span class="icon">💻</span>
+          <a href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer" class="contact-chip">
+            <span class="icon" aria-hidden="true">💻</span>
             <span>GitHub / biopelayo</span>
           </a>
 
-          <a href="https://orcid.org/0000-0001-9409-1457" target="_blank" class="contact-chip">
-            <span class="icon">🧬</span>
+          <a href="https://orcid.org/0000-0001-9409-1457" target="_blank" rel="noopener noreferrer" class="contact-chip">
+            <span class="icon" aria-hidden="true">🧬</span>
             <span>ORCID</span>
           </a>
 
-          <a href="https://twitter.com/biopelayo" target="_blank" class="contact-chip">
-            <span class="icon">🐦</span>
+          <a href="https://twitter.com/biopelayo" target="_blank" rel="noopener noreferrer" class="contact-chip">
+            <span class="icon" aria-hidden="true">🐦</span>
             <span>Twitter / @biopelayo</span>
           </a>
 
-          <a href="https://www.researchgate.net/profile/Pelayo-Gonzalez-de-Lena" target="_blank" class="contact-chip">
-            <span class="icon">🔬</span>
+          <a href="https://www.researchgate.net/profile/Pelayo-Gonzalez-de-Lena" target="_blank" rel="noopener noreferrer" class="contact-chip">
+            <span class="icon" aria-hidden="true">🔬</span>
             <span>ResearchGate</span>
           </a>
 
-          <a href="#" class="contact-chip">
-            <span class="icon">🎓</span>
+          <a href="#" class="contact-chip" aria-disabled="true">
+            <span class="icon" aria-hidden="true">🎓</span>
             <span>Google Scholar (coming soon)</span>
           </a>
         </div>
 
         <p class="card-body" style="margin-top: 16px; font-size: 12px;">
-          <em>This website is a living document and will be updated regularly
-          with thesis progress, new tools, and datasets. Last update: December 2025.</em>
+          <em>This website is updated as thesis work, software releases and dataset reanalyses mature. Last update: February 2026.</em>
         </p>
       </div>
     </section>
@@ -980,29 +878,32 @@
   <footer>
     <div>
       &copy; <span id="year"></span> Pelayo González de Lena &middot;
-      Plant Epigenomics &amp; Bioinformatics
+      Plant Epigenomics &amp; Histone Proteomics
     </div>
     <div>
       Built with HTML/CSS &middot;
-      Hosted on <a href="https://pages.github.com">GitHub Pages</a> &middot;
+      Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> &middot;
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
 
   <script>
-    // Smooth scrolling for internal links
+    // Smooth scrolling for internal links (respects reduced motion)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
         if (!targetId || targetId === '#') return;
-        e.preventDefault();
+
         const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 60,
-            behavior: 'smooth'
-          });
-        }
+        if (!targetElement) return;
+
+        e.preventDefault();
+        window.scrollTo({
+          top: targetElement.offsetTop - 60,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
       });
     });
 
