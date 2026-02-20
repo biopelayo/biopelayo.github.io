@@ -1,2 +1,2 @@
 # biopelayo.github.io
-Personal website of Pelayo González de Lena (biopelayo). Includes bio, research projects in plant epigenomics and bioinformatics, blog posts, teaching materials, and documentation for the EpiProfile_PLANTS software ecosystem.
+Personal website of Pelayo González de Lena (biopelayo). Plant epigenomics, cancer bioinformatics (CNIO), quantitative histone PTM proteomics, RNA-seq pipelines, and reproducible workflows. Includes research projects, EpiProfile_PLANTS documentation, omics pipelines, skills, teaching materials, and contact links.
