@@ -1049,41 +1049,108 @@
     }
 
     /* 17e. GALLERY */
-    .gallery-grid {
+    /* Hero figure - full width, featured */
+    .gallery-hero {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
+      background: var(--bg-surface);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: box-shadow 0.4s ease;
+    }
+    .gallery-hero:hover {
+      box-shadow: 0 12px 48px rgba(57, 255, 115, 0.12);
+    }
+    .gallery-hero-img {
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      padding: 8px;
+    }
+    .gallery-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      transition: transform 0.5s ease;
+    }
+    .gallery-hero:hover .gallery-hero-img img {
+      transform: scale(1.01);
+    }
+    .gallery-hero-caption {
+      padding: 20px 24px;
+    }
+    .gallery-hero-caption h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .gallery-hero-caption p {
+      color: var(--fg-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Badge labels */
+    .gallery-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 8px;
+    }
+    .gallery-badge-green { background: rgba(57, 255, 115, 0.12); color: var(--neon-green); }
+    .gallery-badge-cyan { background: rgba(34, 211, 238, 0.12); color: var(--neon-cyan); }
+    .gallery-badge-pink { background: rgba(244, 114, 182, 0.12); color: var(--neon-pink); }
+    .gallery-badge-purple { background: rgba(167, 139, 250, 0.12); color: var(--neon-purple); }
+
+    /* 2x2 mosaic */
+    .gallery-mosaic {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      margin-bottom: 20px;
     }
     .gallery-card {
       background: var(--bg-surface);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     }
-    .gallery-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(57, 255, 115, 0.1);
-    }
+    .gallery-card:hover { transform: translateY(-5px); }
+    .gallery-card--glow-cyan:hover { box-shadow: 0 8px 36px rgba(34, 211, 238, 0.15); border-color: rgba(34, 211, 238, 0.2); }
+    .gallery-card--glow-pink:hover { box-shadow: 0 8px 36px rgba(244, 114, 182, 0.15); border-color: rgba(244, 114, 182, 0.2); }
+    .gallery-card--glow-purple:hover { box-shadow: 0 8px 36px rgba(167, 139, 250, 0.15); border-color: rgba(167, 139, 250, 0.2); }
+    .gallery-card--glow-green:hover { box-shadow: 0 8px 36px rgba(57, 255, 115, 0.15); border-color: rgba(57, 255, 115, 0.2); }
     .gallery-img-wrap {
       width: 100%;
       overflow: hidden;
-      background: #0d1320;
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 180px;
+      padding: 6px;
     }
     .gallery-img-wrap img {
       width: 100%;
       height: auto;
       display: block;
       object-fit: contain;
-      max-height: 280px;
+      max-height: 300px;
+      border-radius: 4px;
       transition: transform 0.4s ease;
     }
     .gallery-card:hover .gallery-img-wrap img {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
     .gallery-caption {
       padding: 14px 18px;
@@ -1091,7 +1158,7 @@
     .gallery-caption h3 {
       font-size: 15px;
       font-weight: 600;
-      color: var(--neon-cyan);
+      color: var(--fg);
       margin-bottom: 4px;
     }
     .gallery-caption p {
@@ -1099,6 +1166,88 @@
       font-size: 13px;
       line-height: 1.5;
     }
+
+    /* Bottom strip */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .gallery-strip-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      background: #0d1320;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-strip-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(57, 255, 115, 0.1);
+    }
+    .gallery-strip-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      display: block;
+      padding: 8px;
+      background: #fff;
+      transition: transform 0.4s ease;
+    }
+    .gallery-strip-card:hover img {
+      transform: scale(1.02);
+    }
+    .gallery-strip-card span {
+      display: block;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg-muted);
+    }
+
+    /* Lightbox modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 60px rgba(57, 255, 115, 0.1);
+      animation: lightboxIn 0.3s ease;
+    }
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 36px;
+      color: var(--fg-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      z-index: 10001;
+    }
+    .lightbox-close:hover { color: var(--neon-green); }
 
     /* 18. FOOTER */
     .footer {
@@ -1191,7 +1340,8 @@
       .teaching-grid,
       .repos-grid,
       .resources-grid,
-      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-mosaic { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr; }
       .workflow { grid-template-columns: 1fr; }
       .workflow-step::after {
         content: "\2193";
@@ -2241,85 +2391,90 @@
       <div class="container">
         <div class="section-header fade-in">
           <h2 class="section-title">Gallery</h2>
-          <p class="section-sub">Figures, visualizations, and images from research and teaching.</p>
+          <p class="section-sub">Key figures from the PhD thesis &mdash; click any figure to view full size.</p>
           <div class="section-line" aria-hidden="true"></div>
         </div>
 
-        <div class="gallery-grid fade-in">
+        <!-- Featured: full-width hero figure -->
+        <div class="gallery-hero fade-in" onclick="openLightbox(this.querySelector('img'))">
+          <div class="gallery-hero-img">
+            <img src="img/fig_na_analysis.png" alt="Multi-panel QC analysis: Panel A shows NA/0/1 proportions per sample as stacked bars, Panel B shows category counts per developmental group as pie charts with chi-squared statistics, Panels C-D show top 10 peptides and modifications with most missing/zero values, Panel E shows ratio_raw distributions per group as jitter boxplots" loading="lazy" />
+          </div>
+          <div class="gallery-hero-caption">
+            <span class="gallery-badge gallery-badge-green">Featured Figure</span>
+            <h3>Data Quality &amp; Missing Value Analysis</h3>
+            <p>Five-panel figure: (A) NA/0/1 stacked bars per sample, (B) category proportions per developmental group with &chi;&sup2; tests, (C-D) top peptides &amp; modifications with missing values, (E) ratio distributions per group with Wilcoxon tests. From the Arabidopsis rosette ontogeny dataset (34 samples).</p>
+          </div>
+        </div>
 
-          <div class="gallery-card">
+        <!-- 2x2 grid: different visual treatments -->
+        <div class="gallery-mosaic fade-in">
+
+          <div class="gallery-card gallery-card--glow-cyan" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/epiprofile_workflow.gif" alt="EpiProfile_PLANTS workflow: from Arabidopsis reference genome through histone annotation, in silico digestion, PTM prediction, MATLAB adaptation, LC-MS/MS analysis, PRIDE validation, to final results" loading="lazy" />
+              <img src="img/fig_coda_distributions.png" alt="Compositional data distributions: ALR and CLR density plots with dashed mean lines, plus ALR and CLR boxplots with colored jitter dots per developmental group (YOUNG, SEN, BOT, FLOR) with Wilcoxon pairwise comparisons" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <h3>EpiProfile_PLANTS Workflow</h3>
-              <p>Complete 8-step pipeline from reference genome to quantitative histone PTM results.</p>
+              <span class="gallery-badge gallery-badge-cyan">Compositional Analysis</span>
+              <h3>ALR &amp; CLR Distributions</h3>
+              <p>Density curves and jitter-boxplots of compositional log-ratio transformations across four developmental stages.</p>
             </div>
           </div>
 
-          <div class="gallery-card">
+          <div class="gallery-card gallery-card--glow-pink" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/histone_h4_alignment.png" alt="Cross-species H4 histone protein alignment across Arabidopsis, Marchantia, mouse, and human sequences showing high conservation" loading="lazy" />
+              <img src="img/fig_correlation_heatmap.png" alt="Spearman correlation matrix heatmap of top 6 EPI_TYPE modification classes showing blue-red diverging color scale from -1 to 1" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <h3>Cross-Species H4 Histone Panel</h3>
-              <p>Multiple sequence alignment of H4 histones across plants and animals, showing extreme evolutionary conservation.</p>
+              <span class="gallery-badge gallery-badge-pink">Correlation</span>
+              <h3>Spearman Correlation Matrix</h3>
+              <p>Heatmap of top 6 epigenetic modification types. Blue-red diverging palette reveals antagonistic and co-occurring PTM patterns.</p>
             </div>
           </div>
 
-          <div class="gallery-card">
+          <div class="gallery-card gallery-card--glow-purple" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/bioinformatics_wordcloud.jpg" alt="Bioinformatics word cloud shaped as a globe with terms like lncRNA, omics, Python, cancer, TCGA, BASH, genomics" loading="lazy" />
+              <img src="img/fig_pairs_scatter.png" alt="Pairs scatter plot matrix of top 6 modification types with per-group Spearman correlations for YOUNG, SEN, BOT, and diagonal histograms" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <h3>Bioinformatics Word Cloud</h3>
-              <p>A globe of computational biology keywords spanning cancer genomics, scripting, and data science.</p>
+              <span class="gallery-badge gallery-badge-purple">Multivariate</span>
+              <h3>Pairs Scatter Matrix</h3>
+              <p>6&times;6 scatter matrix with per-group Spearman correlations (YOUNG, SEN, BOT) and marginal histograms. Reveals group-specific PTM co-regulation.</p>
             </div>
           </div>
 
-          <div class="gallery-card">
+          <div class="gallery-card gallery-card--glow-green" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/epilab_logo.jpg" alt="EpiLab research group logo" loading="lazy" />
+              <img src="img/fig_h4_peptide_boxplot.png" alt="H4 peptide GKGGKGLGKGGAKR region 4-17 boxplot with jitter points colored by developmental group: 10H blue, 14H gray, BOT pink, FLOR orange, SEN dark blue, showing asin-sqrt transformed ratios" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <h3>EpiLab Logo</h3>
-              <p>Logo of the Plant Epigenomics Laboratory at the University of Oviedo.</p>
-            </div>
-          </div>
-
-          <div class="gallery-card">
-            <div class="gallery-img-wrap">
-              <img src="img/k_chopore_logo.png" alt="K-CHOPORE project logo for long-read transcriptomics" loading="lazy" />
-            </div>
-            <div class="gallery-caption">
-              <h3>K-CHOPORE</h3>
-              <p>Logo for the K-CHOPORE long-read transcriptomics project combining Nanopore sequencing with plant biology.</p>
-            </div>
-          </div>
-
-          <div class="gallery-card">
-            <div class="gallery-img-wrap">
-              <img src="img/lncrna_wordcloud.jpg" alt="Word cloud of bioinformatics terms: lncRNA, cancer, genomics, programming, scripting, FANTOM, ICGC" loading="lazy" />
-            </div>
-            <div class="gallery-caption">
-              <h3>lncRNA &amp; Cancer Genomics</h3>
-              <p>Visual representation of key research areas in non-coding RNA and cancer bioinformatics.</p>
-            </div>
-          </div>
-
-          <div class="gallery-card">
-            <div class="gallery-img-wrap">
-              <img src="img/experimental_vs_computational.png" alt="Cartoon comparing an experimental biologist in a lab coat with safety rules versus a computational biologist in casual clothes with a laptop" loading="lazy" />
-            </div>
-            <div class="gallery-caption">
-              <h3>Experimental vs Computational</h3>
-              <p>The eternal struggle: lab coat and safety goggles, or flip-flops and a laptop?</p>
+              <span class="gallery-badge gallery-badge-green">Peptide Level</span>
+              <h3>H4 GKGGKGLGKGGAKR Boxplot</h3>
+              <p>Asin-sqrt transformed ratios for H4 peptide 4-17 across five ontogeny stages. Jitter reveals individual replicate distributions and outlier behaviour.</p>
             </div>
           </div>
 
         </div>
+
+        <!-- Bottom: workflow + alignment as smaller horizontal strip -->
+        <div class="gallery-strip fade-in">
+          <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/epiprofile_workflow.gif" alt="EpiProfile_PLANTS 8-step workflow diagram" loading="lazy" />
+            <span>EpiProfile_PLANTS Workflow</span>
+          </div>
+          <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/histone_h4_alignment.png" alt="Cross-species H4 histone alignment" loading="lazy" />
+            <span>H4 Cross-Species Alignment</span>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()" aria-hidden="true">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
 
     <!-- Contact -->
     <section id="contact" class="section">
@@ -2573,7 +2728,28 @@
     // ===== 9. FOOTER YEAR =====
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ===== 10. NUCLEOSOME PARTICLES =====
+    // ===== 10. LIGHTBOX =====
+    function openLightbox(img) {
+      if (!img) return;
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('active');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('active');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ===== 11. NUCLEOSOME PARTICLES =====
     (function() {
       if (prefersReducedMotion) return;
       const canvas = document.getElementById('nucleosome-canvas');
