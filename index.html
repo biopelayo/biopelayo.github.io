@@ -1170,8 +1170,8 @@
     /* Bottom strip */
     .gallery-strip {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
     .gallery-strip-card {
       position: relative;
@@ -1341,7 +1341,7 @@
       .repos-grid,
       .resources-grid,
       .gallery-mosaic { grid-template-columns: 1fr; }
-      .gallery-strip { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
       .workflow { grid-template-columns: 1fr; }
       .workflow-step::after {
         content: "\2193";
@@ -1759,11 +1759,6 @@
             deterministic inputs, traceable intermediates (mzML to MS1/MS2), and QC artifacts that help interpret failures
             (e.g., retention time drift, empty windows, layout mismatches).
           </p>
-
-          <div class="epi-workflow-figure" style="margin: 20px 0; text-align: center;">
-            <img src="img/epiprofile_workflow.gif" alt="EpiProfile_PLANTS workflow: 8 steps from Arabidopsis reference genome through in silico digestion, PTM prediction, MATLAB adaptation, LC-MS/MS, PRIDE validation, to final results" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);" />
-            <p style="color: var(--fg-muted); font-size: 13px; margin-top: 8px; font-style: italic;">Figure: EpiProfile_PLANTS 8-step workflow from reference genome to quantitative histone PTM results.</p>
-          </div>
 
           <div class="code-block" aria-label="Conceptual pipeline"><span class="code-comment"># Conceptual pipeline (tool-agnostic)</span>
 <span class="code-str">vendor files</span> (WIFF/RAW) <span class="code-kw">-></span> <span class="code-fn">mzML</span> <span class="code-kw">-></span> MS1/MS2 extraction <span class="code-kw">-></span> <span class="code-fn">EpiProfile_PLANTS</span>
@@ -2395,76 +2390,84 @@
           <div class="section-line" aria-hidden="true"></div>
         </div>
 
-        <!-- Featured: full-width hero figure -->
+        <!-- Featured: full-width heatmap -->
         <div class="gallery-hero fade-in" onclick="openLightbox(this.querySelector('img'))">
           <div class="gallery-hero-img">
-            <img src="img/fig_na_analysis.png" alt="Multi-panel QC analysis: Panel A shows NA/0/1 proportions per sample as stacked bars, Panel B shows category counts per developmental group as pie charts with chi-squared statistics, Panels C-D show top 10 peptides and modifications with most missing/zero values, Panel E shows ratio_raw distributions per group as jitter boxplots" loading="lazy" />
+            <img src="img/fig_heatmap_ptm.png" alt="Hierarchical clustering heatmap of all histone PTMs across 34 Arabidopsis rosette samples, with dendrogram, batch and sample group color annotations (10H, 14H, BOT, FLOR, SEN), red-gray scale from 0 to 0.8" loading="lazy" />
           </div>
           <div class="gallery-hero-caption">
-            <span class="gallery-badge gallery-badge-green">Featured Figure</span>
-            <h3>Data Quality &amp; Missing Value Analysis</h3>
-            <p>Five-panel figure: (A) NA/0/1 stacked bars per sample, (B) category proportions per developmental group with &chi;&sup2; tests, (C-D) top peptides &amp; modifications with missing values, (E) ratio distributions per group with Wilcoxon tests. From the Arabidopsis rosette ontogeny dataset (34 samples).</p>
+            <span class="gallery-badge gallery-badge-pink">Featured &mdash; Heatmap</span>
+            <h3>Histone PTM Landscape Across Rosette Development</h3>
+            <p>Hierarchical clustering of all quantified histone marks across 34 <em>Arabidopsis</em> rosette samples. Color annotations denote batch (A/B) and developmental group (10H, 14H, BOT, FLOR, SEN). Dual dendrogram reveals sample clusters driven by H3K27me modifications and acetylation marks.</p>
           </div>
         </div>
 
-        <!-- 2x2 grid: different visual treatments -->
+        <!-- 2x2 mosaic: PCA, PTM boxplots, Peptide boxplots, QC analysis -->
         <div class="gallery-mosaic fade-in">
 
           <div class="gallery-card gallery-card--glow-cyan" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/fig_coda_distributions.png" alt="Compositional data distributions: ALR and CLR density plots with dashed mean lines, plus ALR and CLR boxplots with colored jitter dots per developmental group (YOUNG, SEN, BOT, FLOR) with Wilcoxon pairwise comparisons" loading="lazy" />
+              <img src="img/fig_pca_ptm.png" alt="PCA biplot of all PTMs across sample groups: 10H (yellow), 14H (green-yellow), BOT (teal), FLOR (dark teal), SEN (purple). Bubble size encodes sample quality. Dim1 explains 17.3%, Dim2 14.9% of variance" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <span class="gallery-badge gallery-badge-cyan">Compositional Analysis</span>
-              <h3>ALR &amp; CLR Distributions</h3>
-              <p>Density curves and jitter-boxplots of compositional log-ratio transformations across four developmental stages.</p>
-            </div>
-          </div>
-
-          <div class="gallery-card gallery-card--glow-pink" onclick="openLightbox(this.querySelector('img'))">
-            <div class="gallery-img-wrap">
-              <img src="img/fig_correlation_heatmap.png" alt="Spearman correlation matrix heatmap of top 6 EPI_TYPE modification classes showing blue-red diverging color scale from -1 to 1" loading="lazy" />
-            </div>
-            <div class="gallery-caption">
-              <span class="gallery-badge gallery-badge-pink">Correlation</span>
-              <h3>Spearman Correlation Matrix</h3>
-              <p>Heatmap of top 6 epigenetic modification types. Blue-red diverging palette reveals antagonistic and co-occurring PTM patterns.</p>
+              <span class="gallery-badge gallery-badge-cyan">Dimensionality Reduction</span>
+              <h3>PCA &mdash; All PTMs</h3>
+              <p>Bubble PCA biplot showing sample clustering by developmental stage. PC1 (17.3%) and PC2 (14.9%) capture separation between seedlings (YOUNG) and mature tissues (SEN, BOT, FLOR).</p>
             </div>
           </div>
 
           <div class="gallery-card gallery-card--glow-purple" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/fig_pairs_scatter.png" alt="Pairs scatter plot matrix of top 6 modification types with per-group Spearman correlations for YOUNG, SEN, BOT, and diagonal histograms" loading="lazy" />
+              <img src="img/fig_ptm_boxplots.png" alt="PTM-level ratios as violin-boxplots faceted per modification (H3K27ac, H3K27me1-3, H3K36me1-3, etc.) with colored jitter dots per developmental group, significance brackets from Wilcoxon tests" loading="lazy" />
             </div>
             <div class="gallery-caption">
-              <span class="gallery-badge gallery-badge-purple">Multivariate</span>
-              <h3>Pairs Scatter Matrix</h3>
-              <p>6&times;6 scatter matrix with per-group Spearman correlations (YOUNG, SEN, BOT) and marginal histograms. Reveals group-specific PTM co-regulation.</p>
+              <span class="gallery-badge gallery-badge-purple">PTM Level</span>
+              <h3>PTM Ratios Across Sample Groups</h3>
+              <p>Violin-boxplots of all quantified histone PTMs faceted per modification. Each dot represents a biological replicate, colored by ontogeny stage (10H&ndash;SEN). Significance brackets from pairwise Wilcoxon tests.</p>
             </div>
           </div>
 
           <div class="gallery-card gallery-card--glow-green" onclick="openLightbox(this.querySelector('img'))">
             <div class="gallery-img-wrap">
-              <img src="img/fig_h4_peptide_boxplot.png" alt="H4 peptide GKGGKGLGKGGAKR region 4-17 boxplot with jitter points colored by developmental group: 10H blue, 14H gray, BOT pink, FLOR orange, SEN dark blue, showing asin-sqrt transformed ratios" loading="lazy" />
+              <img src="img/fig_peptide_boxplots.png" alt="Peptide-level ratios as boxplots faceted per peptide sequence and histone (H3, H33, H2A, H4), with colored jitter dots per developmental group across 5 ontogeny stages" loading="lazy" />
             </div>
             <div class="gallery-caption">
               <span class="gallery-badge gallery-badge-green">Peptide Level</span>
-              <h3>H4 GKGGKGLGKGGAKR Boxplot</h3>
-              <p>Asin-sqrt transformed ratios for H4 peptide 4-17 across five ontogeny stages. Jitter reveals individual replicate distributions and outlier behaviour.</p>
+              <h3>Peptide Ratios Faceted by Histone</h3>
+              <p>All peptideform ratios (asin-sqrt) faceted by sequence and histone type (H3, H3.3, H2A, H4). Colored jitter reveals replicate distributions across five developmental stages of the <em>Arabidopsis</em> rosette.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card gallery-card--glow-pink" onclick="openLightbox(this.querySelector('img'))">
+            <div class="gallery-img-wrap">
+              <img src="img/fig_na_analysis.png" alt="Multi-panel QC analysis: stacked bars of NA/0/1 proportions per sample, pie charts per group with chi-squared, top peptides and modifications with missing values, jitter boxplots of ratio distributions" loading="lazy" />
+            </div>
+            <div class="gallery-caption">
+              <span class="gallery-badge gallery-badge-pink">Quality Control</span>
+              <h3>Missing Value &amp; Data Quality Panel</h3>
+              <p>Five-panel QC figure: (A) NA/zero/valid stacked bars, (B) group-level &chi;&sup2; tests, (C-D) top problematic peptides &amp; modifications, (E) ratio distributions with Wilcoxon. 34 samples from the BGSR ontogeny dataset.</p>
             </div>
           </div>
 
         </div>
 
-        <!-- Bottom: workflow + alignment as smaller horizontal strip -->
+        <!-- Bottom strip: alignment + secondary figures -->
         <div class="gallery-strip fade-in">
           <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/epiprofile_workflow.gif" alt="EpiProfile_PLANTS 8-step workflow diagram" loading="lazy" />
-            <span>EpiProfile_PLANTS Workflow</span>
+            <img src="img/histone_h4_alignment.png" alt="Cross-species H4 histone alignment across Arabidopsis, Marchantia, mouse, human" loading="lazy" />
+            <span>H4 Cross-Species Alignment</span>
           </div>
           <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/histone_h4_alignment.png" alt="Cross-species H4 histone alignment" loading="lazy" />
-            <span>H4 Cross-Species Alignment</span>
+            <img src="img/fig_coda_distributions.png" alt="ALR and CLR compositional distributions with jitter boxplots per group" loading="lazy" />
+            <span>Compositional Distributions (ALR/CLR)</span>
+          </div>
+          <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/fig_pairs_scatter.png" alt="Pairs scatter matrix of top 6 modification types" loading="lazy" />
+            <span>Pairs Scatter &mdash; Top EPI Types</span>
+          </div>
+          <div class="gallery-strip-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/fig_h4_peptide_boxplot.png" alt="H4 peptide GKGGKGLGKGGAKR boxplot across ontogeny stages" loading="lazy" />
+            <span>H4 Peptide 4-17 Boxplot</span>
           </div>
         </div>
       </div>
