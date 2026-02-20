@@ -1066,6 +1066,189 @@
       gap: 16px;
     }
 
+    /* WORKFLOW GALLERY */
+    .wf-scroll-container {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 4px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(57,255,115,0.25) transparent;
+    }
+    .wf-scroll-container::-webkit-scrollbar { height: 6px; }
+    .wf-scroll-container::-webkit-scrollbar-track { background: transparent; }
+    .wf-scroll-container::-webkit-scrollbar-thumb { background: rgba(57,255,115,0.2); border-radius: 3px; }
+    .wf-card {
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: var(--bg-surface);
+      cursor: pointer;
+      transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    .wf-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(57,255,115,0.25);
+      box-shadow: 0 8px 24px rgba(57,255,115,0.06);
+    }
+    .wf-card img {
+      width: 100%;
+      display: block;
+      background: #f8f9fa;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+    .wf-card .wf-info {
+      padding: 10px 14px;
+      border-top: 1px solid var(--glass-border);
+      background: rgba(0,0,0,0.2);
+    }
+    .wf-card .wf-info .wf-title {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--fg);
+      margin-bottom: 3px;
+    }
+    .wf-card .wf-info .wf-desc {
+      font-size: 11px;
+      color: var(--fg-muted);
+      line-height: 1.35;
+    }
+    .wf-card .wf-badge {
+      display: inline-block;
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    .wf-scroll-hint {
+      font-size: 11px;
+      color: var(--fg-dim);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* LINKEDIN FEED */
+    .linkedin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .linkedin-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+      color: var(--fg);
+      transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .linkedin-card:hover {
+      border-color: rgba(0,119,181,0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,119,181,0.08);
+    }
+    .linkedin-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .linkedin-info .linkedin-name {
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .linkedin-info .linkedin-role {
+      font-size: 11px;
+      color: var(--fg-muted);
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+    .linkedin-info .linkedin-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .linkedin-info .linkedin-tags span {
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0,119,181,0.2);
+      color: #0077b5;
+      font-weight: 500;
+    }
+
+    /* SOCCER SECTION */
+    .soccer-wrap {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .soccer-main {
+      flex: 2;
+      min-width: 300px;
+    }
+    .soccer-sidebar {
+      flex: 1;
+      min-width: 220px;
+    }
+    .soccer-fav-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .soccer-team {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      font-size: 13px;
+      font-weight: 600;
+      transition: border-color 0.3s ease, transform 0.15s ease;
+    }
+    .soccer-team:hover {
+      transform: translateY(-1px);
+    }
+    .soccer-team .team-crest {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .soccer-quote {
+      font-style: italic;
+      color: var(--fg-muted);
+      border-left: 3px solid var(--neon-green);
+      padding: 10px 16px;
+      margin: 16px 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     /* USEFUL LINKS */
     .links-grid {
       display: grid;
@@ -1606,7 +1789,10 @@
         <a href="#teaching">Teaching</a>
         <a href="#resources">Resources</a>
         <a href="#gallery">Gallery</a>
+        <a href="#workflows">Workflows</a>
         <a href="#links">Links</a>
+        <a href="#linkedin">Voices</a>
+        <a href="#soccer">Soccer</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -2897,6 +3083,103 @@
       <img id="lightbox-img" src="" alt="" />
     </div>
 
+    <!-- Thesis Workflow Diagrams -->
+    <section id="workflows" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Thesis Workflows</h2>
+          <p class="section-sub">Visual diagrams mapping the experimental and computational pipelines across all thesis chapters.</p>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="wf-scroll-hint fade-in" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="opacity: 0.5;"><path d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"/></svg>
+          Scroll to explore all workflows &mdash; click to enlarge
+        </div>
+
+        <div class="wf-scroll-container fade-in">
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_thesis_overview.png" alt="PhD thesis visual overview: 5 chapters plus H3K79 letter — green icon-based workflow map showing Cap. 1 Introduction, Cap. 2 EpiProfile_PLANTS software, Cap. 3 Arabidopsis ontogeny, Cap. 4 PXD046034 genotoxic stress, Cap. 5 Discussion, and H3K79 transversal finding" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(57,255,115,0.12); color: var(--neon-green);">Overview</span>
+                Thesis Chapter Map
+              </div>
+              <div class="wf-desc">5 chapters + H3K79 letter: Introduction, EpiProfile_PLANTS, Ontogeny, Genotoxic Stress, Discussion</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_experimental_pipeline.png" alt="Scientific Workflow: 8-step Plant Histone Proteomics Pipeline from Nuclei Isolation through Acid Extraction, Derivatization, LC-MS/MS, WIFF acquisition, mzML conversion, PTM Quantification to Data Analysis" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(167,139,250,0.12); color: var(--neon-purple);">Pipeline</span>
+                8-Step Experimental Workflow
+              </div>
+              <div class="wf-desc">From nuclei isolation to quantitative histone PTM matrices and downstream analysis</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_ontogenia_proteomic.png" alt="Arabidopsis Ontogenia proteomic workflow: sample preparation, LC-MS/MS on ZenoTOF, EpiProfile_PLANTS processing and downstream R analysis" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(34,211,238,0.12); color: var(--neon-cyan);">Ch. 3</span>
+                Ontogeny Proteomic Workflow
+              </div>
+              <div class="wf-desc">A. thaliana rosette ontogeny: preparation, LC-MS/MS on ZenoTOF, EpiProfile_PLANTS quantification</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_tech_variance.png" alt="Technical variability sources and mitigation strategies across the 5-stage EpiProfile_PLANTS pipeline: sample preparation, LC-MS/MS, file conversion, quantification, and statistics" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(244,114,182,0.12); color: var(--neon-pink);">QC</span>
+                Technical Variance &amp; Mitigation
+              </div>
+              <div class="wf-desc">Error sources at each pipeline stage and implemented mitigation strategies for robust quantification</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_h3k79_validation.png" alt="Orthogonal validation workflow for H3K79 marks (me1, me2, me3, ac): 6-tier evidence matrix with targeted MS, enzyme controls, orthogonal digestions, temporal series, and HILIC fractionation" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(57,255,115,0.12); color: var(--neon-green);">H3K79</span>
+                Orthogonal Validation Design
+              </div>
+              <div class="wf-desc">6-tier evidence matrix: targeted MS, enzyme controls, orthogonal digestions, temporal series, HILIC/RP</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_prisma_screening.png" alt="PRISMA-style literature screening flowchart for EpiProfile and H3K79 in plants: 2450 records screened to 35 studies included, with 12 using EpiProfile 2.0 and 8 detecting H3K79 in Arabidopsis" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(167,139,250,0.12); color: var(--neon-purple);">Review</span>
+                PRISMA Literature Screening
+              </div>
+              <div class="wf-desc">Systematic review: 2,450 records &rarr; 35 studies &mdash; 12 using EpiProfile, 8 detecting H3K79</div>
+            </div>
+          </div>
+
+          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_post_epiprofile.png" alt="Post-EpiProfile downstream analysis workflow: normalization, statistical testing, PCA, heatmaps, volcano plots, and publication-ready figures in R" loading="lazy" />
+            <div class="wf-info">
+              <div class="wf-title">
+                <span class="wf-badge" style="background: rgba(34,211,238,0.12); color: var(--neon-cyan);">Stats</span>
+                Post-EpiProfile Analysis
+              </div>
+              <div class="wf-desc">Downstream R pipeline: normalization, differential analysis, PCA, heatmaps, volcano plots</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Useful Links -->
     <section id="links" class="section">
       <div class="container">
@@ -3172,6 +3455,222 @@
             </a>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- LinkedIn Voices I Follow -->
+    <section id="linkedin" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Voices I Follow</h2>
+          <p class="section-sub">People on LinkedIn who inspire my thinking at the intersection of biology, data, and AI.</p>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="linkedin-grid">
+
+          <!-- Tommy Tang -->
+          <a href="https://www.linkedin.com/in/tommy-tang-bioinformatics/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">TT</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Tommy Tang</div>
+              <div class="linkedin-role">Director of Bioinformatics at AstraZeneca &mdash; scATAC-seq, ChIP-seq, cancer epigenomics</div>
+              <div class="linkedin-tags">
+                <span>Epigenomics</span>
+                <span>Single-cell</span>
+                <span>Pharma</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Santiago Carmona -->
+          <a href="https://www.linkedin.com/in/santiago-carmona-80871339/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-1">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">SC</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Santiago Carmona</div>
+              <div class="linkedin-role">Computational biology &amp; ML for immunology at CHUV/UNIL &mdash; deep learning, single-cell</div>
+              <div class="linkedin-tags">
+                <span>ML</span>
+                <span>Immunology</span>
+                <span>Deep Learning</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Andrew Ng -->
+          <a href="https://www.linkedin.com/in/andrewyng/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-2">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #dc2626, #f97316);">AN</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Andrew Ng</div>
+              <div class="linkedin-role">AI Fund, DeepLearning.AI, Stanford &mdash; ML education, applied AI, LLMs</div>
+              <div class="linkedin-tags">
+                <span>AI</span>
+                <span>Education</span>
+                <span>Stanford</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Lior Pachter -->
+          <a href="https://www.linkedin.com/in/laboratory/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-3">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">LP</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Lior Pachter</div>
+              <div class="linkedin-role">Caltech &mdash; computational biology, RNA velocity, kallisto, single-cell genomics</div>
+              <div class="linkedin-tags">
+                <span>RNA-seq</span>
+                <span>kallisto</span>
+                <span>Caltech</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Cassie Kozyrkov -->
+          <a href="https://www.linkedin.com/in/kozyrkov/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-4">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">CK</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Cassie Kozyrkov</div>
+              <div class="linkedin-role">Ex-Chief Decision Scientist at Google &mdash; applied ML, decision intelligence, statistics</div>
+              <div class="linkedin-tags">
+                <span>Decision Science</span>
+                <span>Statistics</span>
+                <span>ML</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Fei-Fei Li -->
+          <a href="https://www.linkedin.com/in/faboratory/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-5">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #b45309, #eab308);">FL</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Fei-Fei Li</div>
+              <div class="linkedin-role">Stanford HAI Co-Director &mdash; computer vision, ImageNet, AI for healthcare</div>
+              <div class="linkedin-tags">
+                <span>Vision</span>
+                <span>Healthcare AI</span>
+                <span>Stanford</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Shirley Liu -->
+          <a href="https://www.linkedin.com/in/xsliu/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-6">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #059669, #22d3ee);">SL</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Xiaole Shirley Liu</div>
+              <div class="linkedin-role">GV20 Therapeutics &mdash; CRISPR screens, computational cancer genomics, epigenomics</div>
+              <div class="linkedin-tags">
+                <span>CRISPR</span>
+                <span>Cancer</span>
+                <span>Epigenomics</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Yann LeCun -->
+          <a href="https://www.linkedin.com/in/yann-lecun/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-7">
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #1d4ed8, #3b82f6);">YL</div>
+            <div class="linkedin-info">
+              <div class="linkedin-name">Yann LeCun</div>
+              <div class="linkedin-role">VP &amp; Chief AI Scientist at Meta &mdash; deep learning, CNNs, self-supervised learning</div>
+              <div class="linkedin-tags">
+                <span>Deep Learning</span>
+                <span>Meta AI</span>
+                <span>CNNs</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Soccer Lover -->
+    <section id="soccer" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">Beyond the Lab</h2>
+          <p class="section-sub">When I&rsquo;m not at the bench or terminal, you&rsquo;ll find me on the pitch.</p>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="soccer-wrap fade-in">
+          <div class="soccer-main">
+            <div class="glass-card">
+              <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
+              <h3 class="card-title" style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 28px;" aria-hidden="true">&#9917;</span> Soccer Lover
+              </h3>
+              <p class="card-body">
+                Football is my reset button. Whether it&rsquo;s watching a Champions League evening, playing a weekend pick-up game,
+                or debating tactics over coffee, the beautiful game has been a constant in my life. I believe the parallels
+                between sports and science run deep: teamwork, strategy under pressure, and the beauty of an elegant solution.
+              </p>
+
+              <div class="soccer-quote">
+                &ldquo;In football, the worst blindness is only seeing the ball.&rdquo; &mdash; Nelson Falc&atilde;o
+              </div>
+
+              <p class="card-body" style="margin-top: 12px; font-size: 13px;">
+                <strong style="color: var(--neon-green);">Fun fact:</strong> I apply the same analytical mindset to football &mdash;
+                expected goals (xG), passing networks, and positional heatmaps feel surprisingly natural
+                when you come from omics data matrices and PCA plots.
+              </p>
+
+              <div class="soccer-fav-row" style="margin-top: 16px;">
+                <div class="soccer-team" style="border-color: rgba(0,51,160,0.3);">
+                  <span class="team-crest" aria-hidden="true">&#127468;&#127463;</span>
+                  Real Oviedo
+                </div>
+                <div class="soccer-team" style="border-color: rgba(167,139,250,0.3);">
+                  <span class="team-crest" aria-hidden="true">&#9917;</span>
+                  La Liga
+                </div>
+                <div class="soccer-team" style="border-color: rgba(57,255,115,0.3);">
+                  <span class="team-crest" aria-hidden="true">&#127942;</span>
+                  Champions League
+                </div>
+                <div class="soccer-team" style="border-color: rgba(244,114,182,0.3);">
+                  <span class="team-crest" aria-hidden="true">&#127941;</span>
+                  Weekend Player
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="soccer-sidebar">
+            <div class="glass-card" style="text-align: center;">
+              <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
+              <h3 class="card-title">Match Day Ritual</h3>
+              <div style="font-size: 48px; margin: 12px 0;" aria-hidden="true">&#9917;</div>
+              <div style="display: flex; flex-direction: column; gap: 8px; text-align: left;">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+                  <span style="color: var(--neon-green); font-weight: 700;">1.</span> <span style="color: var(--fg-muted);">Check lineups &amp; expected formations</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+                  <span style="color: var(--neon-green); font-weight: 700;">2.</span> <span style="color: var(--fg-muted);">Prepare snacks &amp; cold drinks</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+                  <span style="color: var(--neon-green); font-weight: 700;">3.</span> <span style="color: var(--fg-muted);">Watch with full tactical focus</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+                  <span style="color: var(--neon-green); font-weight: 700;">4.</span> <span style="color: var(--fg-muted);">Post-match analysis on xG twitter</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card" style="text-align: center; margin-top: 14px;">
+              <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
+              <h3 class="card-title" style="font-size: 14px;">Parallels</h3>
+              <div style="font-size: 12px; color: var(--fg-muted); line-height: 1.6; text-align: left;">
+                <div style="margin-bottom: 6px;"><span style="color: var(--neon-purple);">PCA</span> &#8596; Positional heatmap</div>
+                <div style="margin-bottom: 6px;"><span style="color: var(--neon-cyan);">Pipeline QC</span> &#8596; Formation drill</div>
+                <div style="margin-bottom: 6px;"><span style="color: var(--neon-green);">Batch effects</span> &#8596; Home/away bias</div>
+                <div><span style="color: var(--neon-pink);">Outlier detection</span> &#8596; Star player scouting</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
