@@ -1066,6 +1066,73 @@
       gap: 16px;
     }
 
+    /* USEFUL LINKS */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .link-category-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .link-category-title .cat-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .link-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--fg);
+      transition: background 0.2s ease, transform 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .link-item:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--glass-border);
+      transform: translateX(3px);
+    }
+    .link-item .link-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .link-item .link-name {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .link-item .link-desc {
+      font-size: 11px;
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+    .link-item .link-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      font-weight: 500;
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+
     /* 17. CONTACT */
     .contact-grid {
       display: flex;
@@ -2830,20 +2897,281 @@
       <img id="lightbox-img" src="" alt="" />
     </div>
 
-    <!-- Useful Links (placeholder for user to fill) -->
+    <!-- Useful Links -->
     <section id="links" class="section">
       <div class="container">
         <div class="section-header fade-in">
           <h2 class="section-title">Useful Links</h2>
-          <p class="section-sub">Curated resources, references, and tools that I find valuable.</p>
+          <p class="section-sub">Curated resources, tools, databases, and references I use regularly and recommend.</p>
           <div class="section-line" aria-hidden="true"></div>
         </div>
 
-        <div class="glass-card fade-in" style="text-align: center; padding: 40px 24px;">
-          <div style="font-size: 32px; margin-bottom: 12px; opacity: 0.4;" aria-hidden="true">&#128279;</div>
-          <p class="card-body" style="color: var(--fg-muted); max-width: 480px; margin: 0 auto;">
-            Coming soon &mdash; a curated collection of useful links, tools, databases, and resources for plant epigenomics, proteomics, and computational biology. Stay tuned!
-          </p>
+        <div class="links-grid">
+
+          <!-- Proteomics & Mass Spectrometry -->
+          <div class="glass-card fade-in">
+            <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(57,255,115,0.1); color: var(--neon-green);">&#9878;</span>
+              Proteomics &amp; Mass Spectrometry
+            </div>
+            <a href="https://github.com/biopelayo/epiprofile-plants" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">EpiProfile_PLANTS <span class="link-badge" style="background: rgba(57,255,115,0.12); color: var(--neon-green);">Own tool</span></div>
+                <div class="link-desc">MATLAB suite for histone PTM quantification from bottom-up proteomics</div>
+              </div>
+            </a>
+            <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">ProteomicsDB</div>
+                <div class="link-desc">Interactive exploration of proteomics data, protein expression atlas</div>
+              </div>
+            </a>
+            <a href="https://www.uniprot.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">UniProt</div>
+                <div class="link-desc">Protein sequence &amp; functional annotation knowledgebase</div>
+              </div>
+            </a>
+            <a href="http://proline.profiproteomics.fr/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">Proline / ProlineStudio</div>
+                <div class="link-desc">Label-free quantification &amp; proteomics data analysis pipeline</div>
+              </div>
+            </a>
+            <a href="https://proteowizard.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">ProteoWizard / msconvert</div>
+                <div class="link-desc">Convert vendor MS files (WIFF/RAW) to open formats (mzML)</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Epigenomics & Chromatin -->
+          <div class="glass-card fade-in stagger-1">
+            <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(167,139,250,0.1); color: var(--neon-purple);">&#9733;</span>
+              Epigenomics &amp; Chromatin
+            </div>
+            <a href="https://www.encodeproject.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-purple);"></span>
+              <div>
+                <div class="link-name">ENCODE Project</div>
+                <div class="link-desc">Encyclopedia of DNA elements &mdash; functional genomics data</div>
+              </div>
+            </a>
+            <a href="https://epigenomesportal.ca/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-purple);"></span>
+              <div>
+                <div class="link-name">IHEC Epigenomes Portal</div>
+                <div class="link-desc">International Human Epigenome Consortium data portal</div>
+              </div>
+            </a>
+            <a href="https://www.arabidopsis.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-purple);"></span>
+              <div>
+                <div class="link-name">TAIR (Araport11)</div>
+                <div class="link-desc">The Arabidopsis Information Resource &mdash; genome, gene models, annotations</div>
+              </div>
+            </a>
+            <a href="https://phytozome-next.jgi.doe.gov/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-purple);"></span>
+              <div>
+                <div class="link-name">Phytozome</div>
+                <div class="link-desc">Plant comparative genomics portal (JGI/DOE)</div>
+              </div>
+            </a>
+            <a href="https://epd.expasy.org/epd/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-purple);"></span>
+              <div>
+                <div class="link-name">EPD / Eukaryotic Promoter DB</div>
+                <div class="link-desc">Curated eukaryotic promoter annotations</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Nanopore & RNA-seq -->
+          <div class="glass-card fade-in stagger-2">
+            <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(34,211,238,0.1); color: var(--neon-cyan);">&#10070;</span>
+              Nanopore &amp; RNA-seq
+            </div>
+            <a href="https://github.com/biopelayo/K-CHOPORE" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">K-CHOPORE <span class="link-badge" style="background: rgba(34,211,238,0.12); color: var(--neon-cyan);">Own tool</span></div>
+                <div class="link-desc">9-stage Snakemake+Docker pipeline for nanopore direct RNA-seq</div>
+              </div>
+            </a>
+            <a href="https://nanoporetech.com/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">Oxford Nanopore Technologies</div>
+                <div class="link-desc">Nanopore sequencing platform, Dorado basecaller &amp; documentation</div>
+              </div>
+            </a>
+            <a href="https://bioconductor.org/packages/DESeq2/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">DESeq2 (Bioconductor)</div>
+                <div class="link-desc">Differential gene expression analysis for RNA-seq count data</div>
+              </div>
+            </a>
+            <a href="https://github.com/BrooksLabUCSC/flair" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">FLAIR</div>
+                <div class="link-desc">Full-Length Alternative Isoform analysis of RNA from long reads</div>
+              </div>
+            </a>
+            <a href="https://github.com/comprna/ELIGOS2" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">ELIGOS2</div>
+                <div class="link-desc">Epitranscriptomic detection of m6A from nanopore direct RNA-seq</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Bioinformatics Teaching -->
+          <div class="glass-card fade-in stagger-3">
+            <div class="card-accent-line" style="--accent: var(--neon-pink);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(244,114,182,0.1); color: var(--neon-pink);">&#9997;</span>
+              Teaching &amp; Tutorials
+            </div>
+            <a href="https://biopython.org/wiki/Documentation" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-pink);"></span>
+              <div>
+                <div class="link-name">Biopython Tutorial</div>
+                <div class="link-desc">Official Biopython docs &mdash; parsing sequences, BLAST, PDB, phylogenetics</div>
+              </div>
+            </a>
+            <a href="https://swcarpentry.github.io/shell-novice/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-pink);"></span>
+              <div>
+                <div class="link-name">Software Carpentry &mdash; Shell</div>
+                <div class="link-desc">The Unix Shell lesson for beginners (navigating, pipes, scripts)</div>
+              </div>
+            </a>
+            <a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-pink);"></span>
+              <div>
+                <div class="link-name">R for Data Science (2e)</div>
+                <div class="link-desc">Hadley Wickham &amp; Garrett Grolemund &mdash; tidyverse-first approach</div>
+              </div>
+            </a>
+            <a href="https://bioconductor.org/help/course-materials/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-pink);"></span>
+              <div>
+                <div class="link-name">Bioconductor Course Materials</div>
+                <div class="link-desc">Official workshops on RNA-seq, ChIP-seq, single-cell, and more</div>
+              </div>
+            </a>
+            <a href="https://snakemake.readthedocs.io/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-pink);"></span>
+              <div>
+                <div class="link-name">Snakemake Documentation</div>
+                <div class="link-desc">Workflow management for reproducible data analysis pipelines</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Databases & Portals -->
+          <div class="glass-card fade-in stagger-4">
+            <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(57,255,115,0.1); color: var(--neon-green);">&#128450;</span>
+              Databases &amp; Portals
+            </div>
+            <a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">GEO (NCBI)</div>
+                <div class="link-desc">Gene Expression Omnibus &mdash; functional genomics data repository</div>
+              </div>
+            </a>
+            <a href="https://www.ebi.ac.uk/pride/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">PRIDE Archive</div>
+                <div class="link-desc">Proteomics data repository at EMBL-EBI</div>
+              </div>
+            </a>
+            <a href="https://www.ebi.ac.uk/intact/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">IntAct</div>
+                <div class="link-desc">Molecular interaction database &amp; network analysis</div>
+              </div>
+            </a>
+            <a href="https://www.ensembl.org/index.html" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">Ensembl / Ensembl Plants</div>
+                <div class="link-desc">Genome browser, gene annotation &amp; comparative genomics</div>
+              </div>
+            </a>
+            <a href="https://string-db.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-green);"></span>
+              <div>
+                <div class="link-name">STRING</div>
+                <div class="link-desc">Protein-protein interaction networks &amp; functional enrichment</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Dev Tools & Reproducibility -->
+          <div class="glass-card fade-in stagger-5">
+            <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
+            <div class="link-category-title">
+              <span class="cat-icon" style="background: rgba(34,211,238,0.1); color: var(--neon-cyan);">&#9881;</span>
+              Tools &amp; Reproducibility
+            </div>
+            <a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">Docker Documentation</div>
+                <div class="link-desc">Containerize pipelines for portable, reproducible analysis</div>
+              </div>
+            </a>
+            <a href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">Conda / Miniconda</div>
+                <div class="link-desc">Package &amp; environment management for Python/R/bioinformatics</div>
+              </div>
+            </a>
+            <a href="https://learn.microsoft.com/en-us/windows/wsl/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">WSL2 (Windows Subsystem for Linux)</div>
+                <div class="link-desc">Run Linux tools on Windows &mdash; essential for bioinformatics on PC</div>
+              </div>
+            </a>
+            <a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">FAIR Principles</div>
+                <div class="link-desc">Findable, Accessible, Interoperable, Reusable &mdash; data management guidelines</div>
+              </div>
+            </a>
+            <a href="https://galaxyproject.org/" target="_blank" rel="noopener noreferrer" class="link-item">
+              <span class="link-bullet" style="background: var(--neon-cyan);"></span>
+              <div>
+                <div class="link-name">Galaxy Project</div>
+                <div class="link-desc">Web-based platform for accessible, reproducible genomics research</div>
+              </div>
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
