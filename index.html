@@ -124,6 +124,17 @@
     .stagger-4 { transition-delay: 0.4s; }
     .stagger-5 { transition-delay: 0.5s; }
 
+    /* 3b. NUCLEOSOME CANVAS */
+    #nucleosome-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* 4. PROGRESS BAR */
     .progress-bar {
       position: fixed;
@@ -759,6 +770,131 @@
       margin: 0 auto 16px auto;
     }
 
+    /* 14b. K-CHOPORE PIPELINE */
+    .kchopore-pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0;
+      margin: 8px 0;
+    }
+    .kc-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--bg-deep);
+      flex: 0 0 auto;
+      max-width: 220px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .kc-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(167, 139, 250, 0.15);
+    }
+    .kc-step-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+    .kc-step-signal .kc-step-num { background: var(--neon-purple); color: #0a0e17; }
+    .kc-step-qc .kc-step-num { background: var(--neon-cyan); color: #0a0e17; }
+    .kc-step-align .kc-step-num { background: var(--neon-green); color: #0a0e17; }
+    .kc-step-iso .kc-step-num { background: #f59e0b; color: #0a0e17; }
+    .kc-step-epi .kc-step-num { background: var(--neon-pink); color: #0a0e17; }
+    .kc-step-de .kc-step-num { background: #ef4444; color: #fff; }
+    .kc-step-report .kc-step-num { background: var(--fg); color: #0a0e17; }
+    .kc-step-content h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .kc-step-content p {
+      font-size: 11px;
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+    .kc-step-content code {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(167, 139, 250, 0.1);
+      padding: 1px 4px;
+      border-radius: 3px;
+      color: var(--neon-purple);
+    }
+    .kc-arrow {
+      width: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+      position: relative;
+      flex-shrink: 0;
+    }
+    .kc-arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -3px;
+      border: 4px solid transparent;
+      border-left: 5px solid var(--neon-cyan);
+    }
+    .kc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .kc-table th, .kc-table td {
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .kc-table th {
+      color: var(--neon-purple);
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .kc-table td {
+      color: var(--fg-muted);
+    }
+    .kc-table tbody tr:hover {
+      background: rgba(167, 139, 250, 0.05);
+    }
+    @media (max-width: 768px) {
+      .kchopore-pipeline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .kc-step {
+        max-width: 100%;
+      }
+      .kc-arrow {
+        width: 2px;
+        height: 16px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, var(--neon-purple), var(--neon-cyan));
+      }
+      .kc-arrow::after {
+        right: -3px;
+        top: auto;
+        bottom: -1px;
+        border: 4px solid transparent;
+        border-top: 5px solid var(--neon-cyan);
+        border-left: 4px solid transparent;
+      }
+    }
+
     /* 15. SKILLS */
     .skills-grid {
       display: grid;
@@ -1101,6 +1237,9 @@
 </head>
 
 <body>
+  <!-- Nucleosome Particles Canvas -->
+  <canvas id="nucleosome-canvas" aria-hidden="true"></canvas>
+
   <!-- Scroll Progress Bar -->
   <div class="progress-bar" aria-hidden="true"></div>
 
@@ -1119,6 +1258,7 @@
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#epiprofile">EpiProfile</a>
+        <a href="#kchopore">K-CHOPORE</a>
         <a href="#pipelines">Pipelines</a>
         <a href="#publications">Publications</a>
         <a href="#skills">Skills</a>
@@ -1356,15 +1496,23 @@
           <article class="glass-card research-card fade-in stagger-4" data-category="pipeline">
             <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
             <span class="card-category">Pipeline Development</span>
-            <h3 class="card-title">K-CHOPORE (Long-read Transcriptomics)</h3>
+            <h3 class="card-title">K-CHOPORE &mdash; Nanopore Direct RNA Pipeline</h3>
             <p class="card-body">
-              Contribution to a Snakemake-based workflow for long-read RNA-seq/Nanopore data.
-              This serves as a reference point for designing FAIR-oriented pipelines and documentation.
+              <strong>Keen Comprehensive High-throughput Omics Pipeline Organizer.</strong>
+              A 9-stage Snakemake + Docker pipeline for Oxford Nanopore direct RNA-seq,
+              covering basecalling, isoform analysis, epitranscriptomic modification detection (m6A),
+              and differential expression. Applied to an <em>Arabidopsis thaliana</em> 2&times;2 factorial design
+              (WT vs <em>anac017-1</em> mutant &times; control vs Antimycin&nbsp;A).
             </p>
             <div class="card-tags">
               <span class="tag-purple">Snakemake</span>
-              <span class="tag-purple">Long-read RNA-seq</span>
-              <span class="tag-purple">Reproducibility</span>
+              <span class="tag-purple">Docker</span>
+              <span class="tag-purple">Nanopore dRNA-seq</span>
+              <span class="tag-purple">Epitranscriptomics</span>
+              <span class="tag-purple">FAIR</span>
+            </div>
+            <div style="margin-top: 10px;">
+              <a href="#kchopore" style="color: var(--neon-purple); font-size: 13px; text-decoration: none; border-bottom: 1px dashed var(--neon-purple);">See full pipeline details &darr;</a>
             </div>
           </article>
 
@@ -1492,6 +1640,171 @@
               Dashboard (Dash/Plotly)
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- K-CHOPORE -->
+    <section id="kchopore" class="section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2 class="section-title">K-CHOPORE</h2>
+          <p class="section-sub">Keen Comprehensive High-throughput Omics Pipeline Organizer &mdash; Nanopore direct RNA-seq from raw signal to biological insight.</p>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+
+        <div class="glass-card fade-in" style="margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
+            <img src="img/k_chopore_logo.png" alt="K-CHOPORE logo" loading="lazy" style="height: 52px; width: auto;" />
+            <div>
+              <p class="card-body" style="margin: 0;">
+                A 9-stage <strong>Snakemake + Docker</strong> pipeline for Oxford Nanopore direct RNA sequencing.
+                The name is a playful nod to the Asturian <em>cachopo</em>&mdash;a layered sandwich dish&mdash;reflecting
+                how the pipeline stacks analytical layers from raw signal to epitranscriptomic maps.
+              </p>
+            </div>
+          </div>
+
+          <p class="card-body" style="margin-bottom: 16px;">
+            Currently applied to an <em>Arabidopsis thaliana</em> 2&times;2 factorial experiment
+            (WT vs <em>anac017-1</em> mutant &times; control vs Antimycin&nbsp;A),
+            yielding <strong>20,958 isoforms</strong>, <strong>435 DEGs by genotype</strong>,
+            and <strong>266 DEGs by treatment</strong> (padj&nbsp;&lt;&nbsp;0.05, |log2FC|&nbsp;&gt;&nbsp;1).
+          </p>
+
+          <!-- 9-step visual pipeline -->
+          <div class="kchopore-pipeline">
+            <div class="kc-step kc-step-signal fade-in">
+              <div class="kc-step-num">1</div>
+              <div class="kc-step-content">
+                <h4>Basecalling</h4>
+                <p>FAST5/POD5 &rarr; FASTQ via Dorado&nbsp;/&nbsp;Guppy</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-qc fade-in">
+              <div class="kc-step-num">2</div>
+              <div class="kc-step-content">
+                <h4>Read Filtering</h4>
+                <p>NanoFilt: Q&nbsp;&ge;&nbsp;7, len&nbsp;&ge;&nbsp;200&nbsp;bp</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-qc fade-in">
+              <div class="kc-step-num">3</div>
+              <div class="kc-step-content">
+                <h4>Read QC</h4>
+                <p>NanoPlot + NanoComp reports</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-align fade-in">
+              <div class="kc-step-num">4</div>
+              <div class="kc-step-content">
+                <h4>Alignment</h4>
+                <p>Minimap2 splice-aware (<code>-ax splice -uf -k14</code>)</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-qc fade-in">
+              <div class="kc-step-num">5</div>
+              <div class="kc-step-content">
+                <h4>Alignment QC</h4>
+                <p>samtools flagstat + pycoQC</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-iso fade-in">
+              <div class="kc-step-num">6</div>
+              <div class="kc-step-content">
+                <h4>Isoform Analysis</h4>
+                <p>FLAIR + StringTie2 &rarr; 20,958 isoforms</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-epi fade-in">
+              <div class="kc-step-num">7</div>
+              <div class="kc-step-content">
+                <h4>Epitranscriptomics</h4>
+                <p>ELIGOS2, m6Anet, xPore &rarr; m6A maps</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-de fade-in">
+              <div class="kc-step-num">8</div>
+              <div class="kc-step-content">
+                <h4>Differential Expression</h4>
+                <p>DESeq2 factorial/additive models</p>
+              </div>
+            </div>
+            <div class="kc-arrow" aria-hidden="true"></div>
+
+            <div class="kc-step kc-step-report fade-in">
+              <div class="kc-step-num">9</div>
+              <div class="kc-step-content">
+                <h4>Report</h4>
+                <p>MultiQC aggregated HTML report</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-tags" style="margin-top: 20px;">
+            <span class="tag-purple">Snakemake</span>
+            <span class="tag-purple">Docker (22.7 GB)</span>
+            <span class="tag-purple">Nanopore dRNA-seq</span>
+            <span class="tag-neon">Arabidopsis</span>
+            <span class="tag-cyan">FLAIR</span>
+            <span class="tag-cyan">ELIGOS2</span>
+            <span class="tag-cyan">m6Anet</span>
+            <span class="tag-pink">DESeq2</span>
+            <span class="tag-neon">FAIR</span>
+          </div>
+
+          <div class="epi-actions" style="margin-top: 16px;">
+            <a class="btn-neon" href="https://github.com/biopelayo/K-CHOPORE" target="_blank" rel="noopener noreferrer" style="--accent: var(--neon-purple); border-color: var(--neon-purple); color: var(--neon-purple);">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              K-CHOPORE on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Experimental design table -->
+        <div class="glass-card fade-in">
+          <h3 class="card-title" style="font-size: 16px; margin-bottom: 12px;">Experimental Design</h3>
+          <div style="overflow-x: auto;">
+            <table class="kc-table">
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th>Wild Type (WT)</th>
+                  <th><em>anac017-1</em> Mutant</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Control</td>
+                  <td>3 replicates</td>
+                  <td>3 replicates</td>
+                </tr>
+                <tr>
+                  <td>Antimycin A</td>
+                  <td>3 replicates</td>
+                  <td>1 replicate</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="card-body" style="margin-top: 12px; font-size: 13px;">
+            Unbalanced design handled via additive DESeq2 model (<code>~ genotype + treatment</code>).
+            The pipeline auto-switches between factorial and additive models based on replicate availability.
+          </p>
         </div>
       </div>
     </section>
@@ -2066,9 +2379,10 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div>
-        &copy; <span id="year"></span> Pelayo González de Lena &middot;
-        Plant Epigenomics &amp; Histone Proteomics
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <img src="img/epilab_logo.jpg" alt="EpiLab" loading="lazy" style="height: 28px; width: 28px; border-radius: 50%; opacity: 0.7; filter: grayscale(0.3);" />
+        <span>&copy; <span id="year"></span> Pelayo González de Lena &middot;
+        Plant Epigenomics &amp; Histone Proteomics</span>
       </div>
       <div>
         Built with HTML/CSS/JS &middot;
@@ -2258,6 +2572,120 @@
 
     // ===== 9. FOOTER YEAR =====
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== 10. NUCLEOSOME PARTICLES =====
+    (function() {
+      if (prefersReducedMotion) return;
+      const canvas = document.getElementById('nucleosome-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      let mouseX = -9999, mouseY = -9999;
+      const MOUSE_RADIUS = 150;
+      const MOUSE_FORCE = 0.8;
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      }, { passive: true });
+      document.addEventListener('mouseleave', function() {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      // Palette: neon green, cyan, purple, pink – low opacity for subtlety
+      const COLORS = [
+        { r: 57, g: 255, b: 115 },  // neon-green
+        { r: 34, g: 211, b: 238 },  // neon-cyan
+        { r: 167, g: 139, b: 250 }, // neon-purple
+        { r: 244, g: 114, b: 182 }, // neon-pink
+        { r: 100, g: 160, b: 220 }, // soft blue
+      ];
+
+      const NUM = Math.min(35, Math.floor(window.innerWidth / 40));
+      const particles = [];
+
+      for (let i = 0; i < NUM; i++) {
+        const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const r = 6 + Math.random() * 28; // nucleosome-like varied sizes
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: r,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          baseAlpha: 0.04 + Math.random() * 0.08,
+          color: c,
+          phase: Math.random() * Math.PI * 2,
+          pulseSpeed: 0.005 + Math.random() * 0.01,
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const t = performance.now() * 0.001;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          // Mouse repulsion
+          const dx = p.x - mouseX;
+          const dy = p.y - (mouseY + window.scrollY * 0); // fixed position
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_RADIUS && dist > 0) {
+            const force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+
+          // Gentle drift
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Damping
+          p.vx *= 0.98;
+          p.vy *= 0.98;
+
+          // Re-add tiny random motion so they don't stop completely
+          p.vx += (Math.random() - 0.5) * 0.02;
+          p.vy += (Math.random() - 0.5) * 0.02;
+
+          // Wrap around edges
+          if (p.x < -p.r) p.x = W + p.r;
+          if (p.x > W + p.r) p.x = -p.r;
+          if (p.y < -p.r) p.y = H + p.r;
+          if (p.y > H + p.r) p.y = -p.r;
+
+          // Pulsing alpha
+          const pulse = Math.sin(t * p.pulseSpeed * 60 + p.phase) * 0.3 + 0.7;
+          const alpha = p.baseAlpha * pulse;
+
+          // Draw nucleosome sphere with radial gradient
+          const grad = ctx.createRadialGradient(
+            p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.1,
+            p.x, p.y, p.r
+          );
+          grad.addColorStop(0, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (alpha * 1.5) + ')');
+          grad.addColorStop(0.6, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + alpha + ')');
+          grad.addColorStop(1, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',0)');
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
   </script>
 </body>
 </html>
