@@ -2018,11 +2018,11 @@
               <div class="roadmap">
                 <div class="roadmap-item">
                   <span class="status-badge progress">In progress</span>
-                  <span>End-to-end tutorials &amp; documentation</span>
+                  <span>PhD thesis writing &amp; defense preparation</span>
                 </div>
                 <div class="roadmap-item">
                   <span class="status-badge progress">In progress</span>
-                  <span>Curated example outputs (QC, heatmaps, PCA, XIC atlas)</span>
+                  <span>End-to-end tutorials &amp; documentation</span>
                 </div>
                 <div class="roadmap-item">
                   <span class="status-badge progress">In progress</span>
@@ -2034,11 +2034,23 @@
                 </div>
                 <div class="roadmap-item">
                   <span class="status-badge done">Done</span>
+                  <span>Technical variance &amp; mitigation framework</span>
+                </div>
+                <div class="roadmap-item">
+                  <span class="status-badge done">Done</span>
                   <span>Multi-species scaffolding (AT/MP/CR catalogs)</span>
                 </div>
                 <div class="roadmap-item">
                   <span class="status-badge done">Done</span>
                   <span>EpiProfile Dashboard (7 analysis tabs)</span>
+                </div>
+                <div class="roadmap-item">
+                  <span class="status-badge done">Done</span>
+                  <span>Curated example outputs (QC, heatmaps, PCA)</span>
+                </div>
+                <div class="roadmap-item">
+                  <span class="status-badge done">Done</span>
+                  <span>Book chapter: RNA-seq platforms &amp; tools</span>
                 </div>
               </div>
             </div>
@@ -2314,17 +2326,37 @@
           </div>
         </div>
 
-        <!-- 8-step experimental pipeline -->
+        <!-- Experimental & Computational Pipeline -->
         <div class="epi-showcase fade-in">
           <h3 class="epi-showcase-title"><span class="accent">//</span> Experimental &amp; Computational Pipeline</h3>
 
           <div class="epi-pipeline-strip" onclick="openLightbox(this.querySelector('img'))">
             <img src="img/epiprofile_8step_pipeline.png"
-                 alt="8-step EpiProfile_PLANTS workflow: Nuclei Isolation, Acid Extraction, Derivatization, LC-MS/MS, RAW/WIFF acquisition, mzML conversion, PTM Quantification, Data Analysis"
+                 alt="Full experimental and computational pipeline for EpiProfile_PLANTS: plant material collection, nuclei isolation, acid histone extraction, propionylation and trypsin digestion, LC-MS/MS acquisition on ZenoTOF 7600, WIFF to mzML conversion via msconvert, EpiProfile_PLANTS quantification at hDP/hPF/hPTM levels, and downstream statistical analysis in R"
                  loading="lazy" />
             <div class="epi-fig-caption">
-              <strong>From histones to quantitative matrices</strong> &mdash;
-              8-step end-to-end pipeline: nuclei isolation &rarr; acid extraction &rarr; propionylation + trypsin &rarr; LC-MS/MS (DDA) &rarr; instrument files (RAW/WIFF) &rarr; mzML conversion &rarr; EpiProfile_PLANTS quantification &rarr; hDP/hPF/hPTM output + QC.
+              <strong>From plant tissue to quantitative histone PTM matrices</strong> &mdash;
+              End-to-end experimental and computational pipeline: plant material &rarr; nuclei isolation &rarr; acid histone extraction &rarr; propionylation + trypsin digestion &rarr; LC-MS/MS (DDA on ZenoTOF 7600) &rarr; WIFF &rarr; mzML conversion &rarr; EpiProfile_PLANTS quantification (hDP/hPF/hPTM) &rarr; QC + statistical analysis in R.
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Variability & Mitigation -->
+        <div class="epi-showcase fade-in">
+          <h3 class="epi-showcase-title"><span class="accent">//</span> Technical Variability &amp; Mitigation Strategies</h3>
+
+          <div class="epi-pipeline-strip" onclick="openLightbox(this.querySelector('img'))">
+            <img src="img/wf_tech_variance.png"
+                 alt="Technical variability and mitigation in the EpiProfile_PLANTS pipeline: 5 stages covering sample preparation, LC-MS/MS acquisition, file conversion (WIFF to mzML), EpiProfile_PLANTS quantification, and downstream statistics, each with identified error sources and implemented mitigation strategies"
+                 loading="lazy" />
+            <div class="epi-fig-caption">
+              <strong>Sources of technical variability and mitigation strategies</strong> &mdash;
+              Five critical pipeline stages with identified error sources and implemented solutions:
+              sample preparation (standardised nuclear extraction, double propionylation) &rarr;
+              LC-MS/MS acquisition (QC-controlled ZenoTOF, Evosep 30&nbsp;SPD) &rarr;
+              file conversion (Dockerised msconvert, fixed 64-bit parameters) &rarr;
+              EpiProfile_PLANTS quantification (curated plant-specific layouts, validated RT windows) &rarr;
+              downstream statistics (robust normalisation with qsmooth/ComBat, pre-specified design matrices).
             </div>
           </div>
         </div>
@@ -2887,15 +2919,26 @@
 
           <article class="glass-card fade-in stagger-4">
             <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
-            <h3 class="card-title">Código Biológico (in progress)</h3>
+            <h3 class="card-title">Código Biológico</h3>
             <p class="card-body">
-              An outreach project about the different "codes" in biology (genetic, epigenetic,
-              chromatin and computational), to be developed as blog posts and small reproducible tutorials.
+              A growing science-outreach initiative that teaches bioinformatics from scratch through
+              real datasets and reproducible notebooks. Topics range from the <strong>genetic code</strong>
+              (codon tables, translation) through the <strong>epigenetic code</strong> (histone PTMs,
+              DNA methylation) to the <strong>chromatin code</strong> (nucleosome positioning, histone
+              variants) and the <strong>computational code</strong> (R/Python scripts, Snakemake
+              pipelines). Delivered as step-by-step Jupyter/R&nbsp;Markdown sessions with recorded
+              walkthroughs and reusable templates.
             </p>
             <div class="card-tags">
               <span class="tag-cyan">Outreach</span>
-              <span class="tag-cyan">Blog &amp; tutorials</span>
+              <span class="tag-cyan">Jupyter notebooks</span>
               <span class="tag-cyan">Divulgación</span>
+              <span class="tag-cyan">Video sessions</span>
+            </div>
+            <div class="epi-actions">
+              <a class="btn-outline" href="https://www.youtube.com/watch?v=IN2o_eJz1Ag" target="_blank" rel="noopener noreferrer">
+                Watch intro video
+              </a>
             </div>
           </article>
         </div>
