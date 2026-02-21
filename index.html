@@ -865,31 +865,6 @@
     }
 
     /* 14. PUBLICATIONS */
-    .pub-placeholder {
-      text-align: center;
-      padding: 40px 24px;
-      border: 2px dashed rgba(255, 255, 255, 0.06);
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.01);
-    }
-    .pub-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 16px auto;
-      opacity: 0.3;
-    }
-    .pub-placeholder h3 {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 8px;
-    }
-    .pub-placeholder p {
-      color: var(--fg-muted);
-      font-size: 14px;
-      max-width: 420px;
-      margin: 0 auto 16px auto;
-    }
 
     /* 14b. K-CHOPORE PIPELINE */
     .kchopore-pipeline {
@@ -2949,7 +2924,14 @@
               <span class="tag-neon">Wet lab</span>
               <span class="tag-neon">SOPs</span>
             </div>
-            <p class="card-body" style="margin-top: 12px; font-style: italic; font-size: 12px; color: var(--fg-dim);">Files coming soon</p>
+            <div class="epi-actions" style="margin-top: 12px;">
+              <a class="btn-outline" href="https://github.com/biopelayo/epiprofile-plants-workflow" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                Snakemake+Docker SOP
+              </a>
+              <a class="btn-outline" href="https://github.com/biopelayo/K-CHOPORE" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                K-CHOPORE Pipeline SOP
+              </a>
+            </div>
           </div>
 
           <div class="glass-card fade-in stagger-1">
@@ -2964,14 +2946,24 @@
               <span class="tag-cyan">Quick ref</span>
               <span class="tag-cyan">CLI</span>
             </div>
-            <p class="card-body" style="margin-top: 12px; font-style: italic; font-size: 12px; color: var(--fg-dim);">Files coming soon</p>
+            <div class="epi-actions" style="margin-top: 12px;">
+              <a class="btn-outline" href="https://rstudio.github.io/cheatsheets/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                RStudio Cheatsheets
+              </a>
+              <a class="btn-outline" href="https://www.bioconductor.org/help/package-vignettes/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                Bioconductor Vignettes
+              </a>
+              <a class="btn-outline" href="https://devhints.io/bash" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                Bash Quick Ref
+              </a>
+            </div>
           </div>
 
           <div class="glass-card fade-in stagger-2">
             <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
             <h3 class="card-title">Datasets &amp; Example Files</h3>
             <p class="card-body">
-              Curated example datasets, demo mzML files, and sample outputs from EpiProfile_PLANTS
+              Curated example datasets and sample outputs from EpiProfile_PLANTS and K-CHOPORE
               for testing and learning purposes.
             </p>
             <div class="card-tags">
@@ -2979,7 +2971,14 @@
               <span class="tag-purple">mzML</span>
               <span class="tag-purple">Demo outputs</span>
             </div>
-            <p class="card-body" style="margin-top: 12px; font-style: italic; font-size: 12px; color: var(--fg-dim);">Files coming soon</p>
+            <div class="epi-actions" style="margin-top: 12px;">
+              <a class="btn-outline" href="https://github.com/biopelayo/epiprofile-plants" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                EpiProfile_PLANTS Examples
+              </a>
+              <a class="btn-outline" href="https://github.com/biopelayo/epiprofile-dashboard" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 6px 12px;">
+                Dashboard Demo
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -3721,7 +3720,7 @@
               <span>YouTube Video</span>
             </a>
 
-            <span class="contact-chip disabled" aria-disabled="true" style="cursor: default; opacity: 0.45;">
+            <span class="contact-chip disabled" aria-disabled="true" style="cursor: default;">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm3.7 5.3L8.5 10c-.1.2-.4.3-.6.1L5.8 8.5c-.2-.1-.2-.4-.1-.6l.3-.4c.1-.2.4-.2.6-.1l1.3.9 2.5-3.8c.1-.2.4-.3.6-.1l.4.3c.2.1.3.4.1.6z" fill="currentColor"/></svg>
               <span>Google Scholar (coming soon)</span>
             </span>
