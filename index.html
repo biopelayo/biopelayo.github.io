@@ -92,7 +92,7 @@
       background: var(--bg-deep);
       color: var(--fg);
       font-family: var(--font-body);
-      font-size: 15px;
+      font-size: clamp(14px, 1.5vw, 15.5px);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -106,7 +106,7 @@
     .container {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 clamp(16px, 3vw, 24px);
     }
 
     .fade-in {
@@ -154,36 +154,47 @@
       position: sticky;
       top: 0;
       z-index: var(--z-nav);
-      background: rgba(10, 14, 23, 0.8);
-      border-bottom: 1px solid var(--glass-border);
+      background: #050508;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       transition: background 0.3s ease, border-color 0.3s ease;
     }
     .navbar.scrolled {
-      background: rgba(10, 14, 23, 0.95);
-      border-bottom-color: rgba(57, 255, 115, 0.1);
-    }
-    @supports (backdrop-filter: blur(1px)) {
-      .navbar { backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
+      background: #000;
+      border-bottom-color: rgba(57, 255, 115, 0.12);
     }
     .navbar-inner {
-      max-width: var(--max-width);
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 12px 24px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 20px;
     }
     .nav-brand {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
-      font-size: 14px;
-      letter-spacing: 0.06em;
+      flex-direction: column;
+      gap: 1px;
       white-space: nowrap;
+      line-height: 1.2;
     }
-    .brand-name { font-weight: 600; color: var(--fg); }
-    .brand-handle { color: var(--neon-green); font-weight: 400; opacity: 0.8; }
+    .brand-alias {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: var(--fg);
+      text-transform: uppercase;
+    }
+    .brand-meta {
+      font-size: 11px;
+      color: var(--fg-muted);
+      letter-spacing: 0.04em;
+      font-weight: 400;
+    }
+    .brand-meta .brand-handle {
+      color: var(--neon-green);
+      font-weight: 500;
+    }
 
     .nav-toggle-input { display: none; }
     .nav-toggle-label {
@@ -213,10 +224,10 @@
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 13px;
+      gap: 14px;
+      font-size: 12.5px;
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
     }
     .nav-links a {
       position: relative;
@@ -316,7 +327,7 @@
 
     .hero-name {
       font-family: var(--font-display);
-      font-size: 72px;
+      font-size: clamp(36px, 6vw, 72px);
       line-height: 1.05;
       letter-spacing: 0.04em;
       background: linear-gradient(135deg, var(--fg) 0%, var(--neon-green) 50%, var(--neon-cyan) 100%);
@@ -432,8 +443,21 @@
 
     /* 7. SECTIONS (general) */
     .section {
-      padding: 80px 0;
+      padding: clamp(48px, 8vw, 80px) 0;
       scroll-margin-top: 70px;
+    }
+    /* Alternating section backgrounds for visual rhythm */
+    .section:nth-of-type(odd) { background: var(--bg-deep); }
+    .section:nth-of-type(even) { background: var(--bg-surface); }
+    /* Subtle edge line between sections */
+    .section + .section::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%, rgba(255,255,255,0.04) 20%,
+        rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.04) 80%,
+        transparent 100%);
     }
     .section-header {
       text-align: center;
@@ -441,7 +465,7 @@
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: 36px;
+      font-size: clamp(26px, 4vw, 36px);
       letter-spacing: 0.08em;
       color: var(--fg);
       margin-bottom: 8px;
@@ -453,11 +477,24 @@
       margin: 0 auto;
     }
     .section-line {
-      width: 60px;
-      height: 3px;
+      width: 80px;
+      height: 2px;
       background: var(--gradient-accent);
       border-radius: var(--radius-pill);
-      margin: 12px auto 0 auto;
+      margin: 16px auto 0 auto;
+      position: relative;
+    }
+    .section-line::after {
+      content: '';
+      position: absolute;
+      inset: -4px -20px;
+      background: linear-gradient(90deg,
+        transparent 0%, rgba(57,255,115,0.08) 30%,
+        rgba(34,211,238,0.08) 50%, rgba(167,139,250,0.08) 70%,
+        transparent 100%);
+      border-radius: var(--radius-pill);
+      filter: blur(6px);
+      z-index: -1;
     }
 
     /* 8. GLASS CARDS */
@@ -472,9 +509,9 @@
       .glass-card { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
     }
     .glass-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(57, 255, 115, 0.15);
-      box-shadow: 0 8px 32px rgba(57, 255, 115, 0.06), 0 0 0 1px rgba(57, 255, 115, 0.08);
+      transform: translateY(-3px);
+      border-color: rgba(57, 255, 115, 0.12);
+      box-shadow: 0 8px 32px rgba(57, 255, 115, 0.05), 0 0 0 1px rgba(57, 255, 115, 0.06), 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .card-accent-line {
@@ -637,7 +674,7 @@
 
     .research-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
       gap: 16px;
     }
     .research-card {
@@ -860,7 +897,7 @@
     /* 13. PIPELINES */
     .pipelines-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
       gap: 16px;
     }
 
@@ -994,7 +1031,7 @@
     /* 15. SKILLS */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
       gap: 16px;
     }
     .skill-cat-title {
@@ -1037,7 +1074,7 @@
     /* 16. TEACHING */
     .teaching-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
       gap: 16px;
     }
 
@@ -1797,9 +1834,70 @@
       100% { background-position: 200% 0; }
     }
 
+    /* GOOGLE ALERTS SIDEBAR */
+    .alerts-sidebar {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: auto;
+      transition: opacity 0.5s ease;
+    }
+    .alerts-sidebar--left { left: 16px; }
+    .alerts-sidebar--right { right: 16px; align-items: flex-end; }
+    .alerts-group-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--fg-dim);
+      padding: 0 6px;
+      margin-top: 6px;
+    }
+    .alerts-group-title:first-child { margin-top: 0; }
+    .alert-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--fg-muted);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .alert-pill:hover {
+      border-color: rgba(57, 255, 115, 0.25);
+      color: var(--fg);
+      background: rgba(17, 24, 39, 0.95);
+    }
+    .alert-pill .alert-icon {
+      width: 12px;
+      height: 12px;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .alert-pill--epigenomics { border-color: rgba(57, 255, 115, 0.12); }
+    .alert-pill--epigenomics:hover { border-color: rgba(57, 255, 115, 0.35); color: var(--neon-green); }
+    .alert-pill--biomedicine { border-color: rgba(244, 114, 182, 0.12); }
+    .alert-pill--biomedicine:hover { border-color: rgba(244, 114, 182, 0.35); color: var(--neon-pink); }
+    .alert-pill--technology { border-color: rgba(34, 211, 238, 0.12); }
+    .alert-pill--technology:hover { border-color: rgba(34, 211, 238, 0.35); color: var(--neon-cyan); }
+    @media (max-width: 1439px) {
+      .alerts-sidebar { display: none; }
+    }
+
     /* 20. RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-name { font-size: 56px; }
       .about-grid { grid-template-columns: 1fr; }
       .epi-layers { grid-template-columns: 1fr; }
     }
@@ -1813,20 +1911,14 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(10, 14, 23, 0.97);
-        border-bottom: 1px solid var(--glass-border);
+        background: #050508;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         padding: 16px 24px;
         gap: 12px;
       }
-      @supports (backdrop-filter: blur(1px)) {
-        .nav-links { backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
-      }
       .nav-toggle-input:checked ~ .nav-links { display: flex; }
 
-      .hero-name { font-size: 44px; }
       .hero-description { font-size: 15px; }
-      .section { padding: 60px 0; }
-      .section-title { font-size: 30px; }
       .research-grid,
       .pipelines-grid,
       .skills-grid,
@@ -1846,16 +1938,18 @@
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 16px; }
       .navbar-inner { padding: 10px 16px; }
-      .hero-name { font-size: 36px; }
       .hero-pill { font-size: 10px; }
       .hero-cta { flex-direction: column; align-items: center; }
-      .section { padding: 48px 0; }
-      .section-title { font-size: 26px; }
       .footer-inner { flex-direction: column; text-align: center; }
       .filter-bar { gap: 6px; }
       .filter-btn { font-size: 12px; padding: 5px 12px; }
+    }
+
+    /* Wide-screen enhancements */
+    @media (min-width: 1440px) {
+      :root { --max-width: 1140px; }
+      .navbar-inner { max-width: 1240px; }
     }
 
     /* 21. ACCESSIBILITY */
@@ -1888,12 +1982,61 @@
   <!-- Scroll Progress Bar -->
   <div class="progress-bar" aria-hidden="true"></div>
 
+  <!-- Google Alerts Sidebar - Left (Epigenomics) -->
+  <aside class="alerts-sidebar alerts-sidebar--left" aria-label="Research alerts">
+    <span class="alerts-group-title">Epigenomics</span>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--epigenomics" title="Google Alert: EpiProfile">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      EpiProfile
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--epigenomics" title="Google Alert: Arabidopsis epigenomics">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      Arabidopsis
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--epigenomics" title="Google Alert: histone PTMs">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      PTMs / hPTMs
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--epigenomics" title="Google Alert: H3K79 methylation">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      H3K79
+    </a>
+  </aside>
+
+  <!-- Google Alerts Sidebar - Right (Biomedicine + Technology) -->
+  <aside class="alerts-sidebar alerts-sidebar--right" aria-label="Topic alerts">
+    <span class="alerts-group-title">Biomedicine</span>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--biomedicine" title="Google Alert: cancer genomics">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      Cancer
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--biomedicine" title="Google Alert: ageing epigenetics">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      Ageing
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--biomedicine" title="Google Alert: single cell omics">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      Single Cell
+    </a>
+    <span class="alerts-group-title">Technology</span>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--technology" title="Google Alert: AI genomics">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      IA Genomics
+    </a>
+    <a href="https://www.google.com/alerts" target="_blank" rel="noopener noreferrer" class="alert-pill alert-pill--technology" title="Google Alert: computer vision biology">
+      <svg class="alert-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5v3l-1.3 1.3a.5.5 0 00.3.85h12a.5.5 0 00.35-.85L13 9V6a5 5 0 00-5-5zm-1.5 13a1.5 1.5 0 003 0h-3z"/></svg>
+      Computer Vision
+    </a>
+  </aside>
+
   <!-- Navigation -->
   <header class="navbar" role="banner">
     <div class="navbar-inner">
       <a href="#hero" class="nav-brand">
-        <span class="brand-name">Pelayo G. de Lena</span>
-        <span class="brand-handle">@biopelayo</span>
+        <span class="brand-alias">Pelamovic</span>
+        <span class="brand-meta">
+          <span class="brand-handle">@biopelayo</span> &middot; Bioinformatician
+        </span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
       <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
@@ -1932,7 +2075,7 @@
         Computational Biology &amp; Plant Epigenomics
       </div>
 
-      <h1 class="hero-name">Pelayo González<br />de Lena</h1>
+      <h1 class="hero-name">Pelayo Gonz&aacute;lez<br />de Lena Rodr&iacute;guez</h1>
 
       <div class="hero-typing" aria-label="PhD Candidate, Computational Biologist, Plant Epigenomics Researcher">
         <span class="typing-text" id="typing-target"></span>
@@ -4537,6 +4680,19 @@
       }
       requestAnimationFrame(draw);
     })();
+
+    // ===== 11. ALERTS SIDEBAR SCROLL FADE =====
+    const alertSidebars = document.querySelectorAll('.alerts-sidebar');
+    if (alertSidebars.length) {
+      function updateAlertOpacity() {
+        const scrollY = window.scrollY;
+        const heroHeight = document.getElementById('hero')?.offsetHeight || window.innerHeight;
+        const opacity = Math.min(1, 0.3 + (scrollY / heroHeight) * 0.7);
+        alertSidebars.forEach(el => { el.style.opacity = opacity; });
+      }
+      window.addEventListener('scroll', updateAlertOpacity, { passive: true });
+      updateAlertOpacity();
+    }
   </script>
 </body>
 </html>
