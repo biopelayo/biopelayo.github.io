@@ -1224,6 +1224,153 @@
       line-height: 1.5;
     }
 
+    /* SOCCER STATS */
+    .sc-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .sc-stat-box {
+      text-align: center;
+      padding: 14px 10px;
+      border-radius: var(--radius-md);
+      background: rgba(57, 255, 115, 0.04);
+      border: 1px solid rgba(57, 255, 115, 0.1);
+    }
+    .sc-stat-box .sc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      line-height: 1;
+      color: var(--neon-green);
+    }
+    .sc-stat-box .sc-label {
+      font-size: 11px;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    .sc-stat-box.accent-cyan { background: rgba(34,211,238,0.04); border-color: rgba(34,211,238,0.12); }
+    .sc-stat-box.accent-cyan .sc-num { color: var(--neon-cyan); }
+    .sc-stat-box.accent-purple { background: rgba(167,139,250,0.04); border-color: rgba(167,139,250,0.12); }
+    .sc-stat-box.accent-purple .sc-num { color: var(--neon-purple); }
+    .sc-stat-box.accent-pink { background: rgba(244,114,182,0.04); border-color: rgba(244,114,182,0.12); }
+    .sc-stat-box.accent-pink .sc-num { color: var(--neon-pink); }
+
+    .sc-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border);
+      margin-top: 12px;
+    }
+    .sc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .sc-table th {
+      background: rgba(57, 255, 115, 0.06);
+      color: var(--neon-green);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(57, 255, 115, 0.12);
+      white-space: nowrap;
+    }
+    .sc-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--fg-muted);
+      white-space: nowrap;
+    }
+    .sc-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .sc-table tr.sc-highlight td {
+      background: rgba(57, 255, 115, 0.06);
+      color: var(--fg);
+      font-weight: 600;
+    }
+    .sc-table .sc-goals { color: var(--neon-green); font-weight: 700; }
+    .sc-table .sc-yellow { color: #facc15; }
+    .sc-table .sc-red { color: #ef4444; }
+    .sc-badge-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(57, 255, 115, 0.12);
+      color: var(--neon-green);
+    }
+    .sc-results-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 8px 0 14px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sc-results-scroll::-webkit-scrollbar { height: 4px; }
+    .sc-results-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sc-results-scroll::-webkit-scrollbar-thumb { background: rgba(57,255,115,0.2); border-radius: 4px; }
+    .sc-match-card {
+      flex: 0 0 200px;
+      scroll-snap-align: start;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      font-size: 12px;
+    }
+    .sc-match-card .sc-jornada {
+      font-size: 10px;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .sc-match-card .sc-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      text-align: center;
+      margin: 4px 0;
+    }
+    .sc-match-card .sc-teams {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--fg-muted);
+    }
+    .sc-match-card.sc-win { border-color: rgba(57,255,115,0.25); }
+    .sc-match-card.sc-win .sc-score { color: var(--neon-green); }
+    .sc-match-card.sc-draw { border-color: rgba(34,211,238,0.25); }
+    .sc-match-card.sc-draw .sc-score { color: var(--neon-cyan); }
+    .sc-match-card.sc-loss { border-color: rgba(244,114,182,0.15); }
+    .sc-match-card.sc-loss .sc-score { color: var(--neon-pink); }
+    .sc-section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      margin: 20px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sc-section-label span { color: var(--neon-green); }
+    .sc-link-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
     /* USEFUL LINKS */
     .links-grid {
       display: grid;
@@ -3628,7 +3775,7 @@
       </div>
     </section>
 
-    <!-- Soccer Lover -->
+    <!-- Soccer / Beyond the Lab -->
     <section id="soccer" class="section">
       <div class="container">
         <div class="section-header fade-in">
@@ -3637,74 +3784,76 @@
           <div class="section-line" aria-hidden="true"></div>
         </div>
 
+        <!-- Personal intro + team badge row -->
         <div class="soccer-wrap fade-in">
           <div class="soccer-main">
             <div class="glass-card">
               <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
               <h3 class="card-title" style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 28px;" aria-hidden="true">&#9917;</span> Soccer Lover
+                <span style="font-size: 28px;" aria-hidden="true">&#9917;</span> Pela &middot; San Claudio
               </h3>
               <p class="card-body">
-                Football is my reset button. Whether it&rsquo;s watching a Champions League evening, playing a weekend pick-up game,
-                or debating tactics over coffee, the beautiful game has been a constant in my life. I believe the parallels
-                between sports and science run deep: teamwork, strategy under pressure, and the beauty of an elegant solution.
+                Football is my reset button. I play for <strong style="color: var(--neon-green);">San Claudio</strong>
+                in the <strong>Liga Asterov 2025/26</strong> (CD Asterov, Asturias). Whether it&rsquo;s scoring goals on the weekend pitch,
+                watching a Champions League evening, or debating tactics over coffee, the beautiful game has been a
+                constant in my life. The parallels between sports and science run deep: teamwork, strategy under
+                pressure, and the beauty of an elegant solution.
               </p>
 
               <div class="soccer-quote">
                 &ldquo;In football, the worst blindness is only seeing the ball.&rdquo; &mdash; Nelson Falc&atilde;o
               </div>
 
-              <p class="card-body" style="margin-top: 12px; font-size: 13px;">
-                <strong style="color: var(--neon-green);">Fun fact:</strong> I apply the same analytical mindset to football &mdash;
-                expected goals (xG), passing networks, and positional heatmaps feel surprisingly natural
-                when you come from omics data matrices and PCA plots.
-              </p>
-
               <div class="soccer-fav-row" style="margin-top: 16px;">
+                <div class="soccer-team" style="border-color: rgba(57,255,115,0.35);">
+                  <span class="team-crest" aria-hidden="true">&#9917;</span>
+                  San Claudio
+                </div>
                 <div class="soccer-team" style="border-color: rgba(0,51,160,0.3);">
                   <span class="team-crest" aria-hidden="true">&#127468;&#127463;</span>
                   Real Oviedo
                 </div>
                 <div class="soccer-team" style="border-color: rgba(167,139,250,0.3);">
-                  <span class="team-crest" aria-hidden="true">&#9917;</span>
-                  La Liga
-                </div>
-                <div class="soccer-team" style="border-color: rgba(57,255,115,0.3);">
                   <span class="team-crest" aria-hidden="true">&#127942;</span>
                   Champions League
                 </div>
                 <div class="soccer-team" style="border-color: rgba(244,114,182,0.3);">
                   <span class="team-crest" aria-hidden="true">&#127941;</span>
-                  Weekend Player
+                  Liga Asterov
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Personal stat card -->
           <div class="soccer-sidebar">
             <div class="glass-card" style="text-align: center;">
-              <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
-              <h3 class="card-title">Match Day Ritual</h3>
-              <div style="font-size: 48px; margin: 12px 0;" aria-hidden="true">&#9917;</div>
-              <div style="display: flex; flex-direction: column; gap: 8px; text-align: left;">
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-                  <span style="color: var(--neon-green); font-weight: 700;">1.</span> <span style="color: var(--fg-muted);">Check lineups &amp; expected formations</span>
+              <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
+              <h3 class="card-title" style="font-size: 14px;">Pela &mdash; Season 2025/26</h3>
+              <div style="font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 1; color: var(--neon-green); margin: 8px 0;">17</div>
+              <div style="font-size: 12px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.08em;">Goals scored</div>
+              <div class="sc-stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 14px;">
+                <div class="sc-stat-box">
+                  <div class="sc-num">15</div>
+                  <div class="sc-label">Matches</div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-                  <span style="color: var(--neon-green); font-weight: 700;">2.</span> <span style="color: var(--fg-muted);">Prepare snacks &amp; cold drinks</span>
+                <div class="sc-stat-box accent-cyan">
+                  <div class="sc-num">1.13</div>
+                  <div class="sc-label">Goals/game</div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-                  <span style="color: var(--neon-green); font-weight: 700;">3.</span> <span style="color: var(--fg-muted);">Watch with full tactical focus</span>
+                <div class="sc-stat-box accent-pink">
+                  <div class="sc-num">2</div>
+                  <div class="sc-label">Yellows</div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-                  <span style="color: var(--neon-green); font-weight: 700;">4.</span> <span style="color: var(--fg-muted);">Post-match analysis on xG twitter</span>
-                </div>
+              </div>
+              <div style="margin-top: 12px; padding: 8px 12px; border-radius: var(--radius-pill); background: rgba(57,255,115,0.08); border: 1px solid rgba(57,255,115,0.15); font-size: 13px; font-weight: 600;">
+                <span style="color: var(--neon-green);">#4</span> <span style="color: var(--fg-muted);">Top Scorer &middot; Liga Asterov</span>
               </div>
             </div>
 
             <div class="glass-card" style="text-align: center; margin-top: 14px;">
               <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
-              <h3 class="card-title" style="font-size: 14px;">Parallels</h3>
+              <h3 class="card-title" style="font-size: 14px;">Science &harr; Football</h3>
               <div style="font-size: 12px; color: var(--fg-muted); line-height: 1.6; text-align: left;">
                 <div style="margin-bottom: 6px;"><span style="color: var(--neon-purple);">PCA</span> &#8596; Positional heatmap</div>
                 <div style="margin-bottom: 6px;"><span style="color: var(--neon-cyan);">Pipeline QC</span> &#8596; Formation drill</div>
@@ -3712,6 +3861,276 @@
                 <div><span style="color: var(--neon-pink);">Outlier detection</span> &#8596; Star player scouting</div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- San Claudio Season Overview -->
+        <div class="glass-card fade-in" style="margin-top: 20px;">
+          <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
+          <h3 class="card-title">San Claudio &middot; Liga Asterov 2025/26</h3>
+
+          <div class="sc-stats-grid">
+            <div class="sc-stat-box">
+              <div class="sc-num">18</div>
+              <div class="sc-label">Played</div>
+            </div>
+            <div class="sc-stat-box">
+              <div class="sc-num">5</div>
+              <div class="sc-label">Wins</div>
+            </div>
+            <div class="sc-stat-box accent-cyan">
+              <div class="sc-num">1</div>
+              <div class="sc-label">Draws</div>
+            </div>
+            <div class="sc-stat-box accent-pink">
+              <div class="sc-num">12</div>
+              <div class="sc-label">Losses</div>
+            </div>
+            <div class="sc-stat-box">
+              <div class="sc-num">34</div>
+              <div class="sc-label">GF</div>
+            </div>
+            <div class="sc-stat-box accent-pink">
+              <div class="sc-num">67</div>
+              <div class="sc-label">GA</div>
+            </div>
+          </div>
+
+          <!-- Season results carousel -->
+          <div class="sc-section-label"><span>&#9654;</span> Match Results (Scroll &rarr;)</div>
+          <div class="sc-results-scroll">
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 1</div>
+              <div class="sc-score">0 &ndash; 8</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Abla&ntilde;a</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 2</div>
+              <div class="sc-score">1 &ndash; 3</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Manjoya</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 3</div>
+              <div class="sc-score">1 &ndash; 5</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Metalasa</span></div>
+            </div>
+            <div class="sc-match-card sc-draw">
+              <div class="sc-jornada">Jornada 4</div>
+              <div class="sc-score">1 &ndash; 1</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Gij&oacute;n Dep.</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 5</div>
+              <div class="sc-score">1 &ndash; 8</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Peluquer&iacute;as Fran</span></div>
+            </div>
+            <div class="sc-match-card sc-win">
+              <div class="sc-jornada">Jornada 6</div>
+              <div class="sc-score">6 &ndash; 1</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Mieres Dep.</span></div>
+            </div>
+            <div class="sc-match-card sc-win">
+              <div class="sc-jornada">Jornada 7</div>
+              <div class="sc-score">3 &ndash; 1</div>
+              <div class="sc-teams"><span>San Claudio</span><span>CF Cuelebre</span></div>
+            </div>
+            <div class="sc-match-card sc-win">
+              <div class="sc-jornada">Jornada 8</div>
+              <div class="sc-score">3 &ndash; 1</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Real Asturc&oacute;n</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 9</div>
+              <div class="sc-score">2 &ndash; 4</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Pe&ntilde;a Pach&iacute;n</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 10</div>
+              <div class="sc-score">1 &ndash; 7</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Laviana CF</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 11</div>
+              <div class="sc-score">0 &ndash; 4</div>
+              <div class="sc-teams"><span>San Claudio</span><span>M. Ca&ntilde;edo</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 12</div>
+              <div class="sc-score">1 &ndash; 2</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Cafeteros</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 13</div>
+              <div class="sc-score">0 &ndash; 5</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Merendero</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 14</div>
+              <div class="sc-score">1 &ndash; 3</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Abla&ntilde;a</span></div>
+            </div>
+            <div class="sc-match-card sc-win">
+              <div class="sc-jornada">Jornada 15</div>
+              <div class="sc-score">2 &ndash; 1</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Manjoya</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 16</div>
+              <div class="sc-score">1 &ndash; 2</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Metalasa</span></div>
+            </div>
+            <div class="sc-match-card sc-win">
+              <div class="sc-jornada">Jornada 17</div>
+              <div class="sc-score">8 &ndash; 2</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Gij&oacute;n Dep.</span></div>
+            </div>
+            <div class="sc-match-card sc-loss">
+              <div class="sc-jornada">Jornada 18</div>
+              <div class="sc-score">2 &ndash; 9</div>
+              <div class="sc-teams"><span>San Claudio</span><span>Peluquer&iacute;as Fran</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- League Top Scorers -->
+        <div class="glass-card fade-in" style="margin-top: 20px;">
+          <div class="card-accent-line" style="--accent: var(--neon-green);" aria-hidden="true"></div>
+          <h3 class="card-title">&#127942; Liga Asterov &mdash; Top Scorers 2025/26</h3>
+          <div class="sc-table-wrap">
+            <table class="sc-table">
+              <thead>
+                <tr><th>#</th><th>Player</th><th>Team</th><th>PJ</th><th>G</th><th>TA</th><th>TR</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="sc-badge-rank" style="background: rgba(255,215,0,0.15); color: #ffd700;">1</span></td>
+                  <td>Jes&uacute;s A. Abol&iacute; Fern&aacute;ndez</td><td>Peluquer&iacute;as Fran</td>
+                  <td>16</td><td class="sc-goals">26</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank" style="background: rgba(192,192,192,0.15); color: #c0c0c0;">2</span></td>
+                  <td>Andr&eacute;s Iglesias Lamu&ntilde;o</td><td>Metalasa</td>
+                  <td>15</td><td class="sc-goals">23</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank" style="background: rgba(205,127,50,0.15); color: #cd7f32;">3</span></td>
+                  <td>Rub&eacute;n D. Arboleda Ospina</td><td>Cafeteros</td>
+                  <td>17</td><td class="sc-goals">18</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr class="sc-highlight">
+                  <td><span class="sc-badge-rank">4</span></td>
+                  <td>&#9917; <strong>Pelayo Gonz&aacute;lez de Lena</strong></td><td><strong>San Claudio</strong></td>
+                  <td>15</td><td class="sc-goals">17</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">5</span></td>
+                  <td>Guillermo V&aacute;zquez Fern&aacute;ndez</td><td>Abla&ntilde;a Glassdrive</td>
+                  <td>16</td><td class="sc-goals">17</td><td class="sc-yellow">1</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">6</span></td>
+                  <td>Jos&eacute; M. Montes de Rueda</td><td>Manuel Ca&ntilde;edo</td>
+                  <td>14</td><td class="sc-goals">16</td><td class="sc-yellow">3</td><td class="sc-red">1</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">7</span></td>
+                  <td>Jhose M. Blanco Aranguren</td><td>Merendero El Cruce</td>
+                  <td>16</td><td class="sc-goals">15</td><td class="sc-yellow">5</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">8</span></td>
+                  <td>Andr&eacute;s Lista</td><td>Peluquer&iacute;as Fran</td>
+                  <td>11</td><td class="sc-goals">15</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">9</span></td>
+                  <td>V&iacute;ctor Fern&aacute;ndez V&aacute;zquez</td><td>Don Pelayo Dessert</td>
+                  <td>11</td><td class="sc-goals">14</td><td>0</td><td>0</td>
+                </tr>
+                <tr>
+                  <td><span class="sc-badge-rank">10</span></td>
+                  <td>Alejandro Sierra Inguanzo</td><td>Olloniego City</td>
+                  <td>15</td><td class="sc-goals">14</td><td>0</td><td>0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Full Squad Roster -->
+        <div class="glass-card fade-in" style="margin-top: 20px;">
+          <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
+          <h3 class="card-title">&#128101; San Claudio &mdash; Full Squad (38 players)</h3>
+          <div class="sc-table-wrap">
+            <table class="sc-table">
+              <thead>
+                <tr><th>Player</th><th>PJ</th><th>G</th><th>TA</th><th>TR</th></tr>
+              </thead>
+              <tbody>
+                <tr class="sc-highlight">
+                  <td>&#9917; <strong>Pelayo Gonz&aacute;lez de Lena Rodr&iacute;guez</strong></td>
+                  <td>15</td><td class="sc-goals">17</td><td class="sc-yellow">2</td><td>0</td>
+                </tr>
+                <tr><td>Juan Carlos Fern&aacute;ndez &Aacute;lvarez</td><td>27</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Froil&aacute;n &Aacute;lvarez Fern&aacute;ndez</td><td>22</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Jos&eacute; Ram&oacute;n Fern&aacute;ndez Mier</td><td>18</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>David R&iacute;os Calle</td><td>14</td><td class="sc-goals">4</td><td>0</td><td>0</td></tr>
+                <tr><td>Adri&aacute;n Gallego Gonz&aacute;lez</td><td>14</td><td class="sc-goals">2</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Santiago Marb&aacute;n Lera</td><td>14</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Ramiro L&oacute;pez Saiz</td><td>13</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Alejandro Pesquera Bengoa</td><td>12</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Pablo Fern&aacute;ndez Garc&iacute;a</td><td>12</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Francisco Garc&iacute;a Gij&oacute;n</td><td>11</td><td class="sc-goals">3</td><td class="sc-yellow">4</td><td>0</td></tr>
+                <tr><td>Jos&eacute; Ignacio Garc&iacute;a Garc&iacute;a</td><td>11</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Francisco Jos&eacute; &Aacute;lvarez &Aacute;lvarez</td><td>10</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>&Aacute;lvaro Su&aacute;rez Mart&iacute;n</td><td>9</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Daniel S&aacute;nchez de Dios</td><td>8</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Jos&eacute; Diego Ramos Fern&aacute;ndez</td><td>8</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Mariano Garc&iacute;a &Aacute;lvarez</td><td>8</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Ignacio Rosa Cuesta</td><td>7</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Eduardo Rivero Fern&aacute;ndez</td><td>7</td><td class="sc-goals">1</td><td class="sc-yellow">2</td><td>0</td></tr>
+                <tr><td>Iv&aacute;n Bautista Caicedo</td><td>7</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Andr&eacute;s &Aacute;lvarez &Aacute;lvarez</td><td>5</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Daniel Alestar Chirosca</td><td>4</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Roberto D. Bengoa Pesquera</td><td>4</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Iv&aacute;n Gonz&aacute;lez Bada</td><td>3</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Igor Cabrera Eguiluz</td><td>3</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Manuel V&aacute;zquez Riva</td><td>3</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Borja F. Barb&oacute;n Velasco</td><td>2</td><td>0</td><td class="sc-yellow">1</td><td>0</td></tr>
+                <tr><td>Javier Mart&iacute;nez Aller</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>David Mart&iacute;nez Diego</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Julio B. Cort&eacute;s Hernando</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Pablo Fern&aacute;ndez Zapico</td><td>2</td><td class="sc-goals">1</td><td>0</td><td>0</td></tr>
+                <tr><td>Miguel D&iacute;az Arias</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Jorge Fern&aacute;ndez Cachero</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Luis A. Colunga Su&aacute;rez</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Oliver Gonz&aacute;lez Gonz&aacute;lez</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Constantin Gabriel Vreja</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Juan Camilo Rodr&iacute;guez Lasso</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>Pablo Blanco Men&eacute;ndez</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- External links to live data -->
+        <div class="glass-card fade-in" style="margin-top: 20px;">
+          <div class="card-accent-line" style="--accent: var(--neon-cyan);" aria-hidden="true"></div>
+          <h3 class="card-title">&#128279; Live Data &mdash; CD Asterov</h3>
+          <p class="card-body" style="margin-bottom: 14px;">
+            All stats come from the official CD Asterov platform. Click below for real-time updates, full standings, and detailed match reports.
+          </p>
+          <div class="sc-link-row">
+            <a class="btn-neon" href="https://cdasterov.es/es/team/15612878" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm-.5 2.8h1v4.7H7.5V2.8zm0 5.9h1v1H7.5v-1z"/></svg>
+              Team Roster
+            </a>
+            <a class="btn-outline" href="https://cdasterov.es/es/tournament/1317178/statistics" target="_blank" rel="noopener noreferrer">
+              Top Scorers
+            </a>
+            <a class="btn-outline" href="https://cdasterov.es/es/tournament/1317178/calendar/3636052/all" target="_blank" rel="noopener noreferrer">
+              Calendar &amp; Results
+            </a>
           </div>
         </div>
       </div>
