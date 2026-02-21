@@ -54,14 +54,15 @@
       --bg-surface: #161d2e;
       --bg-elevated: #1f2a3c;
       --fg: #e8ecf1;
-      --fg-muted: #8b95a5;
-      --fg-dim: #5e6b7d;
-      --neon-green: #39ff73;
-      --neon-cyan: #22d3ee;
-      --neon-purple: #a78bfa;
-      --neon-pink: #f472b6;
-      --gradient-accent: linear-gradient(135deg, #39ff73, #22d3ee, #a78bfa);
-      --gradient-hero: linear-gradient(135deg, #0f1420 0%, #121e30 30%, #142428 60%, #0f1420 100%);
+      --fg-muted: #94a0b4;
+      --fg-dim: #687793;
+      --neon-green: #3dff7a;
+      --neon-cyan: #2be0f0;
+      --neon-purple: #b49aff;
+      --neon-pink: #ff7ec4;
+      --neon-gold: #fbbf24;
+      --gradient-accent: linear-gradient(135deg, #3dff7a, #2be0f0, #b49aff, #ff7ec4);
+      --gradient-hero: linear-gradient(135deg, #0f1420 0%, #111d33 25%, #16222d 50%, #14182a 75%, #0f1420 100%);
       --glass-bg: rgba(22, 29, 46, 0.75);
       --glass-border: rgba(255, 255, 255, 0.10);
       --glass-blur: blur(16px);
@@ -76,8 +77,8 @@
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
       --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-      --shadow-neon-green: 0 0 20px rgba(57, 255, 115, 0.15);
-      --shadow-neon-cyan: 0 0 20px rgba(34, 211, 238, 0.15);
+      --shadow-neon-green: 0 0 20px rgba(61, 255, 122, 0.18);
+      --shadow-neon-cyan: 0 0 20px rgba(43, 224, 240, 0.18);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --max-width: 1100px;
@@ -350,8 +351,8 @@
       gap: 8px;
       padding: 6px 16px;
       border-radius: var(--radius-pill);
-      background: rgba(57, 255, 115, 0.08);
-      border: 1px solid rgba(57, 255, 115, 0.2);
+      background: rgba(61, 255, 122, 0.08);
+      border: 1px solid rgba(61, 255, 122, 0.22);
       color: var(--neon-green);
       font-size: 12px;
       text-transform: uppercase;
@@ -510,6 +511,10 @@
       letter-spacing: 0.08em;
       color: var(--fg);
       margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-cyan) 50%, var(--neon-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .section-sub {
       font-size: 14px;
@@ -518,12 +523,19 @@
       margin: 0 auto;
     }
     .section-line {
-      width: 80px;
-      height: 2px;
+      width: 100px;
+      height: 3px;
       background: var(--gradient-accent);
+      background-size: 200% 100%;
+      animation: section-line-shimmer 4s linear infinite;
       border-radius: var(--radius-pill);
       margin: 16px auto 0 auto;
       position: relative;
+      box-shadow: 0 0 12px rgba(43,224,240,0.2), 0 0 4px rgba(180,154,255,0.15);
+    }
+    @keyframes section-line-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
     .section-line::after {
       content: '';
@@ -541,7 +553,7 @@
     /* 8. GLASS CARDS */
     .glass-card {
       background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
+      border: 1px solid rgba(180,154,255,0.08);
       border-radius: var(--radius-lg);
       padding: 24px;
       transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s ease;
@@ -551,8 +563,8 @@
     }
     .glass-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(57, 255, 115, 0.12);
-      box-shadow: 0 8px 32px rgba(57, 255, 115, 0.05), 0 0 0 1px rgba(57, 255, 115, 0.06), 0 2px 8px rgba(0,0,0,0.3);
+      border-color: rgba(43,224,240,0.18);
+      box-shadow: 0 8px 32px rgba(43,224,240,0.06), 0 0 0 1px rgba(180,154,255,0.08), 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .card-accent-line {
@@ -2767,8 +2779,8 @@
           </p>
 
           <!-- K-CHOPORE Pipeline Diagram -->
-          <div class="kchopore-pipeline-img fade-in" style="margin: 16px 0; text-align: center;">
-            <img src="img/kchopore_pipeline.png" alt="K-CHOPORE 9-stage pipeline diagram — from basecalling through epitranscriptomics to final report" loading="lazy" style="width: 100%; max-width: 900px; border-radius: var(--radius-md); border: 1px solid rgba(57, 255, 115, 0.15); box-shadow: 0 4px 24px rgba(57, 255, 115, 0.08);" />
+          <div class="kchopore-pipeline-img fade-in" style="margin: 20px 0; text-align: center; background: rgba(255,255,255,0.03); border-radius: var(--radius-lg); padding: 16px; border: 1px solid rgba(167,139,250,0.12);">
+            <img src="img/kchopore_pipeline.png?v=2" alt="K-CHOPORE 9-stage pipeline diagram — from basecalling through epitranscriptomics to final report" loading="lazy" style="width: 100%; max-width: 960px; border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(167,139,250,0.12), 0 2px 8px rgba(0,0,0,0.3);" />
           </div>
 
           <div class="card-tags" style="margin-top: 20px;">
