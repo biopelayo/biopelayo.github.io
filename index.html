@@ -50,9 +50,9 @@
 
     /* 1. CSS VARIABLES */
     :root {
-      --bg-deep: #0a0e17;
-      --bg-surface: #111827;
-      --bg-elevated: #1a2332;
+      --bg-deep: #0f1420;
+      --bg-surface: #161d2e;
+      --bg-elevated: #1f2a3c;
       --fg: #e8ecf1;
       --fg-muted: #8b95a5;
       --fg-dim: #5e6b7d;
@@ -61,9 +61,9 @@
       --neon-purple: #a78bfa;
       --neon-pink: #f472b6;
       --gradient-accent: linear-gradient(135deg, #39ff73, #22d3ee, #a78bfa);
-      --gradient-hero: linear-gradient(135deg, #0a0e17 0%, #0d1a2d 30%, #0f1f25 60%, #0a0e17 100%);
-      --glass-bg: rgba(17, 24, 39, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.08);
+      --gradient-hero: linear-gradient(135deg, #0f1420 0%, #121e30 30%, #142428 60%, #0f1420 100%);
+      --glass-bg: rgba(22, 29, 46, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.10);
       --glass-blur: blur(16px);
       --font-display: 'Bebas Neue', Impact, sans-serif;
       --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
@@ -335,37 +335,7 @@
       background-size: 400% 400%;
       animation: gradient-shift 15s ease-in-out infinite;
     }
-    .hero-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      opacity: 0.4;
-    }
-    .hero-blob-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(57, 255, 115, 0.2) 0%, transparent 70%);
-      top: -100px;
-      right: -100px;
-      animation: float-1 8s ease-in-out infinite;
-    }
-    .hero-blob-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
-      bottom: -50px;
-      left: -50px;
-      animation: float-2 6s ease-in-out infinite;
-    }
-    .hero-blob-3 {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
-      top: 40%;
-      left: 50%;
-      animation: float-3 7s ease-in-out infinite;
-    }
+    /* Hero blobs removed – replaced by nucleosome canvas particle system */
 
     .hero-content {
       position: relative;
@@ -1884,18 +1854,7 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
-    @keyframes float-1 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-20px, 20px); }
-    }
-    @keyframes float-2 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(15px, -15px); }
-    }
-    @keyframes float-3 {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-10px, -20px); }
-    }
+    /* float-1/2/3 keyframes removed – hero blobs replaced by nucleosome canvas */
     @keyframes pulse-glow {
       0%, 100% { box-shadow: 0 0 4px rgba(57, 255, 115, 0.4); }
       50% { box-shadow: 0 0 12px rgba(57, 255, 115, 0.8); }
@@ -2158,10 +2117,6 @@
 
   <!-- Hero -->
   <section id="hero" class="hero">
-    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
-
     <div class="container hero-content">
       <div class="hero-pill">
         <span class="pill-dot" aria-hidden="true"></span>
@@ -2811,87 +2766,9 @@
             and <strong>266 DEGs by treatment</strong> (padj&nbsp;&lt;&nbsp;0.05, |log2FC|&nbsp;&gt;&nbsp;1).
           </p>
 
-          <!-- 9-step visual pipeline -->
-          <div class="kchopore-pipeline">
-            <div class="kc-step kc-step-signal fade-in">
-              <div class="kc-step-num">1</div>
-              <div class="kc-step-content">
-                <h4>Basecalling</h4>
-                <p>FAST5/POD5 &rarr; FASTQ via Dorado&nbsp;/&nbsp;Guppy</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-qc fade-in">
-              <div class="kc-step-num">2</div>
-              <div class="kc-step-content">
-                <h4>Read Filtering</h4>
-                <p>NanoFilt: Q&nbsp;&ge;&nbsp;7, len&nbsp;&ge;&nbsp;200&nbsp;bp</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-qc fade-in">
-              <div class="kc-step-num">3</div>
-              <div class="kc-step-content">
-                <h4>Read QC</h4>
-                <p>NanoPlot + NanoComp reports</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-align fade-in">
-              <div class="kc-step-num">4</div>
-              <div class="kc-step-content">
-                <h4>Alignment</h4>
-                <p>Minimap2 splice-aware (<code>-ax splice -uf -k14</code>)</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-qc fade-in">
-              <div class="kc-step-num">5</div>
-              <div class="kc-step-content">
-                <h4>Alignment QC</h4>
-                <p>samtools flagstat + pycoQC</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-iso fade-in">
-              <div class="kc-step-num">6</div>
-              <div class="kc-step-content">
-                <h4>Isoform Analysis</h4>
-                <p>FLAIR + StringTie2 &rarr; 20,958 isoforms</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-epi fade-in">
-              <div class="kc-step-num">7</div>
-              <div class="kc-step-content">
-                <h4>Epitranscriptomics</h4>
-                <p>ELIGOS2, m6Anet, xPore &rarr; m6A maps</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-de fade-in">
-              <div class="kc-step-num">8</div>
-              <div class="kc-step-content">
-                <h4>Differential Expression</h4>
-                <p>DESeq2 factorial/additive models</p>
-              </div>
-            </div>
-            <div class="kc-arrow" aria-hidden="true"></div>
-
-            <div class="kc-step kc-step-report fade-in">
-              <div class="kc-step-num">9</div>
-              <div class="kc-step-content">
-                <h4>Report</h4>
-                <p>MultiQC aggregated HTML report</p>
-              </div>
-            </div>
+          <!-- K-CHOPORE Pipeline Diagram -->
+          <div class="kchopore-pipeline-img fade-in" style="margin: 16px 0; text-align: center;">
+            <img src="img/kchopore_pipeline.png" alt="K-CHOPORE 9-stage pipeline diagram — from basecalling through epitranscriptomics to final report" loading="lazy" style="width: 100%; max-width: 900px; border-radius: var(--radius-md); border: 1px solid rgba(57, 255, 115, 0.15); box-shadow: 0 4px 24px rgba(57, 255, 115, 0.08);" />
           </div>
 
           <div class="card-tags" style="margin-top: 20px;">
@@ -4627,7 +4504,8 @@
       });
     });
 
-    // ===== 11. NUCLEOSOME PARTICLES =====
+    // ===== 11. NUCLEOSOME PARTICLE SYSTEM =====
+    // Thousands of nucleosome-like particles with histone tails wrapped around DNA strands
     (function() {
       if (prefersReducedMotion) return;
       const canvas = document.getElementById('nucleosome-canvas');
@@ -4635,8 +4513,8 @@
       const ctx = canvas.getContext('2d');
       let W, H;
       let mouseX = -9999, mouseY = -9999;
-      const MOUSE_RADIUS = 150;
-      const MOUSE_FORCE = 0.8;
+      const MOUSE_RADIUS = 180;
+      const MOUSE_FORCE = 1.2;
 
       function resize() {
         W = canvas.width = window.innerWidth;
@@ -4654,85 +4532,279 @@
         mouseY = -9999;
       });
 
-      // Palette: neon green, cyan, purple, pink – low opacity for subtlety
-      const COLORS = [
-        { r: 57, g: 255, b: 115 },  // neon-green
-        { r: 34, g: 211, b: 238 },  // neon-cyan
-        { r: 167, g: 139, b: 250 }, // neon-purple
-        { r: 244, g: 114, b: 182 }, // neon-pink
-        { r: 100, g: 160, b: 220 }, // soft blue
-      ];
+      // Histone color palette
+      var H2A = { r: 57, g: 255, b: 115 };   // green – H2A
+      var H2B = { r: 34, g: 211, b: 238 };   // cyan – H2B
+      var H3  = { r: 167, g: 139, b: 250 };  // purple – H3
+      var H4  = { r: 244, g: 114, b: 182 };  // pink – H4
+      var DNA_COLOR = { r: 100, g: 170, b: 255 }; // soft blue – DNA strand
+      var HISTONE_COLORS = [H2A, H2B, H3, H4];
 
-      const NUM = Math.min(35, Math.floor(window.innerWidth / 40));
-      const particles = [];
+      // --- DNA STRANDS ---
+      // Several flowing double-helix-like strands that drift across the screen
+      var NUM_STRANDS = Math.max(3, Math.floor(W / 400));
+      var strands = [];
+      for (var s = 0; s < NUM_STRANDS; s++) {
+        strands.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          len: 300 + Math.random() * 500,
+          angle: Math.random() * Math.PI * 2,
+          speed: 0.1 + Math.random() * 0.15,
+          amplitude: 20 + Math.random() * 30,
+          frequency: 0.02 + Math.random() * 0.015,
+          phase: Math.random() * Math.PI * 2,
+          drift: { x: (Math.random() - 0.5) * 0.2, y: (Math.random() - 0.5) * 0.2 },
+        });
+      }
 
-      for (let i = 0; i < NUM; i++) {
-        const c = COLORS[Math.floor(Math.random() * COLORS.length)];
-        const r = 6 + Math.random() * 28; // nucleosome-like varied sizes
-        particles.push({
+      // --- NUCLEOSOME PARTICLES ---
+      // Hundreds of nucleosome discs that drift along or near DNA strands
+      var NUM_NUCLEOSOMES = Math.min(600, Math.max(150, Math.floor(W * H / 3000)));
+      var nucleosomes = [];
+      for (var i = 0; i < NUM_NUCLEOSOMES; i++) {
+        var ci = Math.floor(Math.random() * HISTONE_COLORS.length);
+        var isLarge = Math.random() < 0.12; // ~12% are large "octamer" nucleosomes
+        var r = isLarge ? (8 + Math.random() * 6) : (2 + Math.random() * 4);
+        nucleosomes.push({
           x: Math.random() * W,
           y: Math.random() * H,
           r: r,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          baseAlpha: 0.04 + Math.random() * 0.08,
-          color: c,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          color: HISTONE_COLORS[ci],
+          baseAlpha: isLarge ? (0.06 + Math.random() * 0.12) : (0.03 + Math.random() * 0.06),
           phase: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.005 + Math.random() * 0.01,
+          pulseSpeed: 0.003 + Math.random() * 0.008,
+          isLarge: isLarge,
+          tailLen: isLarge ? (3 + Math.floor(Math.random() * 4)) : 0,
+          tailAngle: Math.random() * Math.PI * 2,
+          tailWag: 0.02 + Math.random() * 0.03,
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.008,
         });
+      }
+
+      // --- TINY FLOATING PARTICLES (dust / free histones) ---
+      var NUM_DUST = Math.min(800, Math.max(200, Math.floor(W * H / 2500)));
+      var dust = [];
+      for (var d = 0; d < NUM_DUST; d++) {
+        var dc = HISTONE_COLORS[Math.floor(Math.random() * HISTONE_COLORS.length)];
+        dust.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: 0.5 + Math.random() * 1.5,
+          vx: (Math.random() - 0.5) * 0.15,
+          vy: (Math.random() - 0.5) * 0.15,
+          color: dc,
+          alpha: 0.02 + Math.random() * 0.05,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+
+      function drawDNAStrand(strand, t) {
+        var seg = 4; // px per segment step
+        var steps = Math.floor(strand.len / seg);
+        var cosA = Math.cos(strand.angle);
+        var sinA = Math.sin(strand.angle);
+        var ph = strand.phase + t * strand.speed;
+
+        // Two intertwined strands (double helix)
+        for (var helix = 0; helix < 2; helix++) {
+          var helixOff = helix * Math.PI; // 180° offset
+          ctx.beginPath();
+          for (var j = 0; j <= steps; j++) {
+            var frac = j / steps;
+            var along = j * seg;
+            var wave = Math.sin(along * strand.frequency + ph + helixOff) * strand.amplitude;
+            var px = strand.x + along * cosA - wave * sinA;
+            var py = strand.y + along * sinA + wave * cosA;
+            // fade at edges
+            var edgeFade = Math.sin(frac * Math.PI);
+            if (j === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          var strandAlpha = 0.04 + Math.sin(t * 0.5 + strand.phase) * 0.015;
+          ctx.strokeStyle = 'rgba(' + DNA_COLOR.r + ',' + DNA_COLOR.g + ',' + DNA_COLOR.b + ',' + strandAlpha + ')';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+
+        // Draw "base pair" rungs between the two strands
+        for (var j = 0; j <= steps; j += 6) {
+          var frac = j / steps;
+          var along = j * seg;
+          var wave1 = Math.sin(along * strand.frequency + ph) * strand.amplitude;
+          var wave2 = Math.sin(along * strand.frequency + ph + Math.PI) * strand.amplitude;
+          var x1 = strand.x + along * cosA - wave1 * sinA;
+          var y1 = strand.y + along * sinA + wave1 * cosA;
+          var x2 = strand.x + along * cosA - wave2 * sinA;
+          var y2 = strand.y + along * sinA + wave2 * cosA;
+          var edgeFade = Math.sin(frac * Math.PI);
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.strokeStyle = 'rgba(' + DNA_COLOR.r + ',' + DNA_COLOR.g + ',' + DNA_COLOR.b + ',' + (0.02 * edgeFade) + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+
+      function drawNucleosome(p, t) {
+        // Pulsing alpha
+        var pulse = Math.sin(t * p.pulseSpeed * 60 + p.phase) * 0.3 + 0.7;
+        var alpha = p.baseAlpha * pulse;
+
+        // Main nucleosome disc (slightly oval)
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+
+        // Radial gradient for 3D sphere appearance
+        var grad = ctx.createRadialGradient(-p.r * 0.25, -p.r * 0.25, p.r * 0.05, 0, 0, p.r);
+        grad.addColorStop(0, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (alpha * 2) + ')');
+        grad.addColorStop(0.5, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + alpha + ')');
+        grad.addColorStop(1, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',0)');
+
+        ctx.beginPath();
+        if (p.isLarge) {
+          // Slightly flattened disc shape for large nucleosomes
+          ctx.ellipse(0, 0, p.r, p.r * 0.7, 0, 0, Math.PI * 2);
+        } else {
+          ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+        }
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // DNA wrapping ring around large nucleosomes
+        if (p.isLarge) {
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r * 1.3, p.r * 0.9, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(' + DNA_COLOR.r + ',' + DNA_COLOR.g + ',' + DNA_COLOR.b + ',' + (alpha * 0.4) + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          // Second wrap
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r * 1.5, p.r * 1.1, 0.3, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(' + DNA_COLOR.r + ',' + DNA_COLOR.g + ',' + DNA_COLOR.b + ',' + (alpha * 0.25) + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+
+        // Histone tails (wiggly lines extending from large nucleosomes)
+        if (p.tailLen > 0) {
+          for (var ti = 0; ti < p.tailLen; ti++) {
+            var tailBaseAngle = (Math.PI * 2 / p.tailLen) * ti + p.tailAngle;
+            var tailLength = p.r * (1.5 + Math.random() * 0.5);
+            ctx.beginPath();
+            var tx0 = Math.cos(tailBaseAngle) * p.r * 0.8;
+            var ty0 = Math.sin(tailBaseAngle) * p.r * 0.5;
+            ctx.moveTo(tx0, ty0);
+            // Wiggly tail with 3 control points
+            var wag = Math.sin(t * 2 + p.phase + ti) * p.tailWag * 40;
+            var tx1 = tx0 + Math.cos(tailBaseAngle) * tailLength * 0.5 + wag;
+            var ty1 = ty0 + Math.sin(tailBaseAngle) * tailLength * 0.5 - wag * 0.5;
+            var tx2 = tx0 + Math.cos(tailBaseAngle) * tailLength + wag * 0.7;
+            var ty2 = ty0 + Math.sin(tailBaseAngle) * tailLength + wag * 0.3;
+            ctx.quadraticCurveTo(tx1, ty1, tx2, ty2);
+            // Use the histone color but lighter for tail
+            var tailAlpha = alpha * 0.6;
+            ctx.strokeStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + tailAlpha + ')';
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+            // Tiny PTM dot at tail end (acetylation / methylation mark)
+            if (Math.random() < 0.5) {
+              ctx.beginPath();
+              ctx.arc(tx2, ty2, 1, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(255,255,255,' + (tailAlpha * 0.8) + ')';
+              ctx.fill();
+            }
+          }
+        }
+
+        ctx.restore();
       }
 
       function draw() {
         ctx.clearRect(0, 0, W, H);
-        const t = performance.now() * 0.001;
+        var t = performance.now() * 0.001;
 
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
+        // Draw DNA strands first (background layer)
+        for (var s = 0; s < strands.length; s++) {
+          var strand = strands[s];
+          // Drift strands slowly
+          strand.x += strand.drift.x;
+          strand.y += strand.drift.y;
+          // Wrap
+          if (strand.x < -strand.len) strand.x = W + 50;
+          if (strand.x > W + strand.len) strand.x = -50;
+          if (strand.y < -strand.len) strand.y = H + 50;
+          if (strand.y > H + strand.len) strand.y = -50;
+          drawDNAStrand(strand, t);
+        }
+
+        // Draw nucleosomes
+        for (var i = 0; i < nucleosomes.length; i++) {
+          var p = nucleosomes[i];
 
           // Mouse repulsion
-          const dx = p.x - mouseX;
-          const dy = p.y - (mouseY + window.scrollY * 0); // fixed position
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          var dx = p.x - mouseX;
+          var dy = p.y - mouseY;
+          var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MOUSE_RADIUS && dist > 0) {
-            const force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
+            var force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
             p.vx += (dx / dist) * force;
             p.vy += (dy / dist) * force;
           }
 
-          // Gentle drift
           p.x += p.vx;
           p.y += p.vy;
+          p.vx *= 0.985;
+          p.vy *= 0.985;
+          p.vx += (Math.random() - 0.5) * 0.015;
+          p.vy += (Math.random() - 0.5) * 0.015;
+          p.rotation += p.rotSpeed;
 
-          // Damping
-          p.vx *= 0.98;
-          p.vy *= 0.98;
+          // Wrap
+          if (p.x < -p.r * 2) p.x = W + p.r;
+          if (p.x > W + p.r * 2) p.x = -p.r;
+          if (p.y < -p.r * 2) p.y = H + p.r;
+          if (p.y > H + p.r * 2) p.y = -p.r;
 
-          // Re-add tiny random motion so they don't stop completely
-          p.vx += (Math.random() - 0.5) * 0.02;
-          p.vy += (Math.random() - 0.5) * 0.02;
+          drawNucleosome(p, t);
+        }
 
-          // Wrap around edges
-          if (p.x < -p.r) p.x = W + p.r;
-          if (p.x > W + p.r) p.x = -p.r;
-          if (p.y < -p.r) p.y = H + p.r;
-          if (p.y > H + p.r) p.y = -p.r;
+        // Draw dust / free histones
+        for (var d = 0; d < dust.length; d++) {
+          var dp = dust[d];
+          // Mouse interaction
+          var ddx = dp.x - mouseX;
+          var ddy = dp.y - mouseY;
+          var ddist = Math.sqrt(ddx * ddx + ddy * ddy);
+          if (ddist < MOUSE_RADIUS * 0.8 && ddist > 0) {
+            var df = (1 - ddist / (MOUSE_RADIUS * 0.8)) * MOUSE_FORCE * 0.5;
+            dp.vx += (ddx / ddist) * df;
+            dp.vy += (ddy / ddist) * df;
+          }
 
-          // Pulsing alpha
-          const pulse = Math.sin(t * p.pulseSpeed * 60 + p.phase) * 0.3 + 0.7;
-          const alpha = p.baseAlpha * pulse;
+          dp.x += dp.vx;
+          dp.y += dp.vy;
+          dp.vx *= 0.99;
+          dp.vy *= 0.99;
+          dp.vx += (Math.random() - 0.5) * 0.008;
+          dp.vy += (Math.random() - 0.5) * 0.008;
 
-          // Draw nucleosome sphere with radial gradient
-          const grad = ctx.createRadialGradient(
-            p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.1,
-            p.x, p.y, p.r
-          );
-          grad.addColorStop(0, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (alpha * 1.5) + ')');
-          grad.addColorStop(0.6, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + alpha + ')');
-          grad.addColorStop(1, 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',0)');
+          // Wrap
+          if (dp.x < -5) dp.x = W + 5;
+          if (dp.x > W + 5) dp.x = -5;
+          if (dp.y < -5) dp.y = H + 5;
+          if (dp.y > H + 5) dp.y = -5;
 
+          var dAlpha = dp.alpha * (0.6 + 0.4 * Math.sin(t * 1.5 + dp.phase));
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = grad;
+          ctx.arc(dp.x, dp.y, dp.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + dp.color.r + ',' + dp.color.g + ',' + dp.color.b + ',' + dAlpha + ')';
           ctx.fill();
         }
 
