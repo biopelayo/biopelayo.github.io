@@ -141,12 +141,19 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 3px;
+      height: 4px;
       z-index: var(--z-progress);
-      background: var(--gradient-accent);
+      background: linear-gradient(90deg, #7c3aed, #a78bfa, #c084fc, #a78bfa, #7c3aed);
+      background-size: 200% 100%;
+      animation: progress-shimmer 3s linear infinite;
       transform-origin: left;
       transform: scaleX(0);
       pointer-events: none;
+      box-shadow: 0 0 12px rgba(167, 139, 250, 0.5), 0 0 4px rgba(124, 58, 237, 0.4);
+    }
+    @keyframes progress-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
     /* 5. NAVIGATION */
@@ -154,47 +161,102 @@
       position: sticky;
       top: 0;
       z-index: var(--z-nav);
-      background: #050508;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-    .navbar.scrolled {
       background: #000;
-      border-bottom-color: rgba(57, 255, 115, 0.12);
+      border-bottom: 1px solid rgba(167, 139, 250, 0.08);
+      transition: all 0.4s ease;
+      overflow: visible;
     }
+    .navbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%, rgba(124,58,237,0.3) 20%,
+        rgba(167,139,250,0.5) 50%, rgba(124,58,237,0.3) 80%,
+        transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .navbar.scrolled::after { opacity: 1; }
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.97);
+      border-bottom-color: rgba(167, 139, 250, 0.12);
+      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.08);
+    }
+
+    /* Two-row navbar layout */
     .navbar-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 10px 24px;
+      position: relative;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      padding: 8px 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
     .nav-brand {
       display: flex;
-      flex-direction: column;
-      gap: 1px;
+      align-items: center;
+      gap: 14px;
       white-space: nowrap;
-      line-height: 1.2;
+      line-height: 1;
     }
     .brand-alias {
       font-family: var(--font-display);
-      font-size: 20px;
-      letter-spacing: 0.12em;
-      color: var(--fg);
+      font-size: 26px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-purple) 60%, var(--neon-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-divider {
+      width: 1px;
+      height: 20px;
+      background: linear-gradient(180deg, transparent, rgba(167,139,250,0.4), transparent);
     }
     .brand-meta {
       font-size: 11px;
       color: var(--fg-muted);
       letter-spacing: 0.04em;
       font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      line-height: 1.3;
     }
     .brand-meta .brand-handle {
       color: var(--neon-green);
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 12px;
     }
+    .brand-meta .brand-role {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-dim);
+    }
+    .brand-social {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .brand-social a {
+      color: var(--fg-dim);
+      transition: color 0.2s ease;
+    }
+    .brand-social a:hover { color: var(--neon-purple); }
 
     .nav-toggle-input { display: none; }
     .nav-toggle-label {
@@ -203,6 +265,9 @@
       gap: 5px;
       cursor: pointer;
       padding: 4px;
+      position: absolute;
+      right: 16px;
+      top: 10px;
     }
     .nav-toggle-label span {
       display: block;
@@ -222,35 +287,41 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
+    /* Bottom row: full-width navigation links */
     .nav-links {
       display: flex;
-      gap: 14px;
-      font-size: 12.5px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 24px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.015);
     }
     .nav-links a {
       position: relative;
-      color: var(--fg-muted);
-      padding-bottom: 2px;
-      transition: color 0.2s ease;
+      color: var(--fg-dim);
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s ease, background 0.2s ease;
     }
     .nav-links a::after {
       content: "";
       position: absolute;
-      left: 0;
+      left: 50%;
       bottom: 0;
       width: 0;
       height: 2px;
-      background: var(--neon-green);
+      background: var(--neon-purple);
       border-radius: var(--radius-pill);
-      transition: width 0.2s ease-out;
-      box-shadow: 0 0 8px rgba(57, 255, 115, 0.3);
+      transition: width 0.25s var(--ease-out), left 0.25s var(--ease-out);
+      box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
     }
     .nav-links a:hover,
-    .nav-links a.active { color: var(--fg); }
+    .nav-links a.active { color: var(--fg); background: rgba(167, 139, 250, 0.06); }
     .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active::after { width: 80%; left: 10%; }
 
     /* 6. HERO */
     .hero {
@@ -1903,6 +1974,10 @@
     }
 
     @media (max-width: 768px) {
+      .navbar-top { padding: 8px 16px; }
+      .brand-alias { font-size: 20px; }
+      .brand-social { display: none; }
+      .brand-divider { display: none; }
       .nav-toggle-label { display: flex; }
       .nav-links {
         display: none;
@@ -1911,10 +1986,12 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: #050508;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: #000;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.12);
         padding: 16px 24px;
-        gap: 12px;
+        gap: 8px;
+        text-transform: none;
+        font-size: 13px;
       }
       .nav-toggle-input:checked ~ .nav-links { display: flex; }
 
@@ -1938,7 +2015,7 @@
     }
 
     @media (max-width: 480px) {
-      .navbar-inner { padding: 10px 16px; }
+      .navbar-top { padding: 6px 12px; }
       .hero-pill { font-size: 10px; }
       .hero-cta { flex-direction: column; align-items: center; }
       .footer-inner { flex-direction: column; text-align: center; }
@@ -1949,7 +2026,8 @@
     /* Wide-screen enhancements */
     @media (min-width: 1440px) {
       :root { --max-width: 1140px; }
-      .navbar-inner { max-width: 1240px; }
+      .navbar-top { padding: 10px 48px; }
+      .nav-links { padding: 6px 48px; }
     }
 
     /* 21. ACCESSIBILITY */
@@ -2032,12 +2110,27 @@
   <!-- Navigation -->
   <header class="navbar" role="banner">
     <div class="navbar-inner">
-      <a href="#hero" class="nav-brand">
-        <span class="brand-alias">Pelamovic</span>
-        <span class="brand-meta">
-          <span class="brand-handle">@biopelayo</span> &middot; Bioinformatician
-        </span>
-      </a>
+      <div class="navbar-top">
+        <a href="#hero" class="nav-brand">
+          <span class="brand-alias">Pelamovic</span>
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-meta">
+            <span class="brand-handle">@biopelayo</span>
+            <span class="brand-role">Bioinformatician &middot; Plant Epigenomics</span>
+          </span>
+        </a>
+        <div class="brand-social">
+          <a href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+          <a href="https://orcid.org/0000-0001-9409-1457" target="_blank" rel="noopener noreferrer" aria-label="ORCID" title="ORCID">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM6.2 4.4c0 .4-.3.7-.7.7s-.7-.3-.7-.7.3-.7.7-.7.7.3.7.7zM5.2 6h1.1v5.6H5.2V6zm3.1 0h1.1v.8c.3-.5.9-.9 1.7-.9 1.3 0 2.2.9 2.2 2.7v3h-1.1V8.8c0-1.1-.5-1.7-1.3-1.7-.8 0-1.5.6-1.5 1.8v2.7H8.3V6z"/></svg>
+          </a>
+          <a href="https://twitter.com/biopelayo" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="Twitter/X">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
       <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -2048,7 +2141,7 @@
         <a href="#epiprofile">EpiProfile</a>
         <a href="#kchopore">K-CHOPORE</a>
         <a href="#pipelines">Pipelines</a>
-        <a href="#publications">Publications</a>
+        <a href="#publications">Pubs</a>
         <a href="#skills">Skills</a>
         <a href="#repos">Repos</a>
         <a href="#teaching">Teaching</a>
@@ -3454,17 +3547,6 @@
           </div>
 
           <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/wf_ontogenia_proteomic.png" alt="Arabidopsis Ontogenia proteomic workflow: sample preparation, LC-MS/MS on ZenoTOF, EpiProfile_PLANTS processing and downstream R analysis" loading="lazy" />
-            <div class="wf-info">
-              <div class="wf-title">
-                <span class="wf-badge" style="background: rgba(34,211,238,0.12); color: var(--neon-cyan);">Ch. 3</span>
-                Ontogeny Proteomic Workflow
-              </div>
-              <div class="wf-desc">A. thaliana rosette ontogeny: preparation, LC-MS/MS on ZenoTOF, EpiProfile_PLANTS quantification</div>
-            </div>
-          </div>
-
-          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
             <img src="img/wf_tech_variance.png" alt="Technical variability sources and mitigation strategies across the 5-stage EpiProfile_PLANTS pipeline: sample preparation, LC-MS/MS, file conversion, quantification, and statistics" loading="lazy" />
             <div class="wf-info">
               <div class="wf-title">
@@ -3476,17 +3558,6 @@
           </div>
 
           <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/wf_h3k79_validation.png" alt="Orthogonal validation workflow for H3K79 marks (me1, me2, me3, ac): 6-tier evidence matrix with targeted MS, enzyme controls, orthogonal digestions, temporal series, and HILIC fractionation" loading="lazy" />
-            <div class="wf-info">
-              <div class="wf-title">
-                <span class="wf-badge" style="background: rgba(57,255,115,0.12); color: var(--neon-green);">H3K79</span>
-                Orthogonal Validation Design
-              </div>
-              <div class="wf-desc">6-tier evidence matrix: targeted MS, enzyme controls, orthogonal digestions, temporal series, HILIC/RP</div>
-            </div>
-          </div>
-
-          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
             <img src="img/wf_prisma_screening.png" alt="PRISMA-style literature screening flowchart for EpiProfile and H3K79 in plants: 2450 records screened to 35 studies included, with 12 using EpiProfile 2.0 and 8 detecting H3K79 in Arabidopsis" loading="lazy" />
             <div class="wf-info">
               <div class="wf-title">
@@ -3494,17 +3565,6 @@
                 PRISMA Literature Screening
               </div>
               <div class="wf-desc">Systematic review: 2,450 records &rarr; 35 studies &mdash; 12 using EpiProfile, 8 detecting H3K79</div>
-            </div>
-          </div>
-
-          <div class="wf-card" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/wf_post_epiprofile.png" alt="Post-EpiProfile downstream analysis workflow: normalization, statistical testing, PCA, heatmaps, volcano plots, and publication-ready figures in R" loading="lazy" />
-            <div class="wf-info">
-              <div class="wf-title">
-                <span class="wf-badge" style="background: rgba(34,211,238,0.12); color: var(--neon-cyan);">Stats</span>
-                Post-EpiProfile Analysis
-              </div>
-              <div class="wf-desc">Downstream R pipeline: normalization, differential analysis, PCA, heatmaps, volcano plots</div>
             </div>
           </div>
 
