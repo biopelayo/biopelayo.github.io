@@ -50,20 +50,20 @@
 
     /* 1. CSS VARIABLES */
     :root {
-      --bg-deep: #0f1420;
-      --bg-surface: #161d2e;
-      --bg-elevated: #1f2a3c;
+      --bg-deep: #111826;
+      --bg-surface: #182030;
+      --bg-elevated: #212d40;
       --fg: #e8ecf1;
       --fg-muted: #94a0b4;
       --fg-dim: #687793;
       --neon-green: #3dff7a;
       --neon-cyan: #2be0f0;
-      --neon-purple: #b49aff;
+      --neon-purple: #5eaaff;
       --neon-pink: #ff7ec4;
       --neon-gold: #fbbf24;
       --gradient-accent: linear-gradient(135deg, #3dff7a, #2be0f0, #b49aff, #ff7ec4);
-      --gradient-hero: linear-gradient(135deg, #0f1420 0%, #111d33 25%, #16222d 50%, #14182a 75%, #0f1420 100%);
-      --glass-bg: rgba(22, 29, 46, 0.75);
+      --gradient-hero: linear-gradient(135deg, #111826 0%, #131f36 25%, #182630 50%, #151c2e 75%, #111826 100%);
+      --glass-bg: rgba(24, 32, 48, 0.75);
       --glass-border: rgba(255, 255, 255, 0.10);
       --glass-blur: blur(16px);
       --font-display: 'Bebas Neue', Impact, sans-serif;
@@ -144,13 +144,13 @@
       width: 100%;
       height: 4px;
       z-index: var(--z-progress);
-      background: linear-gradient(90deg, #7c3aed, #a78bfa, #c084fc, #a78bfa, #7c3aed);
+      background: linear-gradient(90deg, #22c55e, #3dff7a, #2be0f0, #3dff7a, #22c55e);
       background-size: 200% 100%;
       animation: progress-shimmer 3s linear infinite;
       transform-origin: left;
       transform: scaleX(0);
       pointer-events: none;
-      box-shadow: 0 0 12px rgba(167, 139, 250, 0.5), 0 0 4px rgba(124, 58, 237, 0.4);
+      box-shadow: 0 0 12px rgba(61, 255, 122, 0.4), 0 0 4px rgba(43, 224, 240, 0.3);
     }
     @keyframes progress-shimmer {
       0% { background-position: 200% 0; }
@@ -163,7 +163,7 @@
       top: 0;
       z-index: var(--z-nav);
       background: #000;
-      border-bottom: 1px solid rgba(167, 139, 250, 0.08);
+      border-bottom: 1px solid rgba(43, 224, 240, 0.08);
       transition: all 0.4s ease;
       overflow: visible;
     }
@@ -175,8 +175,8 @@
       right: 0;
       height: 1px;
       background: linear-gradient(90deg,
-        transparent 0%, rgba(124,58,237,0.3) 20%,
-        rgba(167,139,250,0.5) 50%, rgba(124,58,237,0.3) 80%,
+        transparent 0%, rgba(43,224,240,0.2) 20%,
+        rgba(61,255,122,0.35) 50%, rgba(43,224,240,0.2) 80%,
         transparent 100%);
       opacity: 0;
       transition: opacity 0.4s ease;
@@ -184,8 +184,8 @@
     .navbar.scrolled::after { opacity: 1; }
     .navbar.scrolled {
       background: rgba(0, 0, 0, 0.97);
-      border-bottom-color: rgba(167, 139, 250, 0.12);
-      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.08);
+      border-bottom-color: rgba(43, 224, 240, 0.12);
+      box-shadow: 0 4px 24px rgba(43, 224, 240, 0.06);
     }
 
     /* Two-row navbar layout */
@@ -216,7 +216,7 @@
       font-size: 26px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-purple) 60%, var(--neon-cyan) 100%);
+      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-cyan) 60%, var(--neon-green) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -224,7 +224,7 @@
     .brand-divider {
       width: 1px;
       height: 20px;
-      background: linear-gradient(180deg, transparent, rgba(167,139,250,0.4), transparent);
+      background: linear-gradient(180deg, transparent, rgba(43,224,240,0.4), transparent);
     }
     .brand-meta {
       font-size: 11px;
@@ -257,7 +257,7 @@
       color: var(--fg-dim);
       transition: color 0.2s ease;
     }
-    .brand-social a:hover { color: var(--neon-purple); }
+    .brand-social a:hover { color: var(--neon-cyan); }
 
     .nav-toggle-input { display: none; }
     .nav-toggle-label {
@@ -314,13 +314,13 @@
       bottom: 0;
       width: 0;
       height: 2px;
-      background: var(--neon-purple);
+      background: var(--neon-cyan);
       border-radius: var(--radius-pill);
       transition: width 0.25s var(--ease-out), left 0.25s var(--ease-out);
-      box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
+      box-shadow: 0 0 10px rgba(43, 224, 240, 0.4);
     }
     .nav-links a:hover,
-    .nav-links a.active { color: var(--fg); background: rgba(167, 139, 250, 0.06); }
+    .nav-links a.active { color: var(--fg); background: rgba(43, 224, 240, 0.06); }
     .nav-links a:hover::after,
     .nav-links a.active::after { width: 80%; left: 10%; }
 
@@ -511,7 +511,7 @@
       letter-spacing: 0.08em;
       color: var(--fg);
       margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-cyan) 50%, var(--neon-purple) 100%);
+      background: linear-gradient(135deg, var(--fg) 0%, var(--neon-green) 50%, var(--neon-cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -531,7 +531,7 @@
       border-radius: var(--radius-pill);
       margin: 16px auto 0 auto;
       position: relative;
-      box-shadow: 0 0 12px rgba(43,224,240,0.2), 0 0 4px rgba(180,154,255,0.15);
+      box-shadow: 0 0 12px rgba(43,224,240,0.25), 0 0 4px rgba(61,255,122,0.15);
     }
     @keyframes section-line-shimmer {
       0% { background-position: 200% 0; }
@@ -542,8 +542,8 @@
       position: absolute;
       inset: -4px -20px;
       background: linear-gradient(90deg,
-        transparent 0%, rgba(57,255,115,0.08) 30%,
-        rgba(34,211,238,0.08) 50%, rgba(167,139,250,0.08) 70%,
+        transparent 0%, rgba(61,255,122,0.08) 30%,
+        rgba(43,224,240,0.10) 50%, rgba(61,255,122,0.06) 70%,
         transparent 100%);
       border-radius: var(--radius-pill);
       filter: blur(6px);
@@ -553,7 +553,7 @@
     /* 8. GLASS CARDS */
     .glass-card {
       background: var(--glass-bg);
-      border: 1px solid rgba(180,154,255,0.08);
+      border: 1px solid rgba(43,224,240,0.06);
       border-radius: var(--radius-lg);
       padding: 24px;
       transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s ease;
@@ -564,7 +564,7 @@
     .glass-card:hover {
       transform: translateY(-3px);
       border-color: rgba(43,224,240,0.18);
-      box-shadow: 0 8px 32px rgba(43,224,240,0.06), 0 0 0 1px rgba(180,154,255,0.08), 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 32px rgba(43,224,240,0.06), 0 0 0 1px rgba(43,224,240,0.08), 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .card-accent-line {
@@ -618,8 +618,8 @@
       color: var(--neon-cyan);
     }
     .tag-purple {
-      background: rgba(167, 139, 250, 0.06);
-      border-color: rgba(167, 139, 250, 0.15);
+      background: rgba(94, 170, 255, 0.06);
+      border-color: rgba(94, 170, 255, 0.15);
       color: var(--neon-purple);
     }
     .tag-pink {
@@ -892,7 +892,7 @@
       box-shadow: var(--shadow-md);
     }
     .epi-fig-card:nth-child(1):hover { border-color: rgba(34, 211, 238, 0.35); box-shadow: 0 0 20px rgba(34, 211, 238, 0.08); }
-    .epi-fig-card:nth-child(2):hover { border-color: rgba(167, 139, 250, 0.35); box-shadow: 0 0 20px rgba(167, 139, 250, 0.08); }
+    .epi-fig-card:nth-child(2):hover { border-color: rgba(94, 170, 255, 0.35); box-shadow: 0 0 20px rgba(94, 170, 255, 0.08); }
     .epi-fig-card:nth-child(3):hover { border-color: rgba(57, 255, 115, 0.35); box-shadow: 0 0 20px rgba(57, 255, 115, 0.08); }
     .epi-fig-card:nth-child(4):hover { border-color: rgba(244, 114, 182, 0.35); box-shadow: 0 0 20px rgba(244, 114, 182, 0.08); }
     .epi-fig-card img {
@@ -978,7 +978,7 @@
     }
     .kc-step:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(167, 139, 250, 0.15);
+      box-shadow: 0 4px 20px rgba(94, 170, 255, 0.15);
     }
     .kc-step-num {
       flex-shrink: 0;
@@ -1014,7 +1014,7 @@
     .kc-step-content code {
       font-family: var(--font-mono);
       font-size: 10px;
-      background: rgba(167, 139, 250, 0.1);
+      background: rgba(94, 170, 255, 0.1);
       padding: 1px 4px;
       border-radius: 3px;
       color: var(--neon-purple);
@@ -1055,7 +1055,7 @@
       color: var(--fg-muted);
     }
     .kc-table tbody tr:hover {
-      background: rgba(167, 139, 250, 0.05);
+      background: rgba(94, 170, 255, 0.05);
     }
     @media (max-width: 768px) {
       .kchopore-pipeline {
@@ -1343,7 +1343,7 @@
     }
     .sc-stat-box.accent-cyan { background: rgba(34,211,238,0.04); border-color: rgba(34,211,238,0.12); }
     .sc-stat-box.accent-cyan .sc-num { color: var(--neon-cyan); }
-    .sc-stat-box.accent-purple { background: rgba(167,139,250,0.04); border-color: rgba(167,139,250,0.12); }
+    .sc-stat-box.accent-purple { background: rgba(94,170,255,0.04); border-color: rgba(94,170,255,0.12); }
     .sc-stat-box.accent-purple .sc-num { color: var(--neon-purple); }
     .sc-stat-box.accent-pink { background: rgba(244,114,182,0.04); border-color: rgba(244,114,182,0.12); }
     .sc-stat-box.accent-pink .sc-num { color: var(--neon-pink); }
@@ -1692,7 +1692,7 @@
     .gallery-badge-green { background: rgba(57, 255, 115, 0.12); color: var(--neon-green); }
     .gallery-badge-cyan { background: rgba(34, 211, 238, 0.12); color: var(--neon-cyan); }
     .gallery-badge-pink { background: rgba(244, 114, 182, 0.12); color: var(--neon-pink); }
-    .gallery-badge-purple { background: rgba(167, 139, 250, 0.12); color: var(--neon-purple); }
+    .gallery-badge-purple { background: rgba(94, 170, 255, 0.12); color: var(--neon-purple); }
 
     /* 2x2 mosaic */
     .gallery-mosaic {
@@ -1712,7 +1712,7 @@
     .gallery-card:hover { transform: translateY(-5px); }
     .gallery-card--glow-cyan:hover { box-shadow: 0 8px 36px rgba(34, 211, 238, 0.15); border-color: rgba(34, 211, 238, 0.2); }
     .gallery-card--glow-pink:hover { box-shadow: 0 8px 36px rgba(244, 114, 182, 0.15); border-color: rgba(244, 114, 182, 0.2); }
-    .gallery-card--glow-purple:hover { box-shadow: 0 8px 36px rgba(167, 139, 250, 0.15); border-color: rgba(167, 139, 250, 0.2); }
+    .gallery-card--glow-purple:hover { box-shadow: 0 8px 36px rgba(94, 170, 255, 0.15); border-color: rgba(94, 170, 255, 0.2); }
     .gallery-card--glow-green:hover { box-shadow: 0 8px 36px rgba(57, 255, 115, 0.15); border-color: rgba(57, 255, 115, 0.2); }
     .gallery-img-wrap {
       width: 100%;
@@ -1958,7 +1958,7 @@
         left: 0;
         right: 0;
         background: #000;
-        border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+        border-bottom: 1px solid rgba(94, 170, 255, 0.12);
         padding: 16px 24px;
         gap: 8px;
         text-transform: none;
@@ -3003,21 +3003,6 @@
           </div>
         </div>
 
-        <!-- 8-Step Workflow Grid (icon-adapted) -->
-        <div class="epi-showcase fade-in">
-          <h3 class="epi-showcase-title"><span class="accent">//</span> 8-Step Experimental Workflow</h3>
-          <div class="epi-pipeline-strip" onclick="openLightbox(this.querySelector('img'))">
-            <img src="img/epiprofile_workflow_grid.png"
-                 alt="8-step circular workflow: nuclei isolation, acid extraction, derivatization, LC-MS/MS, RAW/WIFF acquisition, mzML conversion, PTM quantification, data analysis and figures"
-                 class="icon-dark-adapt"
-                 loading="lazy" />
-            <div class="epi-fig-caption">
-              <strong>EpiProfile_PLANTS 8-Step Workflow</strong> &mdash;
-              From nuclei isolation to quantitative PTM matrices, each step illustrated with custom icons.
-            </div>
-          </div>
-        </div>
-
         <!-- Technical Variability & Mitigation -->
         <div class="epi-showcase fade-in">
           <h3 class="epi-showcase-title"><span class="accent">//</span> Technical Variability &amp; Mitigation Strategies</h3>
@@ -3042,7 +3027,7 @@
         <div class="epi-showcase fade-in">
           <h3 class="epi-showcase-title"><span class="accent">//</span> Core Histone Peptide Architecture</h3>
 
-          <div class="epi-hero-figure" style="border-color: rgba(167, 139, 250, 0.15); background: rgba(167, 139, 250, 0.03); margin-bottom: 16px;" onclick="openLightbox(this.querySelector('img'))">
+          <div class="epi-hero-figure" style="border-color: rgba(94, 170, 255, 0.15); background: rgba(94, 170, 255, 0.03); margin-bottom: 16px;" onclick="openLightbox(this.querySelector('img'))">
             <img src="img/epiprofile_core_panel.png"
                  alt="Core histone peptide panel across plant and algal species: Arabidopsis thaliana, Marchantia polymorpha, Chlamydomonas reinhardtii, and Physcomitrella patens with H3, H4, H2A, and H2B core peptide sets"
                  loading="lazy" />
@@ -3087,16 +3072,11 @@
         </div>
 
         <div class="glass-card fade-in" style="margin-bottom: 24px;">
-          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
-            <img src="img/k_chopore_logo.png" alt="K-CHOPORE logo" loading="lazy" style="height: 52px; width: auto;" />
-            <div>
-              <p class="card-body" style="margin: 0;">
-                A 9-stage <strong>Snakemake + Docker</strong> pipeline for Oxford Nanopore direct RNA sequencing.
-                The name is a playful nod to the Asturian <em>cachopo</em>&mdash;a layered sandwich dish&mdash;reflecting
-                how the pipeline stacks analytical layers from raw signal to epitranscriptomic maps.
-              </p>
-            </div>
-          </div>
+          <p class="card-body" style="margin: 0 0 16px 0;">
+            A 9-stage <strong>Snakemake + Docker</strong> pipeline for Oxford Nanopore direct RNA sequencing.
+            The name is a playful nod to the Asturian <em>cachopo</em>&mdash;a layered sandwich dish&mdash;reflecting
+            how the pipeline stacks analytical layers from raw signal to epitranscriptomic maps.
+          </p>
 
           <p class="card-body" style="margin-bottom: 16px;">
             Currently applied to an <em>Arabidopsis thaliana</em> 2&times;2 factorial experiment
@@ -3106,8 +3086,8 @@
           </p>
 
           <!-- K-CHOPORE Pipeline Diagram -->
-          <div class="kchopore-pipeline-img fade-in" style="margin: 20px 0; text-align: center; background: rgba(255,255,255,0.03); border-radius: var(--radius-lg); padding: 16px; border: 1px solid rgba(167,139,250,0.12);">
-            <img src="img/kchopore_pipeline.png?v=2" alt="K-CHOPORE 9-stage pipeline diagram — from basecalling through epitranscriptomics to final report" loading="lazy" style="width: 100%; max-width: 960px; border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(167,139,250,0.12), 0 2px 8px rgba(0,0,0,0.3);" />
+          <div class="kchopore-pipeline-img fade-in" style="margin: 20px 0; text-align: center; background: rgba(255,255,255,0.03); border-radius: var(--radius-lg); padding: 16px; border: 1px solid rgba(94,170,255,0.12);">
+            <img src="img/kchopore_pipeline.png?v=2" alt="K-CHOPORE 9-stage pipeline diagram — from basecalling through epitranscriptomics to final report" loading="lazy" style="width: 100%; max-width: 960px; border-radius: var(--radius-md); box-shadow: 0 8px 32px rgba(94,170,255,0.12), 0 2px 8px rgba(0,0,0,0.3);" />
           </div>
 
           <div class="card-tags" style="margin-top: 20px;">
@@ -3650,18 +3630,6 @@
           <div class="section-line" aria-hidden="true"></div>
         </div>
 
-        <!-- Featured: full-width heatmap -->
-        <div class="gallery-hero fade-in" onclick="openLightbox(this.querySelector('img'))">
-          <div class="gallery-hero-img">
-            <img src="img/fig_heatmap_ptm.png" alt="Hierarchical clustering heatmap of all histone PTMs across 34 Arabidopsis rosette samples, with dendrogram, batch and sample group color annotations (10H, 14H, BOT, FLOR, SEN), red-gray scale from 0 to 0.8" loading="lazy" />
-          </div>
-          <div class="gallery-hero-caption">
-            <span class="gallery-badge gallery-badge-pink">Featured &mdash; Heatmap</span>
-            <h3>Histone PTM Landscape Across Rosette Development</h3>
-            <p>Hierarchical clustering of all quantified histone marks across 34 <em>Arabidopsis</em> rosette samples. Color annotations denote batch (A/B) and developmental group (10H, 14H, BOT, FLOR, SEN). Dual dendrogram reveals sample clusters driven by H3K27me modifications and acetylation marks.</p>
-          </div>
-        </div>
-
         <!-- 2x2 mosaic: PCA, PTM boxplots, Peptide boxplots, QC analysis -->
         <div class="gallery-mosaic fade-in">
 
@@ -3770,7 +3738,7 @@
             <img src="img/wf_experimental_pipeline.png" alt="Scientific Workflow: 8-step Plant Histone Proteomics Pipeline from Nuclei Isolation through Acid Extraction, Derivatization, LC-MS/MS, WIFF acquisition, mzML conversion, PTM Quantification to Data Analysis" loading="lazy" />
             <div class="wf-info">
               <div class="wf-title">
-                <span class="wf-badge" style="background: rgba(167,139,250,0.12); color: var(--neon-purple);">Pipeline</span>
+                <span class="wf-badge" style="background: rgba(94,170,255,0.12); color: var(--neon-purple);">Pipeline</span>
                 8-Step Experimental Workflow
               </div>
               <div class="wf-desc">From nuclei isolation to quantitative histone PTM matrices and downstream analysis</div>
@@ -3792,7 +3760,7 @@
             <img src="img/wf_prisma_screening.png" alt="PRISMA-style literature screening flowchart for EpiProfile and H3K79 in plants: 2450 records screened to 35 studies included, with 12 using EpiProfile 2.0 and 8 detecting H3K79 in Arabidopsis" loading="lazy" />
             <div class="wf-info">
               <div class="wf-title">
-                <span class="wf-badge" style="background: rgba(167,139,250,0.12); color: var(--neon-purple);">Review</span>
+                <span class="wf-badge" style="background: rgba(94,170,255,0.12); color: var(--neon-purple);">Review</span>
                 PRISMA Literature Screening
               </div>
               <div class="wf-desc">Systematic review: 2,450 records &rarr; 35 studies &mdash; 12 using EpiProfile, 8 detecting H3K79</div>
@@ -3862,7 +3830,7 @@
           <div class="glass-card fade-in stagger-1">
             <div class="card-accent-line" style="--accent: var(--neon-purple);" aria-hidden="true"></div>
             <div class="link-category-title">
-              <span class="cat-icon" style="background: rgba(167,139,250,0.1); color: var(--neon-purple);">&#9733;</span>
+              <span class="cat-icon" style="background: rgba(94,170,255,0.1); color: var(--neon-purple);">&#9733;</span>
               Epigenomics &amp; Chromatin
             </div>
             <a href="https://www.encodeproject.org/" target="_blank" rel="noopener noreferrer" class="link-item">
@@ -4095,7 +4063,7 @@
 
           <!-- Tommy Tang -->
           <a href="https://www.linkedin.com/in/tommy-tang-bioinformatics/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in">
-            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">TT</div>
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #3b82f6, #3b82f6);">TT</div>
             <div class="linkedin-info">
               <div class="linkedin-name">Tommy Tang</div>
               <div class="linkedin-role">Director of Bioinformatics at AstraZeneca &mdash; scATAC-seq, ChIP-seq, cancer epigenomics</div>
@@ -4151,7 +4119,7 @@
 
           <!-- Cassie Kozyrkov -->
           <a href="https://www.linkedin.com/in/kozyrkov/" target="_blank" rel="noopener noreferrer" class="linkedin-card fade-in stagger-4">
-            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #7c3aed, #ec4899);">CK</div>
+            <div class="linkedin-avatar" style="background: linear-gradient(135deg, #3b82f6, #ec4899);">CK</div>
             <div class="linkedin-info">
               <div class="linkedin-name">Cassie Kozyrkov</div>
               <div class="linkedin-role">Ex-Chief Decision Scientist at Google &mdash; applied ML, decision intelligence, statistics</div>
@@ -4247,7 +4215,7 @@
                   <span class="team-crest" aria-hidden="true">&#127468;&#127463;</span>
                   Real Oviedo
                 </div>
-                <div class="soccer-team" style="border-color: rgba(167,139,250,0.3);">
+                <div class="soccer-team" style="border-color: rgba(94,170,255,0.3);">
                   <span class="team-crest" aria-hidden="true">&#127942;</span>
                   Champions League
                 </div>
@@ -4901,7 +4869,7 @@
       // Histone color palette
       var H2A = { r: 57, g: 255, b: 115 };   // green – H2A
       var H2B = { r: 34, g: 211, b: 238 };   // cyan – H2B
-      var H3  = { r: 167, g: 139, b: 250 };  // purple – H3
+      var H3  = { r: 94, g: 170, b: 255 };   // blue – H3
       var H4  = { r: 244, g: 114, b: 182 };  // pink – H4
       var DNA_COLOR = { r: 100, g: 170, b: 255 }; // soft blue – DNA strand
       var HISTONE_COLORS = [H2A, H2B, H3, H4];
