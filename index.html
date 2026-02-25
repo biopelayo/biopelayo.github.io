@@ -16,7 +16,38 @@
   <meta property="og:title" content="Pelayo González de Lena – Computational Biology & Plant Epigenomics" />
   <meta property="og:description" content="Plant epigenomics, cancer bioinformatics, histone PTM proteomics, and reproducible pipelines." />
   <meta property="og:url" content="https://biopelayo.github.io/" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://biopelayo.github.io/img/og-preview.png" />
+  <meta name="twitter:image" content="https://biopelayo.github.io/img/og-preview.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pelayo González de Lena Rodríguez",
+    "alternateName": "Pelamovic",
+    "url": "https://biopelayo.github.io",
+    "image": "https://biopelayo.github.io/img/og-preview.png",
+    "jobTitle": "PhD Candidate in Computational Biology",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "University of Oviedo",
+      "department": "Department of Organisms and Systems Biology"
+    },
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "University of Oviedo"
+    },
+    "knowsAbout": ["Plant Epigenomics", "Histone PTM Proteomics", "Cancer Bioinformatics", "LC-MS/MS", "Computational Biology", "Reproducible Pipelines"],
+    "sameAs": [
+      "https://github.com/biopelayo",
+      "https://orcid.org/0000-0001-9409-1457",
+      "https://twitter.com/biopelayo",
+      "https://www.researchgate.net/profile/Pelayo-Gonzalez-de-Lena"
+    ]
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1881,7 +1912,7 @@
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 10;
+      z-index: 40;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -2016,9 +2047,25 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--neon-green);
+      outline: 2px solid var(--neon-cyan);
       outline-offset: 2px;
     }
+
+    /* Skip navigation link */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 200;
+      padding: 8px 16px;
+      background: var(--neon-cyan);
+      color: var(--bg-deep);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 12px; }
 
     /* === ICON SYSTEM === */
     .section-icon { width: 28px; height: 28px; flex-shrink: 0; display: inline-block; vertical-align: middle; }
@@ -2296,7 +2343,7 @@
     </symbol>
   </svg>
 
-  <a href="#about" class="skip-nav" style="position:absolute;top:-100%;left:16px;z-index:200;padding:8px 16px;background:var(--neon-green);color:var(--bg-deep);border-radius:var(--radius-sm);font-weight:600;text-decoration:none;transition:top 0.2s;" onfocus="this.style.top='12px'" onblur="this.style.top='-100%'">Skip to main content</a>
+  <a href="#about" class="skip-nav">Skip to main content</a>
 
   <!-- Nucleosome Particles Canvas -->
   <canvas id="nucleosome-canvas" aria-hidden="true"></canvas>
@@ -2376,7 +2423,7 @@
         </div>
       </div>
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
-      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation" role="button" aria-expanded="false" id="nav-toggle-label">
         <span></span><span></span><span></span>
       </label>
       <nav class="nav-links" aria-label="Primary navigation">
@@ -2411,7 +2458,7 @@
       <h1 class="hero-name">Pelayo Gonz&aacute;lez<br />de Lena Rodr&iacute;guez</h1>
 
       <div class="hero-typing" aria-label="PhD Candidate, Computational Biologist, Plant Epigenomics Researcher">
-        <span class="typing-text" id="typing-target"></span>
+        <span class="typing-text" id="typing-target" role="status" aria-live="polite"></span>
         <span class="typing-cursor" aria-hidden="true"></span>
       </div>
 
@@ -5261,14 +5308,38 @@
     // ===== 11. ALERTS SIDEBAR SCROLL FADE =====
     const alertSidebars = document.querySelectorAll('.alerts-sidebar');
     if (alertSidebars.length) {
+      const heroEl = document.getElementById('hero');
       function updateAlertOpacity() {
         const scrollY = window.scrollY;
-        const heroHeight = document.getElementById('hero')?.offsetHeight || window.innerHeight;
+        const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
         const opacity = Math.min(1, 0.3 + (scrollY / heroHeight) * 0.7);
         alertSidebars.forEach(el => { el.style.opacity = opacity; });
       }
       window.addEventListener('scroll', updateAlertOpacity, { passive: true });
       updateAlertOpacity();
+    }
+
+    // ===== 12. KEYBOARD ACCESSIBILITY FOR LIGHTBOX TRIGGERS =====
+    document.querySelectorAll('[onclick*="openLightbox"]').forEach(el => {
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.style.cursor = 'pointer';
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const img = el.querySelector('img');
+          if (img) openLightbox(img);
+        }
+      });
+    });
+
+    // ===== 13. MOBILE NAV TOGGLE ARIA =====
+    const navToggle = document.getElementById('nav-toggle');
+    const navToggleLabel = document.getElementById('nav-toggle-label');
+    if (navToggle && navToggleLabel) {
+      navToggle.addEventListener('change', function() {
+        navToggleLabel.setAttribute('aria-expanded', this.checked ? 'true' : 'false');
+      });
     }
   </script>
 </body>
