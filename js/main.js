@@ -13,6 +13,7 @@
     es: { toLight: 'Cambiar a tema claro', toDark: 'Cambiar a tema oscuro' }
   };
   function currentLang() { return docEl.getAttribute('lang') === 'es' ? 'es' : 'en'; }
+  var liRefresh = null; /* set by the LinkedIn module; re-labels cards on language switch */
   function syncThemeBtn() {
     if (!themeBtn) return;
     var dark = docEl.getAttribute('data-theme') !== 'light';
@@ -124,6 +125,7 @@
     if (typer) typer.setPhrases(TYPING_PHRASES[lang] || TYPING_PHRASES.en);
     else if (typingEl) typingEl.textContent = STATIC_LINE[lang] || STATIC_LINE.en;
     syncThemeBtn();
+    if (liRefresh) liRefresh(lang);
     if (persist) { try { localStorage.setItem('pela-lang', lang); } catch (e) {} }
   }
   document.querySelectorAll('.lang-btn').forEach(function (btn) {
@@ -242,5 +244,124 @@
         renderRepos(own.slice(0, 4));
       })
       .catch(function () { renderRepos(FALLBACK_REPOS); });
+  }
+
+  /* ===== LINKEDIN CAROUSEL (data/linkedin.json, curated by hand) ===== */
+  var LI_LABELS = {
+    en: { post: 'Post', repost: 'Repost', comment: 'Comment', like: 'Like', follow: 'Follow', view: 'View on LinkedIn' },
+    es: { post: 'Publicación', repost: 'Compartido', comment: 'Comentario', like: 'Me gusta', follow: 'Seguimiento', view: 'Ver en LinkedIn' }
+  };
+  function liLabel(type, lang) {
+    var l = LI_LABELS[lang] || LI_LABELS.en;
+    return l[type] || l.post;
+  }
+  var liSection = document.getElementById('linkedin');
+  var liTrack = document.getElementById('li-track');
+  if (liSection && liTrack) {
+    fetch('data/linkedin.json')
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .then(function (data) {
+        var items = (data && data.items) || [];
+        if (!items.length) return;
+        renderLinkedIn(items);
+      })
+      .catch(function () { /* no data yet: section stays hidden */ });
+  }
+  function renderLinkedIn(items) {
+    liTrack.innerHTML = '';
+    items.forEach(function (item) {
+      var card = document.createElement('article');
+      card.className = 'li-card';
+
+      var head = document.createElement('div');
+      head.className = 'li-card-head';
+      var badge = document.createElement('span');
+      badge.className = 'li-badge';
+      badge.setAttribute('data-li-type', item.type || 'post');
+      badge.textContent = liLabel(item.type, currentLang());
+      var date = document.createElement('span');
+      date.className = 'li-date';
+      date.textContent = item.date || '';
+      head.appendChild(badge); head.appendChild(date);
+      card.appendChild(head);
+
+      if (item.text) {
+        var text = document.createElement('p');
+        text.className = 'li-text';
+        text.textContent = item.text;
+        card.appendChild(text);
+      }
+      if (item.author) {
+        var author = document.createElement('p');
+        author.className = 'li-author';
+        author.textContent = item.author;
+        card.appendChild(author);
+      }
+      var link = document.createElement('a');
+      link.className = 'li-link';
+      link.href = item.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('data-li-view', '1');
+      link.textContent = liLabel('view', currentLang()) + ' →';
+      card.appendChild(link);
+
+      liTrack.appendChild(card);
+    });
+
+    liSection.hidden = false;
+    var navLi = document.getElementById('nav-linkedin');
+    if (navLi) navLi.hidden = false;
+
+    /* Hero teaser: newest item */
+    var teaser = document.getElementById('hero-linkedin');
+    var teaserText = document.getElementById('hero-linkedin-text');
+    if (teaser && teaserText && items[0] && items[0].text) {
+      var t = items[0].text;
+      teaserText.textContent = '“' + (t.length > 90 ? t.slice(0, 90).trimEnd() + '…' : t) + '”';
+      teaser.hidden = false;
+    }
+
+    /* Arrows + counter */
+    var prev = document.getElementById('li-prev');
+    var next = document.getElementById('li-next');
+    var count = document.getElementById('li-count');
+    function cardStep() {
+      var card = liTrack.querySelector('.li-card');
+      return card ? card.getBoundingClientRect().width + 16 : 320;
+    }
+    function updateCount() {
+      if (!count) return;
+      var idx = Math.min(items.length, Math.round(liTrack.scrollLeft / cardStep()) + 1);
+      count.textContent = idx + ' / ' + items.length;
+    }
+    if (prev) prev.addEventListener('click', function () { liTrack.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { liTrack.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
+    liTrack.addEventListener('scroll', updateCount, { passive: true });
+    updateCount();
+
+    /* Gentle auto-advance, paused on interaction, off under reduced motion */
+    if (!prefersReducedMotion && items.length > 1) {
+      var liPaused = false;
+      liSection.addEventListener('mouseenter', function () { liPaused = true; });
+      liSection.addEventListener('mouseleave', function () { liPaused = false; });
+      liSection.addEventListener('focusin', function () { liPaused = true; });
+      liSection.addEventListener('focusout', function () { liPaused = false; });
+      setInterval(function () {
+        if (liPaused || document.hidden) return;
+        var atEnd = liTrack.scrollLeft + liTrack.clientWidth >= liTrack.scrollWidth - 8;
+        if (atEnd) liTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        else liTrack.scrollBy({ left: cardStep(), behavior: 'smooth' });
+      }, 6000);
+    }
+
+    liRefresh = function (lang) {
+      liTrack.querySelectorAll('.li-badge').forEach(function (b) {
+        b.textContent = liLabel(b.getAttribute('data-li-type'), lang);
+      });
+      liTrack.querySelectorAll('[data-li-view]').forEach(function (a) {
+        a.textContent = liLabel('view', lang) + ' →';
+      });
+    };
   }
 })();

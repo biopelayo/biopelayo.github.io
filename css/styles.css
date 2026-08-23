@@ -663,6 +663,108 @@ section p { max-width: 68ch; }
   font-variant-numeric: tabular-nums;
 }
 
+/* 12b. LINKEDIN CAROUSEL ------------------------------------ */
+.section-title-row { display: inline-flex; align-items: center; gap: 14px; }
+.section-icon-li { width: 30px; height: 30px; color: var(--accent); flex: none; }
+
+.hero-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  color: var(--hero-muted);
+  font-size: 0.98rem;
+  max-width: 62ch;
+}
+.hero-linkedin svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+.hero-linkedin em { color: var(--hero-text); }
+.hero-linkedin:hover em { color: var(--accent-strong); }
+
+.li-carousel { position: relative; }
+.li-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 2px 16px;
+  scrollbar-width: thin;
+}
+.li-card {
+  flex: 0 0 min(340px, 78vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.25s, transform 0.2s var(--ease-out);
+}
+.li-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.li-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.li-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+[data-theme="light"] .li-badge { color: #1B4332; }
+.li-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.li-text {
+  font-size: 0.95rem;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.li-author { font-size: 0.85rem; color: var(--muted); }
+.li-link {
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.li-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-solid);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.li-arrow:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-50%) scale(1.06); }
+.li-arrow--prev { left: -14px; }
+.li-arrow--next { right: -14px; }
+.li-count { font-size: 0.78rem; color: var(--dim); text-align: right; }
+
+@media (max-width: 991px) {
+  .li-arrow { display: none; }
+}
+
 /* 13. CONTACT & FOOTER -------------------------------------- */
 .contact-list {
   display: grid;
@@ -745,7 +847,8 @@ section p { max-width: 68ch; }
   }
   body { background: #ffffff; color: #111111; font-size: 11pt; }
   #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
-  .hero-actions, .hero-stack, .typing-cursor, #repos { display: none !important; }
+  .hero-actions, .hero-stack, .typing-cursor, #repos, #linkedin,
+  .hero-linkedin { display: none !important; }
   main { margin-left: 0; }
   .section, [data-theme="light"] .section {
     margin: 0;

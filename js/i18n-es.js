@@ -84,6 +84,10 @@ window.I18N_ES = {
   "media.f4.t": "Voces que sigo",
   "media.f4.d": "<a href=\"https://www.linkedin.com/in/tommy-tang-bioinformatics/\" target=\"_blank\" rel=\"noopener noreferrer\">Tommy Tang</a>, <a href=\"https://www.linkedin.com/in/laboratory/\" target=\"_blank\" rel=\"noopener noreferrer\">Lior Pachter</a> y <a href=\"https://www.linkedin.com/in/xsliu/\" target=\"_blank\" rel=\"noopener noreferrer\">Xiaole Shirley Liu</a>: single-cell, RNA-seq y epigenómica del cáncer que merecen lectura.",
 
+  "nav.linkedin": "LinkedIn",
+  "li.sub": "Lo que publico, comparto y comento en LinkedIn, seleccionado a mano.",
+  "hero.li": "Lo último en LinkedIn:",
+
   "skills.title": "Habilidades y tecnologías",
 
   "repos.title": "Repositorios de GitHub",

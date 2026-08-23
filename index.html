@@ -192,6 +192,9 @@
       <rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
       <path d="M10 9l5 3-5 3z" fill="currentColor"/>
     </symbol>
+    <symbol id="ico-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+    </symbol>
   </svg>
 
   <a class="skip-link" href="#about" data-i18n="skip">Skip to main content</a>
@@ -219,6 +222,7 @@
       <a href="#publications" data-i18n="nav.publications">Publications</a>
       <a href="#teaching" data-i18n="nav.teaching">Teaching</a>
       <a href="#media" data-i18n="nav.media">Media</a>
+      <a href="#linkedin" data-i18n="nav.linkedin" id="nav-linkedin" hidden>LinkedIn</a>
       <a href="#skills" data-i18n="nav.skills">Skills</a>
       <a href="#repos" data-i18n="nav.repos">Repositories</a>
       <a href="#beyond" data-i18n="nav.beyond">Beyond the lab</a>
@@ -267,6 +271,10 @@
             <svg class="btn-ico" aria-hidden="true"><use href="#ico-github"/></svg> GitHub
           </a>
         </div>
+        <a class="hero-linkedin" id="hero-linkedin" href="#linkedin" hidden>
+          <svg aria-hidden="true"><use href="#ico-linkedin"/></svg>
+          <span><span data-i18n="hero.li">Latest on LinkedIn:</span> <em id="hero-linkedin-text"></em> →</span>
+        </a>
       </div>
     </section>
 
@@ -522,6 +530,20 @@
             <p data-i18n-html="media.f4.d"><a href="https://www.linkedin.com/in/tommy-tang-bioinformatics/" target="_blank" rel="noopener noreferrer">Tommy Tang</a>, <a href="https://www.linkedin.com/in/laboratory/" target="_blank" rel="noopener noreferrer">Lior Pachter</a> and <a href="https://www.linkedin.com/in/xsliu/" target="_blank" rel="noopener noreferrer">Xiaole Shirley Liu</a>: single-cell, RNA-seq and cancer epigenomics thinking worth reading.</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- LinkedIn activity (hidden until data/linkedin.json has items) -->
+    <section id="linkedin" class="section" hidden>
+      <div class="section-inner">
+        <h2 class="section-title"><span class="section-title-row"><svg class="section-icon-li" aria-hidden="true"><use href="#ico-linkedin"/></svg>LinkedIn</span></h2>
+        <p class="section-sub" data-i18n="li.sub">What I post, share and comment on LinkedIn, hand-picked.</p>
+        <div class="li-carousel">
+          <button type="button" class="li-arrow li-arrow--prev" id="li-prev" aria-label="Previous">&#8249;</button>
+          <div class="li-track" id="li-track" tabindex="0" aria-label="LinkedIn activity carousel"></div>
+          <button type="button" class="li-arrow li-arrow--next" id="li-next" aria-label="Next">&#8250;</button>
+        </div>
+        <p class="li-count mono" id="li-count" aria-hidden="true"></p>
       </div>
     </section>
 
