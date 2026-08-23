@@ -68,8 +68,8 @@ window.I18N_ES = {
   "repos.all": "Todos los repositorios en GitHub →",
 
   "beyond.title": "Fuera del laboratorio",
-  "beyond.f.t": "Delantero · San Claudio, Liga Asterov",
-  "beyond.f.d": "El fútbol es mi botón de reinicio. Temporada 2025/26 con el San Claudio (CD Asterov, Asturias): 17 goles en 16 partidos, quinto máximo goleador de la liga.",
+  "beyond.f.t": "Delantero · Liga Asterov",
+  "beyond.f.d": "El fútbol es mi botón de reinicio. Delantero del San Claudio (Liga Asterov): 20 goles en 21 partidos, 9.º goleador de 1.ª División. Copa Asterov 2026 con el Laviana CF: 2 goles en 4 partidos.",
   "beyond.f.dash": "Dashboard interactivo",
   "beyond.f.team": "Ficha del equipo",
   "beyond.g.title": "Galería de la tesis",
