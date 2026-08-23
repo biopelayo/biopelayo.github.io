@@ -77,11 +77,6 @@ window.I18N_ES = {
   "beyond.f.d": "El fútbol es mi botón de reinicio. Delantero del San Claudio (Liga Asterov): 20 goles en 21 partidos, 9.º goleador de 1.ª División. Copa Asterov 2026 con el Laviana CF: 2 goles en 4 partidos.",
   "beyond.f.dash": "Dashboard interactivo",
   "beyond.f.team": "Ficha del equipo",
-  "beyond.g.title": "Galería de la tesis",
-  "beyond.g.1": "PCA · todas las PTMs por estadio",
-  "beyond.g.2": "Ratios de PTMs por grupo",
-  "beyond.g.3": "Panel de QC de valores ausentes",
-  "beyond.g.4": "Alineamiento de H4 entre especies",
 
   "contact.title": "Contacto y enlaces",
   "contact.blurb": "Departamento de Biología de Organismos y Sistemas, Universidad de Oviedo. Abierto a conversaciones sobre cromatina vegetal, bioinformática del cáncer, proteómica de hPTMs y flujos reproducibles.",

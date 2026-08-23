@@ -197,43 +197,6 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ===== LIGHTBOX ===== */
-  var lightbox = document.getElementById('lightbox');
-  var lightboxImg = document.getElementById('lightbox-img');
-  var lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-  var lastFocus = null;
-  function openLightbox(src, alt) {
-    if (!lightbox) return;
-    lastFocus = document.activeElement;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    if (lightboxClose) lightboxClose.focus();
-  }
-  var BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    lightboxImg.src = BLANK_GIF;
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-  document.querySelectorAll('.gallery-item').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var img = btn.querySelector('img');
-      openLightbox(btn.getAttribute('data-full'), img ? img.alt : '');
-    });
-  });
-  if (lightbox) {
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
-    });
-  }
-
   /* ===== GITHUB REPOS (live, with static fallback) ===== */
   var reposGrid = document.getElementById('repos-grid');
   var FALLBACK_REPOS = [
