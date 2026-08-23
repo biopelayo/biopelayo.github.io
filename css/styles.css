@@ -699,3 +699,42 @@ section p { max-width: 68ch; }
 @media (max-width: 480px) {
   .hero-actions .btn { width: 100%; justify-content: center; }
 }
+
+/* 16. PRINT — the page prints as a clean A4 CV ---------------- */
+@media print {
+  :root, [data-theme="light"], [data-theme="dark"] {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #444444;
+    --dim: #555555;
+    --accent: #1B4332;
+    --accent-soft: transparent;
+    --line: #cccccc;
+  }
+  body { background: #ffffff; color: #111111; font-size: 11pt; }
+  #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
+  .hero-actions, .hero-stack, .typing-cursor, #repos { display: none !important; }
+  main { margin-left: 0; }
+  .section, [data-theme="light"] .section {
+    margin: 0;
+    background: #ffffff !important;
+    border: none;
+    border-radius: 0;
+  }
+  .section-inner { max-width: none; padding: 14pt 0; }
+  .hero { min-height: auto; background: none !important; }
+  .hero-inner { padding: 0 0 10pt; }
+  .hero-name, [data-theme="light"] .hero-name-b { color: #111111; }
+  .hero-name-b { color: #1B4332; }
+  .hero-typing { color: #1B4332; min-height: auto; }
+  .section-title { color: #111111; }
+  .section-title::after { background: #1B4332; }
+  .resume-item { padding: 6pt 0; margin: 0; break-inside: avoid; page-break-inside: avoid; }
+  .flagship { break-inside: avoid; page-break-inside: avoid; }
+  .flagship-logo { border: 1px solid #cccccc; }
+  .chip { border: 1px solid #cccccc; color: #111111; background: none; }
+  a { color: #111111; text-decoration: none; background-image: none !important; }
+  .link-row a, .contact-list a, .section-foot a { color: #1B4332; }
+  .repo-card, .fade-in { opacity: 1 !important; transform: none !important; }
+  .footer { color: #555555; }
+}
