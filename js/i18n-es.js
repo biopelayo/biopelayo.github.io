@@ -14,7 +14,6 @@ window.I18N_ES = {
   "nav.beyond": "Fuera del laboratorio",
   "nav.contact": "Contacto",
 
-  "hero.bio": "Biólogo computacional centrado en las hPTMs de <em>Arabidopsis thaliana</em>: proteómica cuantitativa por LC‑MS/MS y pipelines reproducibles. Doctorando en la Universidad de Oviedo, vinculado al grupo de Genómica Computacional del Cáncer del CNIO.",
   "hero.cta1": "Ver investigación",
 
   "exp.title": "Experiencia",
@@ -22,7 +21,7 @@ window.I18N_ES = {
   "exp.phd.where": "Universidad de Oviedo · Dpto. de Biología de Organismos y Sistemas",
   "exp.phd.desc": "Tesis sobre hPTMs en <em>Arabidopsis thaliana</em>: EpiProfile_PLANTS, ontogenia de la roseta y reanálisis de PRIDE.",
   "exp.cnio.role": "Investigador vinculado · Genómica Computacional del Cáncer",
-  "exp.cnio.where": "CNIO — Centro Nacional de Investigaciones Oncológicas, Madrid",
+  "exp.cnio.where": "CNIO · Centro Nacional de Investigaciones Oncológicas, Madrid",
   "exp.cnio.desc": "Transcriptómica NGS y pipelines de lncRNA para genómica del cáncer.",
   "exp.cnio.when": "Nov 2020 – actualidad",
   "exp.teach.role": "Docente · bioinformática y programación",
@@ -31,8 +30,14 @@ window.I18N_ES = {
   "exp.earlier.desc": "IA geoespacial, investigación y salud pública.",
 
   "edu.title": "Formación",
-  "edu.phd.deg": "Doctorado en Biología Computacional (en curso)",
+  "edu.phd.deg": "Doctorado en Biología (en curso)",
   "edu.phd.where": "Universidad de Oviedo · FPI PRE2019-091395 · defensa prevista en otoño de 2026",
+  "edu.m1.deg": "Máster en Bioinformática y Biología Computacional",
+  "edu.m1.where": "Instituto de Salud Carlos III",
+  "edu.m2.deg": "Máster en Biomoléculas y Dinámica Celular",
+  "edu.m2.where": "Universidad Autónoma de Madrid",
+  "edu.bsc.deg": "Licenciatura en Biología (plan de 5 años)",
+  "edu.bsc.where": "Universidad de Oviedo · Biología Celular y Molecular",
 
   "research.title": "Investigación y proyectos",
   "research.epi.desc": "Suite en MATLAB que extiende EpiProfile 2.0 a la proteómica de histonas de plantas, con catálogos de péptidos curados para tres especies vegetales y algales, un workflow Snakemake + Docker y un dashboard interactivo.",
@@ -63,7 +68,7 @@ window.I18N_ES = {
   "skills.title": "Habilidades y tecnologías",
 
   "repos.title": "Repositorios de GitHub",
-  "repos.sub": "Herramientas de código abierto, pipelines, cursos y código de proyectos — cargados en vivo desde la API de GitHub.",
+  "repos.sub": "Herramientas de código abierto, pipelines, cursos y código de proyectos, cargados en vivo desde la API de GitHub.",
   "repos.loading": "Cargando repositorios…",
   "repos.all": "Todos los repositorios en GitHub →",
 
@@ -73,7 +78,7 @@ window.I18N_ES = {
   "beyond.f.dash": "Dashboard interactivo",
   "beyond.f.team": "Ficha del equipo",
   "beyond.g.title": "Galería de la tesis",
-  "beyond.g.1": "PCA — todas las PTMs por estadio",
+  "beyond.g.1": "PCA · todas las PTMs por estadio",
   "beyond.g.2": "Ratios de PTMs por grupo",
   "beyond.g.3": "Panel de QC de valores ausentes",
   "beyond.g.4": "Alineamiento de H4 entre especies",

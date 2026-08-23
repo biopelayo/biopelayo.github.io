@@ -430,12 +430,32 @@ section p { max-width: 68ch; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-.hero-bio {
-  color: var(--hero-muted);
-  max-width: 62ch;
-  margin-bottom: 30px;
+.hero-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 34px;
 }
-.hero-bio em { color: var(--hero-text); }
+.stack-ico {
+  width: 32px;
+  height: 32px;
+  background-color: var(--hero-muted);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+  transition: background-color 0.2s, transform 0.2s var(--ease-out);
+}
+.stack-ico:hover {
+  background-color: var(--accent-strong);
+  transform: translateY(-3px);
+}
+.stack-ico--python { --icon: url('../img/icons/python.svg'); }
+.stack-ico--r      { --icon: url('../img/icons/r.svg'); }
+.stack-ico--bash   { --icon: url('../img/icons/gnubash.svg'); }
+.stack-ico--docker { --icon: url('../img/icons/docker.svg'); }
+.stack-ico--linux  { --icon: url('../img/icons/linux.svg'); }
+.stack-ico--git    { --icon: url('../img/icons/git.svg'); }
+.stack-ico--claude { --icon: url('../img/icons/anthropic.svg'); }
 
 .hero-actions {
   display: flex;

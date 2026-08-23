@@ -80,8 +80,9 @@
   canvas caged inside the dark hero.
   STORY: the visitor recognizes a rigorous, reproducible-pipelines scientist; finds the
   flagship tools, the papers and the contact in seconds; leaves via GitHub, DOI or mail.
-  FIRST VIEWPORT: fixed side nav with portrait; giant two-line Bebas name over the live
-  canvas; typing role line; two actions (Explore research / GitHub); one mono metrics line.
+  FIRST VIEWPORT: fixed side nav with portrait; giant two-line Bebas name (white / green)
+  over the live canvas; typing role line; monochrome stack-icon row (CV Swiss style:
+  Python, R, Bash, Docker, Linux, Git, Claude); two actions (Explore research / GitHub).
   FORM: single-page CV after driessmit.github.io; owner-pinned direction (intake
   2026-08-23); no concept seed.
   FINISH: unreviewed and undocumented is unfinished; this build ends with the finish
@@ -241,11 +242,15 @@
         <p class="hero-typing" aria-label="PhD candidate, computational biologist, plant epigenomics researcher">
           <span class="typing-text" id="typing-target" role="status" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span>
         </p>
-        <p class="hero-bio" data-i18n-html="hero.bio">
-          Computational biologist working on histone PTMs in <em>Arabidopsis thaliana</em>:
-          quantitative LC&#8209;MS/MS proteomics and reproducible pipelines. PhD candidate at the
-          University of Oviedo, affiliated with the CNIO Computational Cancer Genomics Group.
-        </p>
+        <div class="hero-stack" aria-label="Core stack">
+          <span class="stack-ico stack-ico--python" role="img" aria-label="Python" title="Python"></span>
+          <span class="stack-ico stack-ico--r" role="img" aria-label="R" title="R"></span>
+          <span class="stack-ico stack-ico--bash" role="img" aria-label="Bash" title="Bash"></span>
+          <span class="stack-ico stack-ico--docker" role="img" aria-label="Docker" title="Docker"></span>
+          <span class="stack-ico stack-ico--linux" role="img" aria-label="Linux" title="Linux"></span>
+          <span class="stack-ico stack-ico--git" role="img" aria-label="Git" title="Git"></span>
+          <span class="stack-ico stack-ico--claude" role="img" aria-label="Claude / Anthropic" title="Claude / Anthropic"></span>
+        </div>
         <div class="hero-actions">
           <a class="btn btn-solid" href="#research" data-i18n="hero.cta1">Explore research</a>
           <a class="btn btn-line" href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer">
@@ -272,7 +277,7 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="exp.cnio.role">Research Affiliate · Computational Cancer Genomics</h3>
-            <p class="resume-where" data-i18n="exp.cnio.where">CNIO — Centro Nacional de Investigaciones Oncológicas, Madrid</p>
+            <p class="resume-where" data-i18n="exp.cnio.where">CNIO · Centro Nacional de Investigaciones Oncológicas, Madrid</p>
             <p data-i18n="exp.cnio.desc">NGS transcriptomics and lncRNA pipelines for cancer genomics.</p>
           </div>
           <span class="resume-when" data-i18n="exp.cnio.when">Nov 2020 – present</span>
@@ -284,7 +289,7 @@
             <p class="resume-where">IAAP · University of Oviedo · Oviedo City Council · FORMACAL · ARTEAULA</p>
             <p data-i18n="exp.teach.desc">Linux, Python and R/Bioconductor for omics, from setup to real projects.</p>
           </div>
-          <span class="resume-when">2019 — 2026</span>
+          <span class="resume-when">2019 – 2026</span>
         </article>
 
         <article class="resume-item">
@@ -299,12 +304,32 @@
         <h2 class="section-title section-title--sub" data-i18n="edu.title">Education</h2>
         <article class="resume-item">
           <div class="resume-main">
-            <h3 data-i18n="edu.phd.deg">PhD in Computational Biology (in progress)</h3>
-            <p class="resume-where" data-i18n="edu.phd.where">University of Oviedo · FPI PRE2019-091395 · defense expected autumn 2026</p>
+            <h3 data-i18n="edu.phd.deg">PhD in Biology (in progress)</h3>
+            <p class="resume-where" data-i18n="edu.phd.where">University of Oviedo · FPI PRE2019-091395 · defence expected autumn 2026</p>
           </div>
-          <span class="resume-when">2020 — 2026</span>
+          <span class="resume-when">2020 – 2026</span>
         </article>
-        <!-- TODO(Pelayo): añadir grado y máster (no documentados en la v1) -->
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3 data-i18n="edu.m1.deg">MSc in Bioinformatics and Computational Biology</h3>
+            <p class="resume-where" data-i18n="edu.m1.where">Carlos III Health Institute</p>
+          </div>
+          <span class="resume-when">2017</span>
+        </article>
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3 data-i18n="edu.m2.deg">MSc in Biomolecules and Cell Dynamics</h3>
+            <p class="resume-where" data-i18n="edu.m2.where">Autonomous University of Madrid</p>
+          </div>
+          <span class="resume-when">2016</span>
+        </article>
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3 data-i18n="edu.bsc.deg">BSc + MSc in Biology (5-year degree)</h3>
+            <p class="resume-where" data-i18n="edu.bsc.where">University of Oviedo · Cell and Molecular Biology</p>
+          </div>
+          <span class="resume-when">2011</span>
+        </article>
       </div>
     </section>
 
@@ -440,7 +465,7 @@
     <section id="repos" class="section">
       <div class="section-inner">
         <h2 class="section-title" data-i18n="repos.title">GitHub Repositories</h2>
-        <p class="section-sub" data-i18n="repos.sub">Open-source tools, pipelines, courses and project code — loaded live from the GitHub API.</p>
+        <p class="section-sub" data-i18n="repos.sub">Open-source tools, pipelines, courses and project code, loaded live from the GitHub API.</p>
         <div class="repos-grid" id="repos-grid">
           <p class="repos-loading" id="repos-loading" data-i18n="repos.loading">Loading repositories…</p>
         </div>
@@ -473,7 +498,7 @@
         <div class="gallery-grid">
           <button type="button" class="gallery-item" data-full="img/fig_pca_ptm.png">
             <img src="img/thumbs/fig_pca_ptm.jpg" alt="PCA biplot of histone PTMs across developmental stages" loading="lazy" />
-            <span data-i18n="beyond.g.1">PCA — all PTMs by stage</span>
+            <span data-i18n="beyond.g.1">PCA · all PTMs by stage</span>
           </button>
           <button type="button" class="gallery-item" data-full="img/fig_ptm_boxplots.png">
             <img src="img/thumbs/fig_ptm_boxplots.jpg" alt="Violin-boxplots of histone PTM ratios per modification" loading="lazy" />
