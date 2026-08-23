@@ -38,17 +38,18 @@
 }
 
 [data-theme="light"] {
-  --bg: #ffffff;
+  --bg: #F2F6F3;
+  --bg-alt: #E7F0EA;
   --surface: #ffffff;
   --surface-solid: #ffffff;
-  --text: #333333;
-  --muted: #767676;
-  --dim: #767676;
+  --text: #26302B;
+  --muted: #4E5B54;
+  --dim: #5C6B63;
   --accent: #2D6A4F;
-  --accent-strong: #52B788;
-  --accent-soft: #D8F3DC;
+  --accent-strong: #1E7A52;
+  --accent-soft: rgba(45, 106, 79, 0.13);
   --accent-contrast: #ffffff;
-  --line: #E8E8E8;
+  --line: #D3E2D8;
   --sidenav-bg: linear-gradient(180deg, #2f7154 0%, #2D6A4F 55%, #1B4332 100%);
   --sidenav-bg-mobile: linear-gradient(180deg, #2f7154 0%, #2D6A4F 55%, #1B4332 100%);
   --sidenav-text: #ffffff;
@@ -342,7 +343,8 @@ main {
   border: none;
   border-radius: 0;
 }
-[data-theme="light"] .section + .section .section-inner { border-top: 1px solid var(--line); }
+/* Light: alternate pale-green grounds give the page rhythm without panels */
+[data-theme="light"] .section:nth-of-type(odd) { background: var(--bg-alt); }
 
 .section-title {
   font-family: var(--font-display);
@@ -578,11 +580,11 @@ section p { max-width: 68ch; }
 /* 10. SKILLS ------------------------------------------------ */
 .chips-row { display: flex; flex-wrap: wrap; gap: 9px; }
 .chip {
-  padding: 5px 13px;
+  padding: 6px 14px;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 500;
 }
 [data-theme="light"] .chip { color: #1B4332; }
@@ -600,8 +602,10 @@ section p { max-width: 68ch; }
   border: 1px solid var(--line);
   border-radius: 12px;
   color: var(--text);
+  background: transparent;
   transition: border-color 0.25s, transform 0.2s var(--ease-out);
 }
+[data-theme="light"] .repo-card { background: var(--surface); }
 .repo-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .repo-name {
   font-family: var(--font-mono);
