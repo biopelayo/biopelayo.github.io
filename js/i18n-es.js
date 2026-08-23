@@ -1,0 +1,85 @@
+/* Diccionario español — aplicado por main.js sobre el contenido base en inglés.
+   Claves = atributos data-i18n / data-i18n-html del index.html. */
+window.I18N_ES = {
+  "skip": "Saltar al contenido principal",
+  "side.role": "Bioinformático · Epigenómica vegetal",
+
+  "nav.about": "Sobre mí",
+  "nav.experience": "Experiencia",
+  "nav.research": "Investigación",
+  "nav.publications": "Publicaciones",
+  "nav.teaching": "Docencia",
+  "nav.skills": "Habilidades",
+  "nav.repos": "Repositorios",
+  "nav.beyond": "Fuera del laboratorio",
+  "nav.contact": "Contacto",
+
+  "hero.bio": "Biólogo computacional centrado en las hPTMs de <em>Arabidopsis thaliana</em>: proteómica cuantitativa por LC‑MS/MS y pipelines reproducibles. Doctorando en la Universidad de Oviedo, vinculado al grupo de Genómica Computacional del Cáncer del CNIO.",
+  "hero.cta1": "Ver investigación",
+
+  "exp.title": "Experiencia",
+  "exp.phd.role": "Investigador predoctoral · contrato FPI",
+  "exp.phd.where": "Universidad de Oviedo · Dpto. de Biología de Organismos y Sistemas",
+  "exp.phd.desc": "Tesis sobre hPTMs en <em>Arabidopsis thaliana</em>: EpiProfile_PLANTS, ontogenia de la roseta y reanálisis de PRIDE.",
+  "exp.cnio.role": "Investigador vinculado · Genómica Computacional del Cáncer",
+  "exp.cnio.where": "CNIO — Centro Nacional de Investigaciones Oncológicas, Madrid",
+  "exp.cnio.desc": "Transcriptómica NGS y pipelines de lncRNA para genómica del cáncer.",
+  "exp.cnio.when": "Nov 2020 – actualidad",
+  "exp.teach.role": "Docente · bioinformática y programación",
+  "exp.teach.desc": "Linux, Python y R/Bioconductor para ómicas, del entorno a proyectos reales.",
+  "exp.earlier.role": "Etapas anteriores",
+  "exp.earlier.desc": "IA geoespacial, investigación y salud pública.",
+
+  "edu.title": "Formación",
+  "edu.phd.deg": "Doctorado en Biología Computacional (en curso)",
+  "edu.phd.where": "Universidad de Oviedo · FPI PRE2019-091395 · defensa prevista en otoño de 2026",
+
+  "research.title": "Investigación y proyectos",
+  "research.epi.desc": "Suite en MATLAB que extiende EpiProfile 2.0 a la proteómica de histonas de plantas, con catálogos de péptidos curados para tres especies vegetales y algales, un workflow Snakemake + Docker y un dashboard interactivo.",
+  "research.kcho.desc": "Pipeline Snakemake + Docker para direct RNA-seq de Oxford Nanopore: basecalling, isoformas, detección de m6A y expresión diferencial, aplicado a <em>Arabidopsis</em>.",
+  "research.p1.t": "Atlas de ontogenia de la roseta de Arabidopsis",
+  "research.p1.d": "hPTMs a lo largo de cuatro estadios del desarrollo de la roseta, con el QC por delante.",
+  "research.p2.t": "Reanálisis públicos de PRIDE",
+  "research.p2.d": "Reanálisis de datasets públicos de proteómica bajo un mismo contrato de procesado.",
+  "research.p4.t": "Genómica y transcriptómica del cáncer",
+  "research.p4.d": "RNA-seq, expresión diferencial y multi-ómica aplicadas a oncología en el CNIO.",
+  "research.p5.d": "Plataforma multimodal de imagen biomédica: retina, histopatología, radiología y transcriptómica espacial.",
+
+  "pubs.title": "Publicaciones",
+  "pubs.p1.where": "Capítulo de libro · Plant Transcriptomics and Epitranscriptomics (Springer)",
+  "pubs.p2.where": "Artículo · Clinical Epigenetics",
+  "pubs.orcid": "Registro completo en ORCID →",
+
+  "teach.title": "Docencia y tutoriales",
+  "teach.t1.t": "Linux para científicos",
+  "teach.t1.d": "Shell, WSL2 y entornos reproducibles para el trabajo diario de investigación.",
+  "teach.t2.t": "R y Bioconductor para ómicas",
+  "teach.t2.d": "Del tidyverse básico al análisis RNA-seq y las figuras listas para publicar.",
+  "teach.t3.t": "Python para bioinformática",
+  "teach.t3.d": "Patrones básicos y ejemplos realistas de ómicas; impartido en el IAAP, entre otros.",
+  "teach.t5.t": "Claude Code y agentes de IA",
+  "teach.t5.d": "Tutoriales y flujos de automatización de la investigación con agentes de IA.",
+
+  "skills.title": "Habilidades y tecnologías",
+
+  "repos.title": "Repositorios de GitHub",
+  "repos.sub": "Herramientas de código abierto, pipelines, cursos y código de proyectos — cargados en vivo desde la API de GitHub.",
+  "repos.loading": "Cargando repositorios…",
+  "repos.all": "Todos los repositorios en GitHub →",
+
+  "beyond.title": "Fuera del laboratorio",
+  "beyond.f.t": "Delantero · San Claudio, Liga Asterov",
+  "beyond.f.d": "El fútbol es mi botón de reinicio. Temporada 2025/26 con el San Claudio (CD Asterov, Asturias): 17 goles en 16 partidos, quinto máximo goleador de la liga.",
+  "beyond.f.dash": "Dashboard interactivo",
+  "beyond.f.team": "Ficha del equipo",
+  "beyond.g.title": "Galería de la tesis",
+  "beyond.g.1": "PCA — todas las PTMs por estadio",
+  "beyond.g.2": "Ratios de PTMs por grupo",
+  "beyond.g.3": "Panel de QC de valores ausentes",
+  "beyond.g.4": "Alineamiento de H4 entre especies",
+
+  "contact.title": "Contacto y enlaces",
+  "contact.blurb": "Departamento de Biología de Organismos y Sistemas, Universidad de Oviedo. Abierto a conversaciones sobre cromatina vegetal, bioinformática del cáncer, proteómica de hPTMs y flujos reproducibles.",
+
+  "footer.line": "Hecho a mano, sin frameworks. v2"
+};
