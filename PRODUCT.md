@@ -2,7 +2,7 @@
 
 ## What this is
 
-Personal academic website of Pelayo González de Lena Rodríguez (@biopelayo, "Pelamovic"): PhD candidate in computational biology at the University of Oviedo, affiliated with the Computational Cancer Genomics Group at CNIO since November 2020. Single-page site hosted on GitHub Pages, hand-written HTML/CSS/JS, no frameworks, no build step.
+Personal academic website of Pelayo González de Lena Rodríguez (@biopelayo, "Pelamovic"): PhD candidate in computational biology at the University of Oviedo. Research stay at the CNIO Computational Cancer Genomics Group from November 2020 to May 2023 (no current affiliation there). Single-page site hosted on GitHub Pages, hand-written HTML/CSS/JS, no frameworks, no build step.
 
 ## Audience and job
 
@@ -18,9 +18,9 @@ Visitor mode: Read (understand and locate), with an Experience opening (the nucl
 - Flagship software: EpiProfile_PLANTS (MATLAB suite + Snakemake/Docker workflow + Dash dashboard; 220+ raw files / 123 GB across PXD046034, PXD046788, PXD014739) and K-CHOPORE (9-stage Snakemake+Docker nanopore direct RNA-seq pipeline; 20,958 isoforms, 435 DEGs by genotype, 266 by treatment).
 - Publications: book chapter "RNA Sequencing Platforms and Bioinformatics Tools" (Springer 2026, DOI 10.1007/978-981-95-5183-5_2) and lncRNA clusterization in HNSCC (Clinical Epigenetics 2017, DOI 10.1186/s13148-017-0334-6).
 - Teaching: IAAP, University of Oviedo, Oviedo City Council, FORMACAL, ARTEAULA. Outreach: Código Biológico (YouTube).
-- Football: San Claudio, Liga Asterov 2025/26: 17 goals in 16 matches, #5 top scorer; team 11th of 14.
+- Football (owner-verified 2026-08-23): Liga Asterov 2025/26 with San Claudio: 20 goals in 21 matches, 9th top scorer of the First Division; Copa Asterov 2026 with Laviana CF: 2 goals in 4 matches.
 - Contact: pelayo.gonzalez@uniovi.es · GitHub biopelayo · ORCID 0000-0001-9409-1457 · X @biopelayo · ResearchGate.
-- Education before the PhD is NOT documented on the site; do not fabricate degrees.
+- Education (from the owner's CV, shipped 2026-08-23): PhD in Biology in progress (Uniovi, defence expected autumn 2026); MSc Bioinformatics and Computational Biology (Carlos III Health Institute, 2017); MSc Biomolecules and Cell Dynamics (UAM, 2016); BSc+MSc in Biology, 5-year degree (Uniovi, 2011).
 
 ## Brand commitments (pinned by the owner, 2026-08-23 intake)
 

@@ -34,14 +34,12 @@
       'PhD Candidate at UNIOVI',
       'Computational Biologist',
       'Plant Epigenomics Researcher',
-      'Cancer Bioinformatics @ CNIO',
       'Building Reproducible Pipelines'
     ],
     es: [
       'Doctorando en la UNIOVI',
       'Biólogo computacional',
       'Investigador en epigenómica vegetal',
-      'Bioinformática del cáncer @ CNIO',
       'Construyendo pipelines reproducibles'
     ]
   };
@@ -186,6 +184,13 @@
     navToggle.addEventListener('change', function () {
       toggleLabel.setAttribute('aria-expanded', navToggle.checked ? 'true' : 'false');
     });
+    toggleLabel.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navToggle.checked = !navToggle.checked;
+        navToggle.dispatchEvent(new Event('change'));
+      }
+    });
   }
 
   /* ===== FOOTER YEAR ===== */
@@ -206,11 +211,12 @@
     lightbox.setAttribute('aria-hidden', 'false');
     if (lightboxClose) lightboxClose.focus();
   }
+  var BLANK_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
   function closeLightbox() {
     if (!lightbox) return;
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
-    lightboxImg.src = '';
+    lightboxImg.src = BLANK_GIF;
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   document.querySelectorAll('.gallery-item').forEach(function (btn) {

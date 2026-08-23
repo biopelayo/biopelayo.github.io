@@ -31,7 +31,8 @@
   --font-display: 'Bebas Neue', 'Oswald', sans-serif;
   --font-body: 'Work Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
-  --sidenav-w: 264px;
+  --sidenav-w: 292px;
+  --sidenav-bg-mobile: #0d121c;
   --radius: 14px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -49,8 +50,9 @@
   --accent-contrast: #ffffff;
   --line: #E8E8E8;
   --sidenav-bg: linear-gradient(180deg, #2f7154 0%, #2D6A4F 55%, #1B4332 100%);
+  --sidenav-bg-mobile: linear-gradient(180deg, #2f7154 0%, #2D6A4F 55%, #1B4332 100%);
   --sidenav-text: #ffffff;
-  --sidenav-muted: rgba(255, 255, 255, 0.75);
+  --sidenav-muted: rgba(255, 255, 255, 0.9);
   --sidenav-link: rgba(255, 255, 255, 0.82);
   --sidenav-link-active-bg: rgba(255, 255, 255, 0.16);
   --sidenav-link-active: #ffffff;
@@ -72,7 +74,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 18px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -222,11 +224,11 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
 .sidenav-identity:hover .sidenav-photo { transform: scale(1.04); }
 .sidenav-name {
   font-weight: 600;
-  font-size: 1.02rem;
+  font-size: 1.08rem;
   line-height: 1.35;
 }
 .sidenav-role {
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   color: var(--sidenav-muted);
 }
 
@@ -239,8 +241,8 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
 .sidenav-links a {
   color: var(--sidenav-link);
   font-weight: 500;
-  font-size: 0.94rem;
-  padding: 8px 12px;
+  font-size: 1.04rem;
+  padding: 9px 13px;
   border-radius: 8px;
   transition: background-color 0.2s, color 0.2s;
 }
@@ -321,7 +323,7 @@ main {
 }
 
 .section-inner {
-  max-width: 780px;
+  max-width: 880px;
   margin: 0 auto;
   padding: clamp(48px, 7vh, 80px) clamp(20px, 5vw, 56px);
 }
@@ -344,7 +346,7 @@ main {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-size: clamp(2.4rem, 4.5vw, 3.2rem);
   font-weight: 400;
   letter-spacing: 1px;
   color: var(--text);
@@ -363,7 +365,7 @@ main {
   background: var(--accent);
 }
 .section-title--sub {
-  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.2rem);
   margin-top: 52px;
 }
 
@@ -412,11 +414,11 @@ section p { max-width: 68ch; }
 .hero-name-b { color: var(--accent); }
 [data-theme="light"] .hero-name-b { color: #52B788; }
 .hero-typing {
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
   font-weight: 500;
   color: var(--accent);
   min-height: 1.6em;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 [data-theme="light"] .hero-typing { color: #52B788; }
 .typing-cursor {
@@ -503,7 +505,7 @@ section p { max-width: 68ch; }
 .resume-item + .resume-item { border-top: 1px solid var(--line); }
 
 .resume-main h3 {
-  font-size: 1.12rem;
+  font-size: 1.22rem;
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 2px;
@@ -554,7 +556,7 @@ section p { max-width: 68ch; }
   border: 1px solid var(--line);
 }
 .flagship-body h3 {
-  font-size: 1.28rem;
+  font-size: 1.45rem;
   font-weight: 700;
   margin-bottom: 6px;
 }
@@ -570,8 +572,8 @@ section p { max-width: 68ch; }
   padding: 16px 0;
   border-top: 1px solid var(--line);
 }
-.project-list h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 3px; }
-.project-list p { font-size: 0.92rem; color: var(--muted); }
+.project-list h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 3px; }
+.project-list p { font-size: 0.97rem; color: var(--muted); }
 
 /* 10. SKILLS ------------------------------------------------ */
 .chips-row { display: flex; flex-wrap: wrap; gap: 9px; }
@@ -723,13 +725,14 @@ section p { max-width: 68ch; }
 /* 15. RESPONSIVE -------------------------------------------- */
 @media (max-width: 991px) {
   html { scroll-padding-top: 70px; }
-  .topbar { display: flex; }
+  .topbar { display: flex; background: var(--sidenav-bg-mobile); }
 
   .sidenav {
     transform: translateX(-100%);
     transition: transform 0.3s var(--ease-out);
     padding-top: 76px;
-    width: min(300px, 82vw);
+    width: min(320px, 84vw);
+    background: var(--sidenav-bg-mobile);
   }
   #nav-toggle:checked ~ .sidenav { transform: translateX(0); box-shadow: 24px 0 60px rgba(0,0,0,0.35); }
 
