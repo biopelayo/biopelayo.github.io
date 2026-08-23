@@ -9,6 +9,7 @@ window.I18N_ES = {
   "nav.research": "Investigación",
   "nav.publications": "Publicaciones",
   "nav.teaching": "Docencia",
+  "nav.media": "Medios",
   "nav.skills": "Habilidades",
   "nav.repos": "Repositorios",
   "nav.beyond": "Fuera del laboratorio",
@@ -72,6 +73,16 @@ window.I18N_ES = {
   "teach.t3.d": "Patrones básicos y ejemplos realistas de ómicas; impartido en el IAAP, entre otros.",
   "teach.t5.t": "Claude Code y agentes de IA",
   "teach.t5.d": "Tutoriales y flujos de automatización de la investigación con agentes de IA.",
+
+  "media.title": "Vídeos y frontera",
+  "media.sub": "Vídeos y la frontera de la bioinformática que sigo de cerca.",
+  "media.video.d": "Enseñar bioinformática desde cero, con datos reales. Mira la intro en YouTube.",
+  "media.frontier.t": "Radar de frontera",
+  "media.f1.d": "Colección curada de LLMs y agentes punteros en biomedicina y bioinformática.",
+  "media.f2.d": "El estándar abierto que conecta agentes de IA con herramientas y datos científicos.",
+  "media.f3.d": "Servidor MCP que pone PubMed, ClinicalTrials y bases genómicas en manos de agentes.",
+  "media.f4.t": "Voces que sigo",
+  "media.f4.d": "<a href=\"https://www.linkedin.com/in/tommy-tang-bioinformatics/\" target=\"_blank\" rel=\"noopener noreferrer\">Tommy Tang</a>, <a href=\"https://www.linkedin.com/in/laboratory/\" target=\"_blank\" rel=\"noopener noreferrer\">Lior Pachter</a> y <a href=\"https://www.linkedin.com/in/xsliu/\" target=\"_blank\" rel=\"noopener noreferrer\">Xiaole Shirley Liu</a>: single-cell, RNA-seq y epigenómica del cáncer que merecen lectura.",
 
   "skills.title": "Habilidades y tecnologías",
 

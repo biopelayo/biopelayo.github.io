@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://biopelayo.github.io/sitemap.xml

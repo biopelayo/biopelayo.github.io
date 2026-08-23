@@ -575,6 +575,41 @@ section p { max-width: 68ch; }
 .project-list h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 3px; }
 .project-list p { font-size: 0.97rem; color: var(--muted); }
 
+/* 9b. MEDIA & FRONTIER -------------------------------------- */
+.video-card {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--text);
+  max-width: 640px;
+  transition: border-color 0.25s, transform 0.2s var(--ease-out);
+}
+.video-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.video-card img {
+  width: 220px;
+  height: auto;
+  object-fit: cover;
+  flex: 0 0 220px;
+}
+.video-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px 20px;
+}
+.video-card-body strong { font-size: 1.1rem; }
+.video-card-body span { font-size: 0.95rem; color: var(--muted); }
+[data-theme="light"] .video-card { background: var(--surface); }
+
+@media (max-width: 640px) {
+  .video-card { flex-direction: column; }
+  .video-card img { width: 100%; flex: none; }
+}
+
 /* 10. SKILLS ------------------------------------------------ */
 .chips-row { display: flex; flex-wrap: wrap; gap: 9px; }
 .chip {
