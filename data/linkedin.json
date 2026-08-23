@@ -1,5 +1,14 @@
 {
-  "updated": null,
+  "updated": "2026-08-23T19:34:17Z",
   "profile": "",
-  "items": []
+  "items": [
+    {
+      "id": "https://www.science.org/doi/10.1126/sciadv.ady8161",
+      "type": "like",
+      "date": "2026-08-23",
+      "text": "Genetic mutations in the cornea can cause vision disorders such as Fuchs' endothelial dystrophy, the leading cause of corneal transplantation worldwide. Now out in Science Advances: a non-viral platform that delivers RNA selectively to the corneal endothelium, potentially enabling RNA-based treatments for corneal dystrophies and other blinding diseases.",
+      "url": "https://www.science.org/doi/10.1126/sciadv.ady8161",
+      "author": "Sean K. Wang · Stanford"
+    }
+  ]
 }

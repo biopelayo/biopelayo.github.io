@@ -248,8 +248,8 @@
 
   /* ===== LINKEDIN CAROUSEL (data/linkedin.json, curated by hand) ===== */
   var LI_LABELS = {
-    en: { post: 'Post', repost: 'Repost', comment: 'Comment', like: 'Like', follow: 'Follow', view: 'View on LinkedIn' },
-    es: { post: 'Publicación', repost: 'Compartido', comment: 'Comentario', like: 'Me gusta', follow: 'Seguimiento', view: 'Ver en LinkedIn' }
+    en: { post: 'Post', repost: 'Repost', comment: 'Comment', like: 'Like', follow: 'Follow', view: 'View on LinkedIn', source: 'Read the source' },
+    es: { post: 'Publicación', repost: 'Compartido', comment: 'Comentario', like: 'Me gusta', follow: 'Seguimiento', view: 'Ver en LinkedIn', source: 'Ver la fuente' }
   };
   function liLabel(type, lang) {
     var l = LI_LABELS[lang] || LI_LABELS.en;
@@ -302,8 +302,9 @@
       link.href = item.url;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.setAttribute('data-li-view', '1');
-      link.textContent = liLabel('view', currentLang()) + ' →';
+      var linkKey = item.url.indexOf('linkedin.com') !== -1 ? 'view' : 'source';
+      link.setAttribute('data-li-view', linkKey);
+      link.textContent = liLabel(linkKey, currentLang()) + ' →';
       card.appendChild(link);
 
       liTrack.appendChild(card);
@@ -335,8 +336,10 @@
       var idx = Math.min(items.length, Math.round(liTrack.scrollLeft / cardStep()) + 1);
       count.textContent = idx + ' / ' + items.length;
     }
-    if (prev) prev.addEventListener('click', function () { liTrack.scrollBy({ left: -cardStep(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function () { liTrack.scrollBy({ left: cardStep(), behavior: 'smooth' }); });
+    var many = items.length > 1;
+    if (prev) { prev.hidden = !many; prev.addEventListener('click', function () { liTrack.scrollBy({ left: -cardStep(), behavior: 'smooth' }); }); }
+    if (next) { next.hidden = !many; next.addEventListener('click', function () { liTrack.scrollBy({ left: cardStep(), behavior: 'smooth' }); }); }
+    if (count) count.hidden = !many;
     liTrack.addEventListener('scroll', updateCount, { passive: true });
     updateCount();
 
@@ -360,7 +363,7 @@
         b.textContent = liLabel(b.getAttribute('data-li-type'), lang);
       });
       liTrack.querySelectorAll('[data-li-view]').forEach(function (a) {
-        a.textContent = liLabel('view', lang) + ' →';
+        a.textContent = liLabel(a.getAttribute('data-li-view'), lang) + ' →';
       });
     };
   }
