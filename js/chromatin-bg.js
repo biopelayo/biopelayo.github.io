@@ -21,18 +21,18 @@
   var BASE = 'img/sprites/';
   /* name: [file, frames in the strip] */
   var SRC = {
-    cell: ['celula.webp', 12],
-    solenoid: ['solenoide.webp', 12],
-    nucBig: ['nucleosoma_big.webp', 14],
-    nucA: ['nucleosoma_a.webp', 14],
-    nucB: ['nucleosoma_b.webp', 14],
-    nucC: ['nucleosoma_c.webp', 14],
-    nucD: ['nucleosoma_d.webp', 14],
-    pol: ['complejo_a.webp', 14],
-    cplxA: ['complejo_b.webp', 14],
-    cplxB: ['prot_lila.webp', 14],
-    cplxC: ['prot_verde.webp', 14],
-    helix: ['helice.webp', 14]
+    cell: ['celula.webp', 8],
+    solenoid: ['solenoide.webp', 8],
+    nucBig: ['nucleosoma_big.webp', 8],
+    nucA: ['nucleosoma_a.webp', 8],
+    nucB: ['nucleosoma_b.webp', 8],
+    nucC: ['nucleosoma_c.webp', 8],
+    nucD: ['nucleosoma_d.webp', 8],
+    pol: ['complejo_a.webp', 8],
+    cplxA: ['complejo_b.webp', 8],
+    cplxB: ['prot_lila.webp', 8],
+    cplxC: ['prot_verde.webp', 8],
+    helix: ['helice.webp', 8]
   };
   var SP = {};
   for (var k in SRC) {
@@ -60,16 +60,27 @@
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
 
   /* Draw one frame of a strip. `cyc` is the object's own loop position. */
-  function blit(sp, x, y, w, rot, alpha, cyc) {
+  var canFilter = typeof ctx.filter === 'string';
+  function blit(sp, x, y, w, rot, alpha, cyc, blur) {
     if (!ready(sp)) return;
     var fw = sp.img.naturalWidth / sp.frames, fh = sp.img.naturalHeight;
-    var fi = Math.floor(((cyc % 1) + 1) % 1 * sp.frames) % sp.frames;
+    var pos = (((cyc % 1) + 1) % 1) * sp.frames;
+    var i0 = Math.floor(pos) % sp.frames, mix = pos - Math.floor(pos);
     var h = w * fh / fw;
     ctx.save();
     ctx.translate(x, y);
     if (rot) ctx.rotate(rot);
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(sp.img, fi * fw, 0, fw, fh, -w / 2, -h / 2, w, h);
+    if (blur && canFilter) ctx.filter = 'blur(' + blur + 'px)';
+    if (w < 40) {
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(sp.img, i0 * fw, 0, fw, fh, -w / 2, -h / 2, w, h);
+    } else {
+      var i1 = (i0 + 1) % sp.frames;
+      ctx.globalAlpha = alpha * (1 - mix);
+      ctx.drawImage(sp.img, i0 * fw, 0, fw, fh, -w / 2, -h / 2, w, h);
+      ctx.globalAlpha = alpha * mix;
+      ctx.drawImage(sp.img, i1 * fw, 0, fw, fh, -w / 2, -h / 2, w, h);
+    }
     ctx.restore();
     ctx.globalAlpha = 1;
   }
@@ -80,22 +91,23 @@
     fibres = []; complexes = []; helices = []; giants = [];
 
     cell = {
-      x: rnd(0.02, 0.22) * W, y: rnd(-0.22, -0.02) * H,
-      w: Math.max(W, H) * rnd(0.62, 0.85),
-      ph: rnd(0, 1), rate: 0.10, a: 0.20
+      x: rnd(0.10, 0.30) * W, y: rnd(0.08, 0.30) * H,
+      w: Math.min(W, H) * rnd(0.16, 0.22),
+      ph: rnd(0, 1), rate: 0.50, a: 0.24
     };
 
     solenoid = {
       x: rnd(0.55, 0.95) * W, y: rnd(0.02, 0.30) * H,
-      w: Math.min(W, H) * rnd(0.22, 0.32),
-      rot: rnd(-0.6, 0.6), ph: rnd(0, 1), rate: 0.22, a: 0.22, d: 0.22
+      w: Math.min(W, H) * rnd(0.08, 0.12),
+      rot: rnd(-0.6, 0.6), ph: rnd(0, 1), rate: 1.10, a: 0.22, d: 0.22
     };
 
     var keys = ['nucA', 'nucB', 'nucC', 'nucD'];
-    for (i = 0; i < (small ? 2 : 3); i++) {
-      var beads = [], nbead = small ? 5 : Math.round(rnd(6, 9));
-      var depth = rnd(0.30, 0.62);
-      var size = (small ? 52 : 74) * (0.6 + depth);
+    var nfib = small ? 7 : Math.round(Math.min(20, W * H / 62000));
+    for (i = 0; i < nfib; i++) {
+      var beads = [], nbead = small ? 6 : Math.round(rnd(6, 13));
+      var depth = rnd(0.20, 0.75);
+      var size = (small ? 15 : 20) * (0.55 + depth);
       var x = rnd(-0.05, 1.0) * W, y = rnd(0.05, 0.95) * H;
       var ang = rnd(0, 6.28), condensed = Math.random() < 0.3;
       for (b = 0; b < nbead; b++) {
@@ -105,11 +117,11 @@
         beads.push({
           x: x, y: y, w: size * rnd(0.85, 1.15), key: pick(keys),
           rot: rnd(0, 6.28), spin: rnd(-0.10, 0.10),
-          ph: rnd(0, 1), rate: rnd(0.34, 0.52), wob: rnd(0, 6.28),
+          ph: rnd(0, 1), rate: rnd(1.7, 2.6), wob: rnd(0, 6.28),
           evict: 0, wx: 0, wy: 0
         });
       }
-      fibres.push({ beads: beads, d: depth, sway: rnd(6, 16), phw: rnd(0, 6.28) });
+      fibres.push({ beads: beads, d: depth, sway: rnd(5, 14), phw: rnd(0, 6.28) });
     }
 
     function onScreen(bd) { return bd.x > -60 && bd.x < W + 60 && bd.y > -60 && bd.y < H + 60; }
@@ -122,25 +134,26 @@
       if (seen > bestSeen) { bestSeen = seen; host = i; firstSeen = first < 0 ? 0 : first; }
     }
     pol = {
-      f: host, s: Math.max(-0.6, firstSeen - 0.6), speed: rnd(0.05, 0.08),
-      w: small ? 74 : 104, trail: [], ph: rnd(0, 1), rate: 0.75, phw: rnd(0, 6.28)
+      f: host, s: Math.max(-0.6, firstSeen - 0.6), speed: rnd(0.16, 0.26),
+      w: small ? 26 : 34, trail: [], ph: rnd(0, 1), rate: 3.6, phw: rnd(0, 6.28)
     };
 
-    var ck = ['cplxA', 'cplxB', 'cplxC'];
-    for (i = 0; i < (small ? 2 : 3); i++) {
+    var ck = ['cplxA', 'cplxB', 'cplxC', 'nucC', 'nucA'];
+    var ncplx = small ? 26 : Math.round(Math.min(80, W * H / 15000));
+    for (i = 0; i < ncplx; i++) {
       complexes.push({
-        x: rnd(0, 1) * W, y: rnd(0, 1) * H, key: pick(ck),
-        w: (small ? 46 : 66) * rnd(0.7, 1.3), rot: rnd(0, 6.28),
-        spin: rnd(-0.06, 0.06), ph: rnd(0, 1), rate: rnd(0.45, 0.7),
+        x: rnd(-0.05, 1.05) * W, y: rnd(-0.05, 1.05) * H, key: pick(ck),
+        w: (small ? 13 : 17) * rnd(0.55, 1.5), rot: rnd(0, 6.28),
+        spin: rnd(-0.18, 0.18), ph: rnd(0, 1), rate: rnd(2.2, 3.5),
         phw: rnd(0, 6.28), d: rnd(0.25, 0.7), vx: rnd(-5, 5), vy: rnd(-5, 5)
       });
     }
 
-    for (i = 0; i < (small ? 1 : 2); i++) {
+    for (i = 0; i < (small ? 4 : 10); i++) {
       helices.push({
-        x: rnd(0.05, 0.95) * W, y: rnd(0.05, 0.95) * H,
-        w: (small ? 46 : 66) * rnd(0.8, 1.4), rot: rnd(0, 6.28),
-        ph: rnd(0, 1), rate: rnd(0.5, 0.8), phw: rnd(0, 6.28),
+        x: rnd(0.02, 0.98) * W, y: rnd(0.02, 0.98) * H,
+        w: (small ? 18 : 24) * rnd(0.7, 1.5), rot: rnd(0, 6.28),
+        ph: rnd(0, 1), rate: rnd(2.5, 4.0), phw: rnd(0, 6.28),
         d: rnd(0.18, 0.5), a: 0.20
       });
     }
@@ -148,19 +161,19 @@
     giants.push({
       bx: (small ? rnd(0.2, 0.8) : rnd(0.58, 0.95)) * W,
       by: rnd(0.15, 0.85) * H, x: 0, y: 0,
-      w: Math.min(W, H) * (small ? 0.36 : rnd(0.30, 0.38)),
-      rot: rnd(-0.5, 0.5), spin: rnd(-0.022, 0.022),
-      ph: rnd(0, 1), rate: 0.30, phw: rnd(0, 6.28), a: 0.30
+      w: Math.min(W, H) * (small ? 0.10 : rnd(0.09, 0.13)),
+      rot: rnd(-0.5, 0.5), spin: rnd(-0.08, 0.08),
+      ph: rnd(0, 1), rate: 1.5, phw: rnd(0, 6.28), a: 0.30
     });
   }
 
   function fibrePositions(f, t, px, py) {
-    var ox = px * f.d * 34 + Math.sin(t * 0.17 + f.phw) * f.sway;
-    var oy = py * f.d * 34 + Math.cos(t * 0.14 + f.phw) * f.sway;
+    var ox = px * f.d * 34 + Math.sin(t * 0.42 + f.phw) * f.sway;
+    var oy = py * f.d * 34 + Math.cos(t * 0.36 + f.phw) * f.sway;
     for (var i = 0; i < f.beads.length; i++) {
       var b = f.beads[i];
-      b.wx = b.x + ox + Math.sin(t * 0.35 + b.wob) * 5;
-      b.wy = b.y + oy + Math.cos(t * 0.31 + b.wob) * 5;
+      b.wx = b.x + ox + Math.sin(t * 0.9 + b.wob) * 4;
+      b.wy = b.y + oy + Math.cos(t * 0.8 + b.wob) * 4;
     }
   }
 
@@ -190,7 +203,7 @@
       blit(SP[d.key], d.wx, d.wy - lift, d.w * (1 - d.evict * 0.08),
            d.rot + t * d.spin + d.evict * 0.9,
            a * (1 - d.evict * 0.6),
-           d.ph + t * (d.rate + d.evict * 1.6));
+           d.ph + t * (d.rate + d.evict * 4));
     }
   }
 
@@ -246,12 +259,12 @@
 
     blit(SP.cell, cell.x + px * 10 + Math.sin(t * 0.05) * 8,
          cell.y + py * 10 + Math.cos(t * 0.04) * 8, cell.w, 0, cell.a,
-         cell.ph + t * cell.rate);
+         cell.ph + t * cell.rate, 2.5);
 
     blit(SP.solenoid, solenoid.x + px * 18 + Math.sin(t * 0.07) * 10,
          solenoid.y + py * 18 + Math.cos(t * 0.06) * 10, solenoid.w,
          solenoid.rot + Math.sin(t * 0.09) * 0.05, solenoid.a,
-         solenoid.ph + t * solenoid.rate);
+         solenoid.ph + t * solenoid.rate, 1.5);
 
     for (i = 0; i < helices.length; i++) {
       var h = helices[i];
@@ -276,8 +289,8 @@
 
     for (i = 0; i < giants.length; i++) {
       var g = giants[i];
-      g.x = g.bx + px * 120 + Math.sin(t * 0.12 + g.phw) * 20;
-      g.y = g.by + py * 120 + Math.cos(t * 0.10 + g.phw) * 20;
+      g.x = g.bx + px * 60 + Math.sin(t * 0.12 + g.phw) * 12;
+      g.y = g.by + py * 60 + Math.cos(t * 0.10 + g.phw) * 12;
       blit(SP.nucBig, g.x, g.y, g.w, g.rot + t * g.spin, g.a, g.ph + t * g.rate);
     }
   }
