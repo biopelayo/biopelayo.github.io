@@ -149,6 +149,8 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
 
 /* 3. NUCLEOSOME CANVAS -------------------------------------- */
 /* Dark: fixed behind the whole page. Light: absolute, caged inside the dark hero. */
+#cell-video,
+#cell-scrim,
 #nucleosome-canvas {
   position: fixed;
   top: 0;
@@ -158,9 +160,51 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
   z-index: 0;
   pointer-events: none;
 }
+/* El video es la capa de fondo; las piezas que responden al raton van encima,
+   asi que se atenua para no competir con ellas ni con el texto. */
+#cell-video {
+  object-fit: cover;
+  opacity: 0.62;
+  transition: opacity 0.8s ease;
+}
+#cell-video.is-off { opacity: 0; }
+
+/* Oscurece la banda del texto y cierra los bordes, sin tocar el centro derecha. */
+#cell-scrim {
+  background:
+    linear-gradient(100deg,
+      rgba(15, 21, 32, 0.94) 0%,
+      rgba(15, 21, 32, 0.80) 26%,
+      rgba(15, 21, 32, 0.34) 55%,
+      rgba(15, 21, 32, 0.05) 82%,
+      rgba(15, 21, 32, 0) 100%),
+    radial-gradient(130% 100% at 72% 46%,
+      rgba(15, 21, 32, 0) 38%,
+      rgba(15, 21, 32, 0.46) 100%);
+}
+@media (max-width: 900px) {
+  #cell-scrim {
+    background:
+      linear-gradient(180deg,
+        rgba(15, 21, 32, 0.90) 0%,
+        rgba(15, 21, 32, 0.62) 30%,
+        rgba(15, 21, 32, 0.48) 62%,
+        rgba(15, 21, 32, 0.72) 100%);
+  }
+}
+[data-theme="light"] #cell-video,
+[data-theme="light"] #cell-scrim,
 [data-theme="light"] #nucleosome-canvas {
   position: absolute;
   height: 100%;
+}
+/* En claro el hero conserva su degradado oscuro, pero el video molesta al
+   resto de la pagina: se queda dentro del hero y mas apagado. */
+[data-theme="light"] #cell-video { opacity: 0.34; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sin movimiento queda el poster, que es un fotograma del propio bucle. */
+  #cell-video { opacity: 0.34; }
 }
 
 /* 4. MOBILE TOP BAR ----------------------------------------- */
@@ -879,7 +923,7 @@ section p { max-width: 68ch; }
     --line: #cccccc;
   }
   body { background: #ffffff; color: #111111; font-size: 11pt; }
-  #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
+  #cell-video, #cell-scrim, #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
   .hero-actions, .hero-stack, .typing-cursor, #repos, #linkedin,
   .hero-linkedin { display: none !important; }
   main { margin-left: 0; }
