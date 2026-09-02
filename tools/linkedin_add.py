@@ -39,7 +39,7 @@ def clean_url(url):
 
 
 def fetch_og(url):
-    """Intenta leer og:title / og:description de la página pública. Devuelve (titulo, descripcion) o (None, None)."""
+    """Intenta leer og:title / og:description de la página pública. Devuelve (título, descripción) o (None, None)."""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "es,en"})
         with urllib.request.urlopen(req, timeout=12) as r:

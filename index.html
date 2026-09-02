@@ -216,7 +216,7 @@
   <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
   <div class="topbar">
     <a href="#about" class="topbar-brand">Pelamovic</a>
-    <button type="button" class="nav-toggle-label" id="nav-toggle-label" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidenav">
+    <button type="button" class="nav-toggle-label" id="nav-toggle-label" data-i18n-aria="aria.nav.toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidenav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -228,7 +228,7 @@
       <span class="sidenav-name">Pelayo González de Lena</span>
       <span class="sidenav-role" data-i18n="side.role">Bioinformatician · Plant Epigenomics</span>
     </a>
-    <nav class="sidenav-links" aria-label="Primary navigation">
+    <nav class="sidenav-links" data-i18n-aria="aria.nav.primary" aria-label="Primary navigation">
       <a href="#about" data-i18n="nav.about">About</a>
       <a href="#experience" data-i18n="nav.experience">Experience</a>
       <a href="#research" data-i18n="nav.research">Research</a>
@@ -242,7 +242,7 @@
       <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <div class="sidenav-controls">
-      <div class="lang-switch" role="group" aria-label="Language">
+      <div class="lang-switch" role="group" data-i18n-aria="aria.lang" aria-label="Language">
         <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
       </div>
@@ -256,7 +256,7 @@
       <a href="https://orcid.org/0000-0001-9409-1457" target="_blank" rel="noopener noreferrer" aria-label="ORCID" title="ORCID"><svg aria-hidden="true"><use href="#ico-orcid"/></svg></a>
       <a href="https://twitter.com/biopelayo" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" title="Twitter / X"><svg aria-hidden="true"><use href="#ico-x"/></svg></a>
       <a href="https://www.youtube.com/watch?v=IN2o_eJz1Ag" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><svg aria-hidden="true"><use href="#ico-youtube"/></svg></a>
-      <a href="mailto:bio.pelayo@gmail.com" aria-label="Email" title="Email"><svg aria-hidden="true"><use href="#ico-mail"/></svg></a>
+      <a href="mailto:bio.pelayo@gmail.com" data-i18n-aria="aria.email" aria-label="Email" title="Email"><svg aria-hidden="true"><use href="#ico-mail"/></svg></a>
     </div>
   </header>
 
@@ -303,7 +303,7 @@
           <div class="resume-main">
             <h3 data-i18n="exp.eprobes.role">Research Contract · eprObes (Horizon Europe)</h3>
             <p class="resume-where" data-i18n="exp.eprobes.where">CINN&#8211;CSIC · Grant agreement 101080219</p>
-            <p data-i18n="exp.eprobes.desc">Early identification of lifetime obesity risk factors, prognosis and intervention, within a European consortium.</p>
+            <p data-i18n="exp.eprobes.desc">Preventing lifetime obesity through early risk-factor identification, prognosis and intervention, within a European consortium.</p>
           </div>
           <span class="resume-when" data-i18n="exp.eprobes.when">Sep 2025 &#8211; Sep 2026</span>
         </article>
@@ -312,7 +312,7 @@
           <div class="resume-main">
             <h3 data-i18n="exp.phd.role">PhD Researcher · FPI Severo Ochoa Fellow</h3>
             <p class="resume-where" data-i18n="exp.phd.where">University of Oviedo · Plant Physiology Area, Dept. of Organisms and Systems Biology</p>
-            <p data-i18n-html="exp.phd.desc">Thesis on histone PTMs in <em>Arabidopsis thaliana</em>: EpiProfile_PLANTS, rosette ontogeny and PRIDE reanalyses.</p>
+            <p data-i18n-html="exp.phd.desc">Thesis on histone PTMs in <em>Arabidopsis thaliana</em>: EpiProfile-PLANTS, rosette ontogeny and PRIDE reanalyses.</p>
           </div>
           <span class="resume-when" data-i18n="exp.phd.when">Nov 2020 – Sep 2026</span>
         </article>
@@ -329,10 +329,10 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="exp.teach.role">Instructor · Bioinformatics and Programming</h3>
-            <p class="resume-where">IAAP · University of Oviedo · Oviedo City Council · FORMACAL · ARTEAULA</p>
+            <p class="resume-where" data-i18n="exp.teach.where">IAAP · University of Oviedo · Oviedo City Council · FORMACAL · ARTEAULA</p>
             <p data-i18n="exp.teach.desc">Linux, Python and R/Bioconductor for omics, from setup to real projects.</p>
           </div>
-          <span class="resume-when">2019 – 2026</span>
+          <span class="resume-when">2019 – 2025</span>
         </article>
 
         <article class="resume-item">
@@ -356,7 +356,7 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="exp.icm.role">Bioinformatician · External Collaboration</h3>
-            <p class="resume-where">Institute of Cellular and Molecular Studies (ICM) · Atrys Health, Lugo</p>
+            <p class="resume-where" data-i18n="exp.icm.where">Institute of Cellular and Molecular Studies (ICM) · Atrys Health, Lugo</p>
             <p data-i18n="exp.icm.desc">Microarray and NGS analysis pipelines; contributed to MeeApp, a direct-to-consumer genetic testing application.</p>
           </div>
           <span class="resume-when">2016 – 2018 · 2021 – 2022</span>
@@ -408,12 +408,12 @@
         <h2 class="section-title" data-i18n="research.title">Research &amp; Projects</h2>
 
         <article class="flagship">
-          <img class="flagship-logo" src="img/thumbs/epiprofile_logo.png" alt="EpiProfile_PLANTS logo" loading="lazy" />
+          <img class="flagship-logo" src="img/thumbs/epiprofile_logo.png" alt="EpiProfile-PLANTS logo" loading="lazy" />
           <div class="flagship-body">
-            <h3>EpiProfile_PLANTS</h3>
+            <h3>EpiProfile-PLANTS</h3>
             <p data-i18n="research.epi.desc">
               MATLAB suite extending EpiProfile 2.0 to plant histone proteomics, with curated
-              peptide catalogs for three plant and algal species, a Snakemake + Docker workflow
+              peptide catalogues for three plant and algal species, a Snakemake + Docker workflow
               and an interactive dashboard.
             </p>
             <p class="link-row">
@@ -442,7 +442,7 @@
 
         <ul class="project-list">
           <li>
-            <h3 data-i18n="research.p1.t">Arabidopsis Rosette Ontogeny Atlas</h3>
+            <h3 data-i18n-html="research.p1.t"><em>Arabidopsis</em> Rosette Ontogeny Atlas</h3>
             <p data-i18n="research.p1.d">Histone PTMs across four stages of rosette development, QC-first.</p>
           </li>
           <li>
@@ -465,7 +465,7 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3>RNA Sequencing Platforms and Bioinformatics Tools</h3>
-            <p class="resume-where" data-i18n="pubs.p1.where">Book chapter · Plant Transcriptomics and Epitranscriptomics (Springer)</p>
+            <p class="resume-where" data-i18n="pubs.p1.where">Book chapter · Concepts and Strategies in Plant Sciences · Springer Nature Singapore · pp. 31&#8211;65</p>
             <p class="link-row"><a href="https://doi.org/10.1007/978-981-95-5183-5_2" target="_blank" rel="noopener noreferrer"><span class="mono">DOI 10.1007/978-981-95-5183-5_2</span></a></p>
           </div>
           <span class="resume-when">2026</span>
@@ -486,7 +486,7 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3>Analysis of histone post-translational modifications in <em>Arabidopsis thaliana</em></h3>
-            <p class="resume-where" data-i18n="pubs.p3.where">Book chapter · Methods in Molecular Biology (Springer)</p>
+            <p class="resume-where" data-i18n="pubs.p3.where">Book chapter · Plant Proteomics: Methods and Protocols · Methods in Molecular Biology (Springer, 2026)</p>
           </div>
           <span class="resume-when" data-i18n="pubs.p3.when">Under review</span>
         </article>
@@ -530,7 +530,7 @@
           <div class="resume-main">
             <h3 data-i18n="teach.sup.t">MSc thesis supervision</h3>
             <p class="resume-where" data-i18n="teach.sup.w">Open University of Catalonia</p>
-            <p data-i18n="teach.sup.d">Supervised a polygenic risk score pipeline for human complex diseases.</p>
+            <p data-i18n="teach.sup.d">Supervised an MSc thesis building a polygenic risk score pipeline for human complex diseases.</p>
           </div>
           <span class="resume-when">2022</span>
         </article>
@@ -570,11 +570,11 @@
         <ul class="project-list">
           <li>
             <h3>Awesome AI Meets Biology <a class="mini-link" href="https://github.com/biopelayo/Awesome-AI-Meets-Biology" target="_blank" rel="noopener noreferrer" aria-label="Awesome AI Meets Biology on GitHub"><svg aria-hidden="true"><use href="#ico-external"/></svg></a></h3>
-            <p data-i18n="media.f1.d">Curated collection of state-of-the-art LLMs and agents in biomedicine and bioinformatics.</p>
+            <p data-i18n="media.f1.d">Curated collection of current LLMs and agents in biomedicine and bioinformatics.</p>
           </li>
           <li>
             <h3>Model Context Protocol <a class="mini-link" href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer" aria-label="Model Context Protocol website"><svg aria-hidden="true"><use href="#ico-external"/></svg></a></h3>
-            <p data-i18n="media.f2.d">The open standard wiring AI agents to scientific tools and data.</p>
+            <p data-i18n="media.f2.d">The open standard that connects AI agents to scientific tools and data.</p>
           </li>
           <li>
             <h3>BioMCP <a class="mini-link" href="https://github.com/genomoncology/biomcp" target="_blank" rel="noopener noreferrer" aria-label="BioMCP on GitHub"><svg aria-hidden="true"><use href="#ico-external"/></svg></a></h3>
@@ -594,9 +594,9 @@
         <h2 class="section-title"><span class="section-title-row"><svg class="section-icon-li" aria-hidden="true"><use href="#ico-linkedin"/></svg>LinkedIn</span></h2>
         <p class="section-sub" data-i18n="li.sub">What I post, share and comment on LinkedIn, hand-picked.</p>
         <div class="li-carousel">
-          <button type="button" class="li-arrow li-arrow--prev" id="li-prev" aria-label="Previous">&#8249;</button>
-          <div class="li-track" id="li-track" tabindex="0" role="group" aria-label="LinkedIn activity carousel"></div>
-          <button type="button" class="li-arrow li-arrow--next" id="li-next" aria-label="Next">&#8250;</button>
+          <button type="button" class="li-arrow li-arrow--prev" id="li-prev" data-i18n-aria="aria.prev" aria-label="Previous">&#8249;</button>
+          <div class="li-track" id="li-track" tabindex="0" role="group" data-i18n-aria="aria.carousel" aria-label="LinkedIn activity carousel"></div>
+          <button type="button" class="li-arrow li-arrow--next" id="li-next" data-i18n-aria="aria.next" aria-label="Next">&#8250;</button>
         </div>
         <p class="li-count mono" id="li-count" aria-hidden="true"></p>
       </div>
@@ -611,8 +611,8 @@
         <div class="chips-row">
           <span class="chip" data-i18n="skills.l1">Spanish · native</span>
           <span class="chip" data-i18n="skills.l2">Italian · C1</span>
-          <span class="chip" data-i18n="skills.l3">English · C1 reading, B2 rest</span>
-          <span class="chip" data-i18n="skills.l4">Catalan · B1 listening, A2 rest</span>
+          <span class="chip" data-i18n="skills.l3">English · C1 reading, B2 otherwise</span>
+          <span class="chip" data-i18n="skills.l4">Catalan · B1 listening, A2 otherwise</span>
         </div>
       </div>
     </section>
@@ -685,6 +685,6 @@
   <script src="js/chromatin-bg.js" defer></script>
   <script src="js/i18n-es.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script data-goatcounter="https://pelamovic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://pelamovic.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

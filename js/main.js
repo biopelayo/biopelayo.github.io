@@ -118,6 +118,12 @@
         }
       }
     });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-aria');
+      if (!enCache.has(el)) enCache.set(el, el.getAttribute('aria-label') || '');
+      if (dict && Object.prototype.hasOwnProperty.call(dict, key)) el.setAttribute('aria-label', dict[key]);
+      else el.setAttribute('aria-label', enCache.get(el));
+    });
     docEl.setAttribute('lang', lang);
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');

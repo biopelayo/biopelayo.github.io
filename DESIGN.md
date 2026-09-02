@@ -107,7 +107,7 @@ components:
 
 # Design System: biopelayo.github.io (v2 lite)
 
-Recorded from the built code on branch v2-lite (`index.html`, `css/styles.css`, `js/main.js`, `js/i18n-es.js`, `js/nucleosome-bg.js`). Where this file and the code disagree, the code has drifted and this file needs a refresh. Product truth (content, audience, brand commitments) lives in `PRODUCT.md`; this file is strictly visual.
+Recorded from the built code on branch v2-lite (`index.html`, `css/styles.css`, `js/main.js`, `js/i18n-es.js`, `js/chromatin-bg.js`). Where this file and the code disagree, the code has drifted and this file needs a refresh. Product truth (content, audience, brand commitments) lives in `PRODUCT.md`; this file is strictly visual.
 
 ## Overview
 
@@ -142,7 +142,7 @@ One green voice per theme over quiet neutrals; every other saturated color is lo
 - Light set: greenish paper `--bg` #F2F6F3 (the direction contract said white ground; the build landed on greenish paper, with pure white reserved for `--surface` cards and `--logo-plate`); alternating band `--bg-alt` #E7F0EA (light-only token); ink `--text` #26302B; `--muted` #4E5B54; `--dim` #5C6B63; hairline `--line` #D3E2D8; rail `--sidenav-bg` becomes `linear-gradient(180deg, #2f7154 0%, #2D6A4F 55%, #1B4332 100%)` with white text tokens.
 
 ### Canvas neons (reserved)
-Defined as rgb() triplets in `js/nucleosome-bg.js`: H2A green #34d96e, H2B cyan #22d3ee, H3 blue #5eaaff, H4 pink #f472b6, DNA soft blue #64aaff. They appear nowhere else.
+Defined as rgb() triplets in `js/chromatin-bg.js`: H2A green #34d96e, H2B cyan #22d3ee, H3 blue #5eaaff, H4 pink #f472b6, DNA soft blue #64aaff. They appear nowhere else.
 
 ### Named Rules
 **The One Green Rule.** Each theme has exactly one accent, `--accent`. Cyan, blue and pink belong to the canvas; UI chrome never borrows them.
@@ -233,7 +233,7 @@ Featured project rows: 96px logo on `--logo-plate` white (12px radius, 8px paddi
 ### Repo cards (`.repo-card`)
 The only card grid: 1px `--line` border, 12px radius, transparent ground in dark and `--surface` white in light. Name in mono `--accent`, description 0.88rem `--muted` with `min-height: 2.6em` for row alignment, meta line in mono `--dim` (language, star count, tabular-nums). Hover: border to `--accent`, lift -2px. Populated live from the GitHub API (top 4 own repos by stars then push date) with a hard-coded 4-repo fallback in `js/main.js`.
 
-### Signature: nucleosome canvas (`#nucleosome-canvas` + `js/nucleosome-bg.js`)
+### Signature: nucleosome canvas (`#nucleosome-canvas` + `js/chromatin-bg.js`)
 The brand opener, ported verbatim from the v1 site and pinned by the owner. Four layers: drifting DNA double helices with base-pair rungs; 150 to 600 nucleosome discs (about 12% large octamers with radial-gradient bodies, DNA wrap rings, wiggling histone tails and white PTM dots); 200 to 800 dust motes; 6 to 18 faint icon silhouettes (nucleosome, flask, helix, leaf, terminal, bracket). All in the histone palette at alphas 0.015 to 0.18, mouse-repelled inside a 180px radius. The stylesheet controls only its position and caging per theme; the drawing code is not restyled, retuned or refactored.
 
 ### Signature: typing line (`.hero-typing`)
@@ -265,7 +265,7 @@ The chrome the page does not draw still carries the theme: `::selection` (accent
 
 ### Don't:
 - **Don't** introduce a second accent, and never use the canvas neons (#22d3ee, #5eaaff, #f472b6, #64aaff) in UI chrome.
-- **Don't** modify `js/nucleosome-bg.js` beyond what `css/styles.css` already controls (position, caging): it is the pinned verbatim v1 port.
+- **Do** keep its palette and the histone colour identity; the geometry may evolve. It is the site's signature and must stay alive.
 - **Don't** give light-theme sections borders, radius or panel surfaces, and don't strip them from dark-theme sections.
 - **Don't** hard-code colors where a token exists; the only sanctioned literals are the light-theme dark-hero set (#52B788 and the hero gradient stops #0f1520/#111d30/#14231f) and Forest Ink #1B4332.
 - **Don't** animate body content on scroll; the reveal set is `.hero-inner` plus `.section-title`, nothing else.
