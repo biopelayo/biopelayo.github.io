@@ -19,12 +19,12 @@ Visitor mode: Read (understand and locate), with an Experience opening (the nucl
 - Publications: book chapter "RNA Sequencing Platforms and Bioinformatics Tools" (Springer 2026, DOI 10.1007/978-981-95-5183-5_2) and lncRNA clusterization in HNSCC (Clinical Epigenetics 2017, DOI 10.1186/s13148-017-0334-6).
 - Teaching: IAAP, University of Oviedo, Oviedo City Council, FORMACAL, ARTEAULA. Outreach: Código Biológico (YouTube).
 - Football (owner-verified 2026-08-23): Liga Asterov 2025/26 with San Claudio: 20 goals in 21 matches, 9th top scorer of the First Division; Copa Asterov 2026 with Laviana CF: 2 goals in 4 matches.
-- Contact: pelayo.gonzalez@uniovi.es · GitHub biopelayo · ORCID 0000-0001-9409-1457 · X @biopelayo · ResearchGate.
+- Contact (two addresses, both shown): bio.pelayo@gmail.com (personal, durable) and uo172378@uniovi.es (institutional) · GitHub biopelayo · ORCID 0000-0001-9409-1457 · X @biopelayo · ResearchGate.
 - Education (from the owner's CV, shipped 2026-08-23): PhD in Biology in progress (Uniovi, defence expected autumn 2026); MSc Bioinformatics and Computational Biology (Carlos III Health Institute, 2017); MSc Biomolecules and Cell Dynamics (UAM, 2016); BSc+MSc in Biology, 5-year degree (Uniovi, 2011).
 
 ## Brand commitments (pinned by the owner, 2026-08-23 intake)
 
-- Keep the nucleosome particle canvas (DNA strands + histone-colored nucleosome discs + dust + icon silhouettes, mouse-reactive) exactly as v1 authored it.
+- The mouse-reactive nucleosome canvas is the signature and must stay, but the owner LIFTED the "keep it verbatim" pin on 2026-08-26: he asked for a more realistic, more alive rendering (real nucleosome geometry, living-cell feel). The histone colour identity stays fixed: H2A rgb(52,217,110), H2B rgb(34,211,238), H3 rgb(94,170,255), H4 rgb(244,114,182), DNA rgb(100,170,255).
 - Dual theme: dark default (deep blue #0f1520 ground, dominant green accent #34d96e, other neons reserved for the canvas); light theme on Pelamovic visual system (white ground, Botanical Green #2D6A4F, greens #52B788/#95D5B2/#D8F3DC). In light, the canvas lives only inside the dark hero.
 - Layout: CV-style single page in the manner of driessmit.github.io: fixed side nav with circular profile photo, flat scannable sections, compact resume items. Content-dense material lives in outbound links.
 - Faces: Bebas Neue (display), Work Sans (body), JetBrains Mono (code/data only).
