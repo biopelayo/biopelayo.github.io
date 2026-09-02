@@ -21,7 +21,7 @@ Visitor mode: Read (understand and locate), with an Experience opening (the nucl
 - Football (owner-verified 2026-08-23): Liga Asterov 2025/26 with San Claudio: 20 goals in 21 matches, 9th top scorer of the First Division; Copa Asterov 2026 with Laviana CF: 2 goals in 4 matches.
 - Contact (two addresses, both shown): bio.pelayo@gmail.com (personal, durable) and uo172378@uniovi.es (institutional) · GitHub biopelayo · ORCID 0000-0001-9409-1457 · X @biopelayo · ResearchGate.
 - Experience (from the owner's CV, all verified 2026-09-02): eprObes research contract (Horizon Europe GA 101080219, CINN-CSIC, Sep 2025 to Sep 2026, the CURRENT post); FPI Severo Ochoa fellow at the University of Oviedo; research stay at CNIO (Nov 2020 to May 2023, closed); instructor; GeoAI Analytics (Oct 2019 to Nov 2020); Vivia Biotech (Jun to Oct 2019); ICM / Atrys Health; CIEMAT trainee.
-  UNRESOLVED: the CV gives two end dates for the FPI contract, Sep 2026 under Experience and May 2025 under Funding. The site shows Sep 2026. Ask the owner before citing it anywhere else.
+  RESOLVED by the owner on 2026-09-02: the FPI contract ran Nov 2020 to May 2025; the doctorate then continued under the CINN-CSIC contract on eprObes (Sep 2025 to Sep 2026). The CV's page 1 date (Sep 2026) is the one that is wrong; correct it there too.
 - Education (from the owner's CV, shipped 2026-08-23): PhD in Biology in progress (Uniovi, defence expected autumn 2026); MSc Bioinformatics and Computational Biology (Carlos III Health Institute, 2017); MSc Biomolecules and Cell Dynamics (UAM, 2016); BSc+MSc in Biology, 5-year degree (Uniovi, 2011).
 
 ## Brand commitments (pinned by the owner, 2026-08-23 intake)

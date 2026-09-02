@@ -1,0 +1,62 @@
+{
+ "celula": {
+  "frames": 12,
+  "w": 394,
+  "h": 262
+ },
+ "solenoide": {
+  "frames": 12,
+  "w": 206,
+  "h": 192
+ },
+ "nucleosoma_big": {
+  "frames": 14,
+  "w": 206,
+  "h": 178
+ },
+ "nucleosoma_a": {
+  "frames": 14,
+  "w": 134,
+  "h": 124
+ },
+ "nucleosoma_b": {
+  "frames": 14,
+  "w": 132,
+  "h": 135
+ },
+ "nucleosoma_c": {
+  "frames": 14,
+  "w": 84,
+  "h": 92
+ },
+ "nucleosoma_d": {
+  "frames": 14,
+  "w": 118,
+  "h": 106
+ },
+ "complejo_a": {
+  "frames": 14,
+  "w": 124,
+  "h": 86
+ },
+ "complejo_b": {
+  "frames": 14,
+  "w": 106,
+  "h": 92
+ },
+ "prot_lila": {
+  "frames": 14,
+  "w": 110,
+  "h": 86
+ },
+ "prot_verde": {
+  "frames": 14,
+  "w": 104,
+  "h": 108
+ },
+ "helice": {
+  "frames": 14,
+  "w": 78,
+  "h": 140
+ }
+}

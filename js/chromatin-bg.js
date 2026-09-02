@@ -1,11 +1,11 @@
 /* biopelayo.github.io — chromatin background.
-   Every object on screen is cut from Pelayo's own chromatin illustration
-   (img/sprites/*.webp): the cell with its nucleolus, condensed chromatin,
-   nucleosomes with their wrapped DNA and PTM badges, remodelling complexes,
-   free proteins and a DNA double helix. The code only moves them: chromatin
-   fibres that breathe, a remodeller that tracks along one fibre evicting the
-   nucleosomes in its path and trailing nascent RNA, depth parallax under the
-   pointer, and one giant nucleosome in the foreground. */
+   Every object is cut from Pelayo's own chromatin illustration and animated:
+   each sprite ships as a strip of frames (img/sprites/*.webp) that the canvas
+   plays like a loop, so the nucleosomes breathe, the complexes pulse, the
+   envelope ripples and the helix turns. On top of that the scene moves:
+   chromatin fibres sway, a remodeller tracks along one fibre evicting the
+   nucleosomes in its path and trailing nascent RNA, and depth parallax follows
+   the pointer with one giant nucleosome in the foreground. */
 (function () {
   'use strict';
 
@@ -19,36 +19,34 @@
   var running = true, visible = true, raf = null, t0 = 0, last = 0;
 
   var BASE = 'img/sprites/';
+  /* name: [file, frames in the strip] */
   var SRC = {
-    cell: 'celula.webp',
-    solenoid: 'solenoide.webp',
-    nucBig: 'nucleosoma_big.webp',
-    nucA: 'nucleosoma_a.webp',
-    nucB: 'nucleosoma_b.webp',
-    nucC: 'nucleosoma_c.webp',
-    nucD: 'nucleosoma_d.webp',
-    pol: 'complejo_a.webp',
-    cplxA: 'complejo_b.webp',
-    cplxB: 'prot_lila.webp',
-    cplxC: 'prot_verde.webp',
-    helix: 'helice.webp'
+    cell: ['celula.webp', 12],
+    solenoid: ['solenoide.webp', 12],
+    nucBig: ['nucleosoma_big.webp', 14],
+    nucA: ['nucleosoma_a.webp', 14],
+    nucB: ['nucleosoma_b.webp', 14],
+    nucC: ['nucleosoma_c.webp', 14],
+    nucD: ['nucleosoma_d.webp', 14],
+    pol: ['complejo_a.webp', 14],
+    cplxA: ['complejo_b.webp', 14],
+    cplxB: ['prot_lila.webp', 14],
+    cplxC: ['prot_verde.webp', 14],
+    helix: ['helice.webp', 14]
   };
-  var IMG = {}, ready = 0, wanted = 0;
+  var SP = {};
   for (var k in SRC) {
     if (!SRC.hasOwnProperty(k)) continue;
-    wanted++;
     (function (key) {
       var im = new Image();
       im.decoding = 'async';
-      im.onload = function () { ready++; if (ready === 1) start(); };
-      im.onerror = function () { ready++; };
-      im.src = BASE + SRC[key];
-      IMG[key] = im;
+      im.onload = function () { start(); };
+      im.src = BASE + SRC[key][0];
+      SP[key] = { img: im, frames: SRC[key][1] };
     })(k);
   }
-  function ok(im) { return im && im.complete && im.naturalWidth > 0; }
+  function ready(sp) { return sp && sp.img.complete && sp.img.naturalWidth > 0; }
 
-  /* the linker DNA that joins the sprites, in the illustration's own ink */
   var DNA = { dark: '150,190,163', light: '120,160,132' };
   var RNA = { dark: '186,170,205', light: '150,136,176' };
   function themeLight() { return document.documentElement.getAttribute('data-theme') === 'light'; }
@@ -61,25 +59,38 @@
   function rnd(a, b) { return a + Math.random() * (b - a); }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
 
+  /* Draw one frame of a strip. `cyc` is the object's own loop position. */
+  function blit(sp, x, y, w, rot, alpha, cyc) {
+    if (!ready(sp)) return;
+    var fw = sp.img.naturalWidth / sp.frames, fh = sp.img.naturalHeight;
+    var fi = Math.floor(((cyc % 1) + 1) % 1 * sp.frames) % sp.frames;
+    var h = w * fh / fw;
+    ctx.save();
+    ctx.translate(x, y);
+    if (rot) ctx.rotate(rot);
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(sp.img, fi * fw, 0, fw, fh, -w / 2, -h / 2, w, h);
+    ctx.restore();
+    ctx.globalAlpha = 1;
+  }
+
   function build() {
     var small = Math.min(W, H) < 760;
     var i, b;
     fibres = []; complexes = []; helices = []; giants = [];
 
-    /* the cell: farthest, mostly off the top-left corner, as in the drawing */
     cell = {
       x: rnd(0.02, 0.22) * W, y: rnd(-0.22, -0.02) * H,
       w: Math.max(W, H) * rnd(0.62, 0.85),
-      ph: rnd(0, 6.28), a: 0.20, d: 0.10
+      ph: rnd(0, 1), rate: 0.10, a: 0.20
     };
 
     solenoid = {
       x: rnd(0.55, 0.95) * W, y: rnd(0.02, 0.30) * H,
       w: Math.min(W, H) * rnd(0.22, 0.32),
-      rot: rnd(-0.6, 0.6), ph: rnd(0, 6.28), a: 0.22, d: 0.22
+      rot: rnd(-0.6, 0.6), ph: rnd(0, 1), rate: 0.22, a: 0.22, d: 0.22
     };
 
-    /* chromatin fibres: nucleosome sprites strung on linker DNA */
     var keys = ['nucA', 'nucB', 'nucC', 'nucD'];
     for (i = 0; i < (small ? 2 : 3); i++) {
       var beads = [], nbead = small ? 5 : Math.round(rnd(6, 9));
@@ -93,14 +104,14 @@
         x += Math.cos(ang) * step; y += Math.sin(ang) * step;
         beads.push({
           x: x, y: y, w: size * rnd(0.85, 1.15), key: pick(keys),
-          rot: rnd(0, 6.28), spin: rnd(-0.10, 0.10), ph: rnd(0, 6.28),
+          rot: rnd(0, 6.28), spin: rnd(-0.10, 0.10),
+          ph: rnd(0, 1), rate: rnd(0.34, 0.52), wob: rnd(0, 6.28),
           evict: 0, wx: 0, wy: 0
         });
       }
-      fibres.push({ beads: beads, d: depth, sway: rnd(6, 16), ph: rnd(0, 6.28) });
+      fibres.push({ beads: beads, d: depth, sway: rnd(6, 16), phw: rnd(0, 6.28) });
     }
 
-    /* the remodeller rides the fibre with the most beads on screen */
     function onScreen(bd) { return bd.x > -60 && bd.x < W + 60 && bd.y > -60 && bd.y < H + 60; }
     var host = 0, bestSeen = -1, firstSeen = 0;
     for (i = 0; i < fibres.length; i++) {
@@ -112,7 +123,7 @@
     }
     pol = {
       f: host, s: Math.max(-0.6, firstSeen - 0.6), speed: rnd(0.05, 0.08),
-      w: small ? 74 : 104, trail: [], ph: rnd(0, 6.28)
+      w: small ? 74 : 104, trail: [], ph: rnd(0, 1), rate: 0.75, phw: rnd(0, 6.28)
     };
 
     var ck = ['cplxA', 'cplxB', 'cplxC'];
@@ -120,8 +131,8 @@
       complexes.push({
         x: rnd(0, 1) * W, y: rnd(0, 1) * H, key: pick(ck),
         w: (small ? 46 : 66) * rnd(0.7, 1.3), rot: rnd(0, 6.28),
-        spin: rnd(-0.06, 0.06), ph: rnd(0, 6.28), d: rnd(0.25, 0.7),
-        vx: rnd(-5, 5), vy: rnd(-5, 5)
+        spin: rnd(-0.06, 0.06), ph: rnd(0, 1), rate: rnd(0.45, 0.7),
+        phw: rnd(0, 6.28), d: rnd(0.25, 0.7), vx: rnd(-5, 5), vy: rnd(-5, 5)
       });
     }
 
@@ -129,40 +140,27 @@
       helices.push({
         x: rnd(0.05, 0.95) * W, y: rnd(0.05, 0.95) * H,
         w: (small ? 46 : 66) * rnd(0.8, 1.4), rot: rnd(0, 6.28),
-        ph: rnd(0, 6.28), d: rnd(0.18, 0.5), a: 0.20
+        ph: rnd(0, 1), rate: rnd(0.5, 0.8), phw: rnd(0, 6.28),
+        d: rnd(0.18, 0.5), a: 0.20
       });
     }
 
-    /* the close-up: one giant nucleosome, kept off the headline on wide screens */
     giants.push({
       bx: (small ? rnd(0.2, 0.8) : rnd(0.58, 0.95)) * W,
       by: rnd(0.15, 0.85) * H, x: 0, y: 0,
       w: Math.min(W, H) * (small ? 0.36 : rnd(0.30, 0.38)),
-      rot: rnd(-0.5, 0.5), spin: rnd(-0.022, 0.022), ph: rnd(0, 6.28),
-      d: 1, a: 0.30
+      rot: rnd(-0.5, 0.5), spin: rnd(-0.022, 0.022),
+      ph: rnd(0, 1), rate: 0.30, phw: rnd(0, 6.28), a: 0.30
     });
   }
 
-  function blit(im, x, y, w, rot, alpha) {
-    if (!ok(im)) return;
-    var h = w * im.naturalHeight / im.naturalWidth;
-    ctx.save();
-    ctx.translate(x, y);
-    if (rot) ctx.rotate(rot);
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(im, -w / 2, -h / 2, w, h);
-    ctx.restore();
-    ctx.globalAlpha = 1;
-  }
-
-  /* ---- fibres ----------------------------------------------------------- */
   function fibrePositions(f, t, px, py) {
-    var ox = px * f.d * 34 + Math.sin(t * 0.17 + f.ph) * f.sway;
-    var oy = py * f.d * 34 + Math.cos(t * 0.14 + f.ph) * f.sway;
+    var ox = px * f.d * 34 + Math.sin(t * 0.17 + f.phw) * f.sway;
+    var oy = py * f.d * 34 + Math.cos(t * 0.14 + f.phw) * f.sway;
     for (var i = 0; i < f.beads.length; i++) {
       var b = f.beads[i];
-      b.wx = b.x + ox + Math.sin(t * 0.35 + b.ph) * 5;
-      b.wy = b.y + oy + Math.cos(t * 0.31 + b.ph) * 5;
+      b.wx = b.x + ox + Math.sin(t * 0.35 + b.wob) * 5;
+      b.wy = b.y + oy + Math.cos(t * 0.31 + b.wob) * 5;
     }
   }
 
@@ -175,8 +173,8 @@
       if (i === 0) { ctx.moveTo(bs[i].wx, bs[i].wy); }
       else {
         var p = bs[i - 1], b = bs[i];
-        var mxp = (p.wx + b.wx) / 2 + Math.sin(t * 0.45 + i + f.ph) * b.w * 0.22;
-        var myp = (p.wy + b.wy) / 2 + Math.cos(t * 0.45 + i + f.ph) * b.w * 0.22;
+        var mxp = (p.wx + b.wx) / 2 + Math.sin(t * 0.45 + i + f.phw) * b.w * 0.22;
+        var myp = (p.wy + b.wy) / 2 + Math.cos(t * 0.45 + i + f.phw) * b.w * 0.22;
         ctx.quadraticCurveTo(mxp, myp, b.wx, b.wy);
       }
     }
@@ -188,12 +186,14 @@
     for (i = 0; i < bs.length; i++) {
       var d = bs[i];
       var lift = d.evict * d.w * 0.55;
-      blit(IMG[d.key], d.wx, d.wy - lift, d.w * (1 - d.evict * 0.08),
-           d.rot + t * d.spin + d.evict * 0.9, a * (1 - d.evict * 0.6));
+      /* an evicted nucleosome also speeds up its own loop: it is being shoved */
+      blit(SP[d.key], d.wx, d.wy - lift, d.w * (1 - d.evict * 0.08),
+           d.rot + t * d.spin + d.evict * 0.9,
+           a * (1 - d.evict * 0.6),
+           d.ph + t * (d.rate + d.evict * 1.6));
     }
   }
 
-  /* ---- the remodeller, transcribing ------------------------------------- */
   function updatePol(dt) {
     var f = fibres[pol.f];
     if (!f) return;
@@ -203,7 +203,7 @@
       var d = Math.abs(i - pol.s);
       var target = d < 1.15 ? (1 - d / 1.15) : 0;
       var b = f.beads[i];
-      var rate = target > b.evict ? 6 : 1.1;   /* evicts fast, re-deposits slowly */
+      var rate = target > b.evict ? 6 : 1.1;
       b.evict += (target - b.evict) * Math.min(1, rate * dt);
     }
   }
@@ -220,14 +220,13 @@
     var a = 0.26 + f.d * 0.34;
     var w = pol.w * (0.7 + f.d * 0.5);
 
-    /* nascent RNA, out of the exit channel and trailing behind */
     pol.trail.push({ x: x + Math.cos(ang - 1.5) * w * 0.42, y: y + Math.sin(ang - 1.5) * w * 0.42 });
     if (pol.trail.length > 52) pol.trail.shift();
     if (pol.trail.length > 2) {
       ctx.beginPath();
       for (var i = 0; i < pol.trail.length; i++) {
         var q = pol.trail[i];
-        var wob = Math.sin(i * 0.55 + t * 2.2 + pol.ph) * w * 0.09;
+        var wob = Math.sin(i * 0.55 + t * 2.2 + pol.phw) * w * 0.09;
         var xx = q.x + Math.cos(ang + 1.57) * wob;
         var yy = q.y + Math.sin(ang + 1.57) * wob;
         if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
@@ -238,26 +237,28 @@
       ctx.stroke();
     }
 
-    blit(IMG.pol, x, y, w, ang + Math.sin(t * 1.6 + pol.ph) * 0.05, a);
+    blit(SP.pol, x, y, w, ang + Math.sin(t * 1.6 + pol.phw) * 0.05, a, pol.ph + t * pol.rate);
   }
 
-  /* ---- scene ------------------------------------------------------------ */
   function scene(t, dt, px, py) {
     ctx.clearRect(0, 0, W, H);
     var i;
 
-    blit(IMG.cell, cell.x + px * 10 + Math.sin(t * 0.05 + cell.ph) * 8,
-         cell.y + py * 10 + Math.cos(t * 0.04 + cell.ph) * 8, cell.w, 0, cell.a);
+    blit(SP.cell, cell.x + px * 10 + Math.sin(t * 0.05) * 8,
+         cell.y + py * 10 + Math.cos(t * 0.04) * 8, cell.w, 0, cell.a,
+         cell.ph + t * cell.rate);
 
-    blit(IMG.solenoid, solenoid.x + px * 18 + Math.sin(t * 0.07 + solenoid.ph) * 10,
-         solenoid.y + py * 18 + Math.cos(t * 0.06 + solenoid.ph) * 10,
-         solenoid.w, solenoid.rot + Math.sin(t * 0.09) * 0.05, solenoid.a);
+    blit(SP.solenoid, solenoid.x + px * 18 + Math.sin(t * 0.07) * 10,
+         solenoid.y + py * 18 + Math.cos(t * 0.06) * 10, solenoid.w,
+         solenoid.rot + Math.sin(t * 0.09) * 0.05, solenoid.a,
+         solenoid.ph + t * solenoid.rate);
 
     for (i = 0; i < helices.length; i++) {
       var h = helices[i];
-      blit(IMG.helix, h.x + px * h.d * 26 + Math.sin(t * 0.13 + h.ph) * 9,
-           h.y + py * h.d * 26 + Math.cos(t * 0.11 + h.ph) * 9,
-           h.w, h.rot + Math.sin(t * 0.2 + h.ph) * 0.08, h.a);
+      blit(SP.helix, h.x + px * h.d * 26 + Math.sin(t * 0.13 + h.phw) * 9,
+           h.y + py * h.d * 26 + Math.cos(t * 0.11 + h.phw) * 9,
+           h.w, h.rot + Math.sin(t * 0.2 + h.phw) * 0.08, h.a,
+           h.ph + t * h.rate);
     }
 
     for (i = 0; i < fibres.length; i++) fibrePositions(fibres[i], t, px, py);
@@ -267,18 +268,17 @@
 
     for (i = 0; i < complexes.length; i++) {
       var c = complexes[i];
-      blit(IMG[c.key],
-           c.x + px * c.d * 30 + Math.sin(t * 0.19 + c.ph) * c.vx,
-           c.y + py * c.d * 30 + Math.cos(t * 0.17 + c.ph) * c.vy,
-           c.w * (1 + Math.sin(t * 0.8 + c.ph) * 0.03),
-           c.rot + t * c.spin, 0.14 + c.d * 0.26);
+      blit(SP[c.key],
+           c.x + px * c.d * 30 + Math.sin(t * 0.19 + c.phw) * c.vx,
+           c.y + py * c.d * 30 + Math.cos(t * 0.17 + c.phw) * c.vy,
+           c.w, c.rot + t * c.spin, 0.14 + c.d * 0.26, c.ph + t * c.rate);
     }
 
     for (i = 0; i < giants.length; i++) {
       var g = giants[i];
-      g.x = g.bx + px * 120 + Math.sin(t * 0.12 + g.ph) * 20;
-      g.y = g.by + py * 120 + Math.cos(t * 0.10 + g.ph) * 20;
-      blit(IMG.nucBig, g.x, g.y, g.w, g.rot + t * g.spin, g.a);
+      g.x = g.bx + px * 120 + Math.sin(t * 0.12 + g.phw) * 20;
+      g.y = g.by + py * 120 + Math.cos(t * 0.10 + g.phw) * 20;
+      blit(SP.nucBig, g.x, g.y, g.w, g.rot + t * g.spin, g.a, g.ph + t * g.rate);
     }
   }
 
@@ -324,11 +324,10 @@
   document.addEventListener('mouseleave', function () { mx = -9999; my = -9999; });
 
   if (reduced) {
-    /* one still frame, once the art has arrived */
     var tries = 0;
     (function settle() {
       scene(0, 0, 0, 0);
-      if (ready < wanted && tries++ < 40) setTimeout(settle, 120);
+      if (tries++ < 40) setTimeout(settle, 150);
     })();
     return;
   }

@@ -34,7 +34,7 @@ window.I18N_ES = {
   "exp.phd.role": "Investigador predoctoral · contrato FPI Severo Ochoa",
   "exp.phd.where": "Universidad de Oviedo · Área de Fisiología Vegetal, Dpto. de Biología de Organismos y Sistemas",
   "exp.phd.desc": "Tesis sobre hPTMs en <em>Arabidopsis thaliana</em>: EpiProfile-PLANTS, ontogenia de la roseta y reanálisis de PRIDE.",
-  "exp.phd.when": "nov 2020 – sep 2026",
+  "exp.phd.when": "nov 2020 – may 2025",
   "exp.cnio.role": "Estancia de investigación · Genómica Computacional del Cáncer",
   "exp.cnio.where": "CNIO · Centro Nacional de Investigaciones Oncológicas, Madrid",
   "exp.cnio.desc": "Transcriptómica NGS y pipelines de lncRNA para genómica del cáncer.",
