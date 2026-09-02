@@ -231,6 +231,7 @@
   function renderRepos(list) {
     if (!reposGrid) return;
     reposGrid.innerHTML = '';
+    reposGrid.setAttribute('aria-busy', 'false');
     list.forEach(function (r) { reposGrid.appendChild(repoCard(r)); });
   }
   if (reposGrid) {

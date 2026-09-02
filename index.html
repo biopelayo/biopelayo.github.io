@@ -10,6 +10,8 @@
     content="Personal website of Pelayo González de Lena (biopelayo). Plant epigenomics, quantitative histone PTM proteomics, cancer bioinformatics, RNA-seq, and reproducible workflows."
   />
   <link rel="canonical" href="https://biopelayo.github.io/" />
+  <meta name="theme-color" content="#0f1520" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#2D6A4F" media="(prefers-color-scheme: light)" />
   <meta name="google-site-verification" content="dcs9Nmtgi27pmAUFXShbBetQhhrXW3NnDe37JS5B_H0" />
 
   <!-- OpenGraph / Twitter -->
@@ -48,6 +50,17 @@
       "@type": "Organization",
       "name": "University of Oviedo"
     },
+    "email": "mailto:bio.pelayo@gmail.com",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "ORCID",
+      "value": "https://orcid.org/0000-0001-9409-1457"
+    },
+    "knowsLanguage": [
+      { "@type": "Language", "name": "Spanish", "alternateName": "es" },
+      { "@type": "Language", "name": "English", "alternateName": "en" },
+      { "@type": "Language", "name": "Italian", "alternateName": "it" }
+    ],
     "knowsAbout": ["Plant Epigenomics", "Histone PTM Proteomics", "Cancer Bioinformatics", "LC-MS/MS", "Computational Biology", "Reproducible Pipelines", "AI Agents", "MCP"],
     "sameAs": [
       "https://github.com/biopelayo",
@@ -285,9 +298,18 @@
 
         <article class="resume-item">
           <div class="resume-main">
+            <h3 data-i18n="exp.eprobes.role">Research Contract · eprObes (Horizon Europe)</h3>
+            <p class="resume-where" data-i18n="exp.eprobes.where">CINN&#8211;CSIC · Grant agreement 101080219</p>
+            <p data-i18n="exp.eprobes.desc">Early identification of lifetime obesity risk factors, prognosis and intervention, within a European consortium.</p>
+          </div>
+          <span class="resume-when" data-i18n="exp.eprobes.when">Sep 2025 &#8211; Sep 2026</span>
+        </article>
+
+        <article class="resume-item">
+          <div class="resume-main">
             <h3 data-i18n="exp.phd.role">PhD Researcher · FPI Severo Ochoa Fellow</h3>
             <p class="resume-where" data-i18n="exp.phd.where">University of Oviedo · Plant Physiology Area, Dept. of Organisms and Systems Biology</p>
-            <p data-i18n-html="exp.phd.desc">Thesis on histone PTMs in <em>Arabidopsis thaliana</em>: EpiProfile_PLANTS, rosette ontogeny and PRIDE reanalyses. Includes a CINN&#8211;CSIC contract within the EU project eprObes.</p>
+            <p data-i18n-html="exp.phd.desc">Thesis on histone PTMs in <em>Arabidopsis thaliana</em>: EpiProfile_PLANTS, rosette ontogeny and PRIDE reanalyses.</p>
           </div>
           <span class="resume-when" data-i18n="exp.phd.when">Nov 2020 – Sep 2026</span>
         </article>
@@ -345,7 +367,7 @@
           <span class="resume-when">2016 – 2018</span>
         </article>
 
-        <h2 class="section-title section-title--sub" data-i18n="edu.title">Education</h2>
+        <h2 class="section-title section-title--sub" id="education" data-i18n="edu.title">Education</h2>
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="edu.phd.deg">PhD in Biology (in progress)</h3>
@@ -404,7 +426,8 @@
           <div class="flagship-body">
             <h3>K-CHOPORE</h3>
             <p data-i18n-html="research.kcho.desc">
-              Snakemake + Docker pipeline for Oxford Nanopore direct RNA-seq: basecalling,
+              Eight-stage Snakemake + Docker workflow for Oxford Nanopore direct RNA-seq,
+              orchestrating 15 open-source tools from a single configuration file: basecalling,
               isoform analysis, m6A detection and differential expression, applied to
               <em>Arabidopsis</em>.
             </p>
@@ -461,6 +484,22 @@
           <span class="resume-when">2017</span>
         </article>
 
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3>Analysis of histone post-translational modifications in <em>Arabidopsis thaliana</em></h3>
+            <p class="resume-where" data-i18n="pubs.p3.where">Book chapter · Methods in Molecular Biology (Springer)</p>
+          </div>
+          <span class="resume-when" data-i18n="pubs.p3.when">Under review</span>
+        </article>
+
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3>EpiProfile-PLANTS</h3>
+            <p class="resume-where" data-i18n="pubs.sw.where">Software · extension of EpiProfile 2.0 for plant histone proteomics · MATLAB · GPL-3.0</p>
+            <p class="link-row"><a href="https://github.com/biopelayo/epiprofile-plants" target="_blank" rel="noopener noreferrer">github.com/biopelayo/epiprofile-plants</a></p>
+          </div>
+        </article>
+
         <p class="section-foot"><a href="https://orcid.org/0000-0001-9409-1457" target="_blank" rel="noopener noreferrer" data-i18n="pubs.orcid">Full record on ORCID →</a></p>
       </div>
     </section>
@@ -473,21 +512,38 @@
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="teach.t1.t">Linux for scientists</h3>
-            <p data-i18n="teach.t1.d">Shell, WSL2 and reproducible environments for daily research work.</p>
+            <p data-i18n="teach.t1.d">Shell, WSL2 and reproducible environments for daily research work. University of Oviedo and Oviedo City Council, 2019 to 2025.</p>
           </div>
         </article>
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="teach.t2.t">R and Bioconductor for omics</h3>
-            <p data-i18n="teach.t2.d">From tidyverse basics to RNA-seq analysis and publication-ready figures.</p>
+            <p data-i18n="teach.t2.d">From tidyverse basics to RNA-seq analysis and publication-ready figures. University of Oviedo, 2019 to 2025.</p>
           </div>
         </article>
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="teach.t3.t">Python for bioinformatics</h3>
-            <p data-i18n="teach.t3.d">Core patterns and realistic omics examples, taught at IAAP among others.</p>
+            <p data-i18n="teach.t3.d">Core patterns and realistic omics examples. 20 h as sole instructor at the Asturian Institute of Public Administration (2025).</p>
           </div>
         </article>
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3 data-i18n="teach.sup.t">MSc thesis supervision</h3>
+            <p class="resume-where" data-i18n="teach.sup.w">Open University of Catalonia</p>
+            <p data-i18n="teach.sup.d">Supervised a polygenic risk score pipeline for human complex diseases.</p>
+          </div>
+          <span class="resume-when">2022</span>
+        </article>
+
+        <article class="resume-item">
+          <div class="resume-main">
+            <h3 data-i18n="teach.inv.t">Invited lecturer · Basic Course on Cancer Genomics</h3>
+            <p class="resume-where" data-i18n="teach.inv.w">CIEMAT and CIBERONC · every edition since the first</p>
+          </div>
+          <span class="resume-when">2017 &#8211; 2021</span>
+        </article>
+
         <article class="resume-item">
           <div class="resume-main">
             <h3 data-i18n="teach.t5.t">Claude Code and AI agents</h3>
@@ -552,6 +608,13 @@
       <div class="section-inner">
         <h2 class="section-title" data-i18n="skills.title">Skills &amp; Tech Stack</h2>
         <div class="chips-row"><span class="chip">R</span><span class="chip">Python</span><span class="chip">Linux</span><span class="chip">MATLAB</span><span class="chip">Snakemake</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">Bioconductor</span><span class="chip">Nanopore</span><span class="chip">Claude Code / MCP</span></div>
+        <h3 class="skills-sub" data-i18n="skills.langs">Languages</h3>
+        <div class="chips-row">
+          <span class="chip" data-i18n="skills.l1">Spanish · native</span>
+          <span class="chip" data-i18n="skills.l2">Italian · C1</span>
+          <span class="chip" data-i18n="skills.l3">English · C1 reading, B2 rest</span>
+          <span class="chip" data-i18n="skills.l4">Catalan · B1 listening, A2 rest</span>
+        </div>
       </div>
     </section>
 
@@ -560,7 +623,7 @@
       <div class="section-inner">
         <h2 class="section-title" data-i18n="repos.title">GitHub Repositories</h2>
         <p class="section-sub" data-i18n="repos.sub">Open-source tools, pipelines, courses and project code, loaded live from the GitHub API.</p>
-        <div class="repos-grid" id="repos-grid">
+        <div class="repos-grid" id="repos-grid" aria-live="polite" aria-busy="true">
           <p class="repos-loading" id="repos-loading" data-i18n="repos.loading">Loading repositories…</p>
         </div>
         <p class="section-foot"><a href="https://github.com/biopelayo?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="repos.all">All repositories on GitHub →</a></p>

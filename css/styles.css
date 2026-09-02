@@ -116,7 +116,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
 /* In-content links: animated underline */
 p a, .link-row a, .section-foot a, .contact-list a {
   background-image: linear-gradient(var(--accent-strong), var(--accent-strong));
-  background-size: 0% 2px;
+  background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: left bottom;
   transition: background-size 0.25s var(--ease-out), color 0.2s;
@@ -124,6 +124,7 @@ p a, .link-row a, .section-foot a, .contact-list a {
 }
 p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
   background-size: 100% 2px;
+  background-image: linear-gradient(var(--accent-strong), var(--accent-strong));
   color: var(--accent-strong);
 }
 
@@ -622,6 +623,13 @@ section p { max-width: 68ch; }
 }
 [data-theme="light"] .chip { color: #1B4332; }
 
+.skills-sub {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 26px 0 10px;
+  color: var(--text);
+}
+
 /* 11. REPOS ------------------------------------------------- */
 .repos-grid {
   display: grid;
@@ -872,4 +880,12 @@ section p { max-width: 68ch; }
   .link-row a, .contact-list a, .section-foot a { color: #1B4332; }
   .repo-card, .fade-in { opacity: 1 !important; transform: none !important; }
   .footer { color: #555555; }
+  /* Un enlace impreso sin su direccion es texto muerto: sacar la URL */
+  .link-row a::after, .contact-list a::after, .section-foot a::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555555;
+    word-break: break-all;
+  }
+  .contact-list a[href^="mailto:"]::after, .link-row a[href^="mailto:"]::after { content: ""; }
 }
