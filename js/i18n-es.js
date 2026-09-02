@@ -99,7 +99,6 @@ window.I18N_ES = {
 
   "media.title": "Vídeos y frontera",
   "media.sub": "Vídeos y la frontera de la bioinformática que sigo de cerca.",
-  "media.video.d": "Enseñar bioinformática desde cero, con datos reales. Mira la intro en YouTube.",
   "media.frontier.t": "Radar de frontera",
   "media.f1.d": "Colección curada de LLMs y agentes actuales en biomedicina y bioinformática.",
   "media.f2.d": "El estándar abierto que conecta agentes de IA con herramientas y datos científicos.",

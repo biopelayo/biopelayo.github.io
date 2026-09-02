@@ -255,7 +255,7 @@
   }
   var PINNED = [
     'epiprofile-plants', 'epiprofile-plants-workflow', 'epiprofile-dashboard',
-    'histone-long-table-at', 'kchopore-anac017-drs', 'cap4-histone-ptms-at'
+    'histone-long-table-at', 'kchopore-anac017-drs', 'epiprofile-plants-at-h3h4'
   ];
   var REPO_CACHE = 'pela-repos-v1', REPO_TTL = 6 * 3600e3;
 
