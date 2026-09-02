@@ -32,7 +32,16 @@
     cplxA: ['complejo_b.webp', 8],
     cplxB: ['prot_lila.webp', 8],
     cplxC: ['prot_verde.webp', 8],
-    helix: ['helice.webp', 8]
+    helix: ['helice.webp', 8],
+    /* virus, bacterias y organulos, generados en el mismo estilo */
+    phage: ['phage.webp', 8],
+    virusSpike: ['virusSpike.webp', 8],
+    virusIco: ['virusIco.webp', 8],
+    bacillus: ['bacillus.webp', 8],
+    cocci: ['cocci.webp', 8],
+    spiro: ['spiro.webp', 8],
+    mito: ['mito.webp', 8],
+    ribo: ['ribo.webp', 8]
   };
   var SP = {};
   for (var k in SRC) {
@@ -55,6 +64,20 @@
 
   var fibres = [], complexes = [], helices = [], giants = [];
   var cell = null, solenoid = null, pol = null;
+
+  /* El puntero es una fuente de agitacion local: empuja lo que tiene cerca,
+     lo hace girar y le acelera su propio ciclo. Radio amplio para que se note
+     antes de llegar encima de la pieza. */
+  var PUSH_R = 300, PUSH_F = 26000;
+  function pushAt(x, y) {
+    if (mx < -9000) return null;
+    var dx = x - tx, dy = y - ty;
+    var d2 = dx * dx + dy * dy;
+    if (d2 > PUSH_R * PUSH_R) return null;
+    var d = Math.sqrt(d2) + 12;
+    var f = PUSH_F / (d * d);
+    return { fx: (dx / d) * f, fy: (dy / d) * f, near: 1 - d / PUSH_R };
+  }
 
   function rnd(a, b) { return a + Math.random() * (b - a); }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
@@ -139,14 +162,34 @@
     };
 
     var ck = ['cplxA', 'cplxB', 'cplxC', 'nucC', 'nucA'];
-    var ncplx = small ? 26 : Math.round(Math.min(80, W * H / 15000));
+    if (SP.phage) ck = ck.concat(['phage', 'virusSpike', 'virusIco', 'bacillus',
+                                  'cocci', 'spiro', 'mito', 'ribo']);
+    var MODES = ['drift', 'orbit', 'brownian', 'swim', 'tumble'];
+    var ncplx = small ? 26 : Math.round(Math.min(90, W * H / 14000));
     for (i = 0; i < ncplx; i++) {
+      var mode = pick(MODES);
+      var spd = rnd(6, 26) * (mode === 'swim' ? 2.2 : 1);
+      var head = rnd(0, 6.28);
+      var key = pick(ck);
+      /* virus y bacterias piden algo mas de cuerpo para reconocerse */
+      var bicho = key === 'phage' || key === 'virusSpike' || key === 'virusIco' ||
+                  key === 'bacillus' || key === 'cocci' || key === 'spiro' ||
+                  key === 'mito' || key === 'ribo';
       complexes.push({
-        x: rnd(-0.05, 1.05) * W, y: rnd(-0.05, 1.05) * H, key: pick(ck),
-        w: (small ? 13 : 17) * rnd(0.55, 1.5), rot: rnd(0, 6.28),
-        spin: rnd(-0.18, 0.18), ph: rnd(0, 1), rate: rnd(2.2, 3.5),
-        phw: rnd(0, 6.28), d: rnd(0.25, 0.7), vx: rnd(-5, 5), vy: rnd(-5, 5)
+        x: rnd(-0.05, 1.05) * W, y: rnd(-0.05, 1.05) * H, key: key,
+        w: (small ? 13 : 17) * rnd(0.55, 1.6) * (bicho ? 1.8 : 1), rot: rnd(0, 6.28),
+        spin: rnd(-0.5, 0.5), ph: rnd(0, 1), rate: rnd(1.4, 4.2),
+        phw: rnd(0, 6.28), d: rnd(0.25, 0.85),
+        mode: mode,
+        vx: Math.cos(head) * spd, vy: Math.sin(head) * spd,
+        ox: 0, oy: 0,                       /* desplazamiento por el raton */
+        orbR: rnd(20, 90), orbW: rnd(-0.9, 0.9),
+        cx: 0, cy: 0,
+        next: rnd(0.6, 3.0),                /* cuando cambia de rumbo */
+        faces: Math.random() < 0.5          /* algunas se orientan al avanzar */
       });
+      var c = complexes[complexes.length - 1];
+      c.cx = c.x; c.cy = c.y;
     }
 
     for (i = 0; i < (small ? 4 : 10); i++) {
@@ -167,6 +210,55 @@
     });
   }
 
+  /* Cinco maneras distintas de moverse, para que ninguna pieza vaya a compas
+     con la de al lado: deriva recta, orbita, browniano, nado de bacteria y
+     giro brusco ocasional. El raton se suma a todas ellas. */
+  function updateFloater(c, t, dt) {
+    var m = c.mode;
+    if (m === 'drift') {
+      c.x += c.vx * dt; c.y += c.vy * dt;
+    } else if (m === 'orbit') {
+      c.orbA = (c.orbA || rnd(0, 6.28)) + c.orbW * dt;
+      c.x = c.cx + Math.cos(c.orbA) * c.orbR;
+      c.y = c.cy + Math.sin(c.orbA) * c.orbR * 0.7;
+    } else if (m === 'brownian') {
+      c.vx += rnd(-90, 90) * dt; c.vy += rnd(-90, 90) * dt;
+      c.vx *= 0.96; c.vy *= 0.96;
+      c.x += c.vx * dt; c.y += c.vy * dt;
+    } else if (m === 'swim') {
+      c.x += c.vx * dt; c.y += c.vy * dt;
+      var wig = Math.sin(t * 6 + c.phw) * 26 * dt;
+      c.x += -c.vy * 0.02 * wig; c.y += c.vx * 0.02 * wig;
+    } else {                                   /* tumble */
+      c.next -= dt;
+      if (c.next <= 0) {
+        var a = Math.atan2(c.vy, c.vx) + rnd(-2.2, 2.2);
+        var s = Math.sqrt(c.vx * c.vx + c.vy * c.vy) || 12;
+        c.vx = Math.cos(a) * s; c.vy = Math.sin(a) * s;
+        c.next = rnd(0.5, 2.4);
+      }
+      c.x += c.vx * dt; c.y += c.vy * dt;
+    }
+
+    /* el raton empuja y agita */
+    c.hit = pushAt(c.x, c.y);
+    if (c.hit) {
+      c.ox += c.hit.fx * dt; c.oy += c.hit.fy * dt;
+      c.rot += c.hit.near * 2.2 * dt;
+    }
+    c.ox *= 0.93; c.oy *= 0.93;                /* vuelve despacio a su sitio */
+
+    if (c.faces) c.rot = Math.atan2(c.vy, c.vx);
+    else c.rot += c.spin * dt;
+
+    /* el nucleoplasma no tiene bordes: lo que sale, vuelve a entrar */
+    var mgn = c.w * 1.5;
+    if (c.x < -mgn) { c.x = W + mgn; c.cx = c.x; }
+    if (c.x > W + mgn) { c.x = -mgn; c.cx = c.x; }
+    if (c.y < -mgn) { c.y = H + mgn; c.cy = c.y; }
+    if (c.y > H + mgn) { c.y = -mgn; c.cy = c.y; }
+  }
+
   function fibrePositions(f, t, px, py) {
     var ox = px * f.d * 34 + Math.sin(t * 0.42 + f.phw) * f.sway;
     var oy = py * f.d * 34 + Math.cos(t * 0.36 + f.phw) * f.sway;
@@ -174,6 +266,11 @@
       var b = f.beads[i];
       b.wx = b.x + ox + Math.sin(t * 0.9 + b.wob) * 4;
       b.wy = b.y + oy + Math.cos(t * 0.8 + b.wob) * 4;
+      var h = pushAt(b.wx, b.wy);
+      b.near = h ? h.near : 0;
+      if (h) { b.px2 = (b.px2 || 0) + h.fx * 0.0012; b.py2 = (b.py2 || 0) + h.fy * 0.0012; }
+      b.px2 = (b.px2 || 0) * 0.90; b.py2 = (b.py2 || 0) * 0.90;
+      b.wx += b.px2; b.wy += b.py2;
     }
   }
 
@@ -200,10 +297,11 @@
       var d = bs[i];
       var lift = d.evict * d.w * 0.55;
       /* an evicted nucleosome also speeds up its own loop: it is being shoved */
-      blit(SP[d.key], d.wx, d.wy - lift, d.w * (1 - d.evict * 0.08),
-           d.rot + t * d.spin + d.evict * 0.9,
-           a * (1 - d.evict * 0.6),
-           d.ph + t * (d.rate + d.evict * 4));
+      var nr = d.near || 0;
+      blit(SP[d.key], d.wx, d.wy - lift, d.w * (1 - d.evict * 0.08) * (1 + nr * 0.22),
+           d.rot + t * d.spin + d.evict * 0.9 + nr * 0.8,
+           a * (1 - d.evict * 0.6) * (1 + nr * 0.9),
+           d.ph + t * (d.rate + d.evict * 4 + nr * 6));
     }
   }
 
@@ -281,10 +379,15 @@
 
     for (i = 0; i < complexes.length; i++) {
       var c = complexes[i];
+      updateFloater(c, t, dt);
+      var agitado = c.hit ? c.hit.near : 0;
       blit(SP[c.key],
-           c.x + px * c.d * 30 + Math.sin(t * 0.19 + c.phw) * c.vx,
-           c.y + py * c.d * 30 + Math.cos(t * 0.17 + c.phw) * c.vy,
-           c.w, c.rot + t * c.spin, 0.14 + c.d * 0.26, c.ph + t * c.rate);
+           c.x + c.ox + px * c.d * 30,
+           c.y + c.oy + py * c.d * 30,
+           c.w * (1 + agitado * 0.18),
+           c.rot,
+           (0.14 + c.d * 0.26) * (1 + agitado * 0.8),
+           c.ph + t * c.rate * (1 + agitado * 2.5));
     }
 
     for (i = 0; i < giants.length; i++) {
@@ -301,7 +404,7 @@
     var t = (now - t0) / 1000;
     var dt = Math.min(0.05, last ? (now - last) / 1000 : 0.016);
     last = now;
-    if (mx > -9000) { tx += (mx - tx) * 0.06; ty += (my - ty) * 0.06; }
+    if (mx > -9000) { tx += (mx - tx) * 0.22; ty += (my - ty) * 0.22; }
     scene(t, dt, tx > -9000 ? (tx / W - 0.5) * 2 : 0, ty > -9000 ? (ty / H - 0.5) * 2 : 0);
     raf = window.requestAnimationFrame(frame);
   }
