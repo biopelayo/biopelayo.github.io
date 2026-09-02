@@ -16,7 +16,7 @@ window.I18N_ES = {
   "nav.research": "Investigación",
   "nav.publications": "Publicaciones",
   "nav.teaching": "Docencia",
-  "nav.media": "Vídeos",
+  "nav.media": "Referencias",
   "nav.skills": "Habilidades",
   "nav.repos": "Repositorios",
   "nav.beyond": "Fuera del laboratorio",
@@ -64,12 +64,12 @@ window.I18N_ES = {
   "edu.bsc.where": "Universidad de Oviedo · Biología Celular y Molecular",
 
   "research.title": "Investigación y proyectos",
-  "research.epi.desc": "Suite en MATLAB que extiende EpiProfile 2.0 a la proteómica de histonas de plantas, con catálogos de péptidos curados para tres especies vegetales y algales, un workflow Snakemake + Docker y un dashboard interactivo.",
+  "research.epi.desc": "Suite en MATLAB que extiende EpiProfile 2.0 a la proteómica de histonas de plantas. Trae catálogos de péptidos curados para tres especies vegetales y algales, un workflow Snakemake + Docker y un dashboard para leer la salida.",
   "research.kcho.desc": "Workflow de ocho etapas en Snakemake + Docker para direct RNA-seq de Oxford Nanopore, que orquesta 15 herramientas de código abierto desde un único fichero de configuración: basecalling, isoformas, detección de m6A y expresión diferencial, aplicado a <em>Arabidopsis</em>.",
   "research.p1.t": "Atlas de ontogenia de la roseta de <em>Arabidopsis</em>",
-  "research.p1.d": "hPTMs a lo largo de cuatro estadios del desarrollo de la roseta, con el QC por delante.",
+  "research.p1.d": "hPTMs a lo largo de cuatro estadios del desarrollo de la roseta, con el control de calidad hecho antes que la estadística.",
   "research.p2.t": "Reanálisis públicos de PRIDE",
-  "research.p2.d": "Reanálisis de datasets públicos de proteómica bajo un mismo contrato de procesado.",
+  "research.p2.d": "Datasets públicos de proteómica reprocesados de principio a fin con el mismo pipeline.",
   "research.p4.t": "Genómica y transcriptómica del cáncer",
   "research.p4.d": "RNA-seq, expresión diferencial y multi-ómica aplicadas a oncología en el CNIO.",
   "research.p5.d": "Plataforma multimodal de imagen biomédica: retina, histopatología, radiología y transcriptómica espacial.",
@@ -95,19 +95,19 @@ window.I18N_ES = {
   "teach.inv.t": "Docente invitado · Curso Básico de Genómica del Cáncer",
   "teach.inv.w": "CIEMAT y CIBERONC · en todas las ediciones desde la primera",
   "teach.t5.t": "Claude Code y agentes de IA",
-  "teach.t5.d": "Tutoriales y flujos de automatización de la investigación con agentes de IA.",
+  "teach.t5.d": "Cómo poner agentes de IA a trabajar en análisis reales, del entorno al pipeline.",
 
-  "media.title": "Vídeos y frontera",
-  "media.sub": "Vídeos y la frontera de la bioinformática que sigo de cerca.",
-  "media.frontier.t": "Radar de frontera",
-  "media.f1.d": "Colección curada de LLMs y agentes actuales en biomedicina y bioinformática.",
+  "media.title": "Lo que sigo",
+  "media.sub": "Herramientas, estándares y gente que leo en bioinformática e IA.",
+  
+  "media.f1.d": "Una lista de LLMs y agentes para biomedicina y bioinformática, al día.",
   "media.f2.d": "El estándar abierto que conecta agentes de IA con herramientas y datos científicos.",
-  "media.f3.d": "Servidor MCP que pone PubMed, ClinicalTrials y bases genómicas en manos de agentes.",
+  "media.f3.d": "Servidor MCP que da a los agentes acceso a PubMed, ClinicalTrials y bases genómicas.",
   "media.f4.t": "Voces que sigo",
-  "media.f4.d": "<a href=\"https://www.linkedin.com/in/tommy-tang-bioinformatics/\" target=\"_blank\" rel=\"noopener noreferrer\">Tommy Tang</a>, <a href=\"https://www.linkedin.com/in/laboratory/\" target=\"_blank\" rel=\"noopener noreferrer\">Lior Pachter</a> y <a href=\"https://www.linkedin.com/in/xsliu/\" target=\"_blank\" rel=\"noopener noreferrer\">Xiaole Shirley Liu</a>: single-cell, RNA-seq y epigenómica del cáncer que merecen lectura.",
+  "media.f4.d": "<a href=\"https://www.linkedin.com/in/tommy-tang-bioinformatics/\" target=\"_blank\" rel=\"noopener noreferrer\">Tommy Tang</a>, <a href=\"https://www.linkedin.com/in/laboratory/\" target=\"_blank\" rel=\"noopener noreferrer\">Lior Pachter</a> y <a href=\"https://www.linkedin.com/in/xsliu/\" target=\"_blank\" rel=\"noopener noreferrer\">Xiaole Shirley Liu</a>: single-cell, RNA-seq y epigenómica del cáncer.",
 
   "nav.linkedin": "LinkedIn",
-  "li.sub": "Lo que publico, comparto y comento en LinkedIn, seleccionado a mano.",
+  "li.sub": "Papers y publicaciones que marco en LinkedIn, uno a uno.",
   "hero.li": "Lo último en LinkedIn:",
 
   "skills.title": "Habilidades y tecnologías",
@@ -118,19 +118,19 @@ window.I18N_ES = {
   "skills.l4": "Catalán · B1 comprensión oral, A2 resto",
 
   "repos.title": "Repositorios de GitHub",
-  "repos.sub": "Herramientas de código abierto, pipelines, cursos y código de proyectos, cargados en vivo desde la API de GitHub.",
+  "repos.sub": "El software de la tesis y los pipelines que lo rodean, cargados en vivo desde GitHub.",
   "repos.loading": "Cargando repositorios…",
   "repos.all": "Todos los repositorios en GitHub →",
 
   "beyond.title": "Fuera del laboratorio",
   "beyond.f.t": "Delantero · Liga Asterov",
-  "beyond.f.d": "El fútbol es mi botón de reinicio. Delantero del San Claudio (Liga Asterov): 20 goles en 21 partidos, 9.º goleador de 1.ª División. Copa Asterov 2026 con el Laviana CF: 2 goles en 4 partidos.",
+  "beyond.f.d": "Juego todas las semanas. Delantero del San Claudio (Liga Asterov): 20 goles en 21 partidos, 9.º goleador de 1.ª División. Copa Asterov 2026 con el Laviana CF: 2 goles en 4 partidos.",
   "beyond.f.dash": "Dashboard interactivo",
   "beyond.f.team": "Ficha del equipo",
 
   "contact.title": "Contacto y enlaces",
   "contact.cv": "Curriculum vitae (PDF)",
-  "contact.blurb": "Trabajo en el Departamento de Biología de Organismos y Sistemas de la Universidad de Oviedo. Abierto a conversaciones sobre cromatina vegetal, bioinformática del cáncer, proteómica de hPTMs y flujos reproducibles.",
+  "contact.blurb": "Trabajo en el Departamento de Biología de Organismos y Sistemas de la Universidad de Oviedo. Escríbeme sobre cromatina vegetal, proteómica de hPTMs, bioinformática del cáncer o pipelines reproducibles.",
 
   "footer.line": "Hecho a mano, sin frameworks. v2"
 };
