@@ -92,6 +92,12 @@ em { font-style: italic; }
   outline-offset: 2px;
   border-radius: 4px;
 }
+/* Sobre el verde de la nav clara el anillo verde no se ve: anillo doble */
+[data-theme="light"] .sidenav :focus-visible,
+[data-theme="light"] .topbar :focus-visible {
+  outline: 2px solid #ffffff;
+  box-shadow: 0 0 0 4px #1B4332;
+}
 
 /* Themed scrollbar — the parts we did not draw still carry the design */
 html { scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
@@ -112,6 +118,17 @@ html { scrollbar-width: thin; scrollbar-color: var(--dim) transparent; }
   font-weight: 600;
 }
 .skip-link:focus { left: 0; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* In-content links: animated underline */
 p a, .link-row a, .section-foot a, .contact-list a {
@@ -169,6 +186,8 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
   color: var(--sidenav-text);
 }
 .nav-toggle-label {
+  background: none;
+  border: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -486,7 +505,7 @@ section p { max-width: 68ch; }
 [data-theme="light"] .btn-solid { background: #52B788; color: #0f1520; box-shadow: 0 6px 20px rgba(82, 183, 136, 0.35); }
 .btn-solid:hover { box-shadow: 0 10px 26px rgba(52, 217, 110, 0.35); }
 .btn-line {
-  border: 1px solid rgba(228, 232, 238, 0.35);
+  border: 1px solid rgba(228, 232, 238, 0.55);
   color: var(--hero-text);
 }
 .btn-line:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
@@ -821,12 +840,18 @@ section p { max-width: 68ch; }
 
   .sidenav {
     transform: translateX(-100%);
-    transition: transform 0.3s var(--ease-out);
+    visibility: hidden;
+    transition: transform 0.3s var(--ease-out), visibility 0s 0.3s;
     padding-top: 76px;
     width: min(320px, 84vw);
     background: var(--sidenav-bg-mobile);
   }
-  #nav-toggle:checked ~ .sidenav { transform: translateX(0); box-shadow: 24px 0 60px rgba(0,0,0,0.35); }
+  #nav-toggle:checked ~ .sidenav {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s var(--ease-out), visibility 0s;
+    box-shadow: 24px 0 60px rgba(0,0,0,0.35);
+  }
 
   main { margin-left: 0; padding-top: 50px; }
 

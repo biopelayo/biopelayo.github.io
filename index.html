@@ -210,21 +210,21 @@
     </symbol>
   </svg>
 
-  <a class="skip-link" href="#about" data-i18n="skip">Skip to main content</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
 
   <!-- Mobile top bar -->
   <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
   <div class="topbar">
     <a href="#about" class="topbar-brand">Pelamovic</a>
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation" role="button" aria-expanded="false" tabindex="0" id="nav-toggle-label">
+    <button type="button" class="nav-toggle-label" id="nav-toggle-label" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidenav">
       <span></span><span></span><span></span>
-    </label>
+    </button>
   </div>
 
   <!-- Side navigation -->
-  <header class="sidenav" id="sidenav" role="banner">
+  <header class="sidenav" id="sidenav">
     <a href="#about" class="sidenav-identity">
-      <img class="sidenav-photo" src="img/profile.jpg" alt="Pelamovic logo, avatar of Pelayo González de Lena" width="460" height="460" />
+      <img class="sidenav-photo" src="img/profile.jpg" alt="" width="460" height="460" />
       <span class="sidenav-name">Pelayo González de Lena</span>
       <span class="sidenav-role" data-i18n="side.role">Bioinformatician · Plant Epigenomics</span>
     </a>
@@ -266,10 +266,10 @@
       <canvas id="nucleosome-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <h1 class="hero-name"><span class="hero-name-b">Pelayo</span> <span class="hero-name-a">González</span><br /><span class="hero-name-b">de Lena</span> <span class="hero-name-a">Rodríguez</span></h1>
-        <p class="hero-typing" aria-label="PhD candidate, computational biologist, plant epigenomics researcher">
+        <p class="hero-typing"><span class="visually-hidden" data-i18n="hero.roles">PhD candidate, computational biologist, plant epigenomics researcher</span>
           <span class="typing-text" id="typing-target" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true"></span>
         </p>
-        <div class="hero-stack" aria-label="Core stack">
+        <div class="hero-stack">
           <span class="stack-ico stack-ico--python" role="img" aria-label="Python" title="Python"></span>
           <span class="stack-ico stack-ico--r" role="img" aria-label="R" title="R"></span>
           <span class="stack-ico stack-ico--bash" role="img" aria-label="Bash" title="Bash"></span>
@@ -282,6 +282,9 @@
           <a class="btn btn-solid" href="#research" data-i18n="hero.cta1">Explore research</a>
           <a class="btn btn-line" href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer">
             <svg class="btn-ico" aria-hidden="true"><use href="#ico-github"/></svg> GitHub
+          </a>
+          <a class="btn btn-line" href="cv/Pelayo_Gonzalez_de_Lena_CV_EN.pdf" download>
+            <svg class="btn-ico" aria-hidden="true"><use href="#ico-book"/></svg> <span data-i18n="hero.cv">Download CV</span>
           </a>
         </div>
         <a class="hero-linkedin" id="hero-linkedin" href="#linkedin" hidden>
@@ -432,7 +435,7 @@
               <em>Arabidopsis</em>.
             </p>
             <p class="link-row">
-              <a href="https://github.com/biopelayo/K-CHOPORE" target="_blank" rel="noopener noreferrer">K-CHOPORE</a>
+              <a href="https://github.com/biopelayo/kchopore-anac017-drs" target="_blank" rel="noopener noreferrer">kchopore-anac017-drs</a>
             </p>
           </div>
         </article>
@@ -449,10 +452,6 @@
           <li>
             <h3 data-i18n="research.p4.t">Cancer genomics &amp; transcriptomics</h3>
             <p data-i18n="research.p4.d">RNA-seq, differential expression and multi-omics approaches to oncology research at CNIO.</p>
-          </li>
-          <li>
-            <h3>VIDIO <a class="mini-link" href="https://github.com/biopelayo/VIDIO" target="_blank" rel="noopener noreferrer" aria-label="VIDIO on GitHub"><svg aria-hidden="true"><use href="#ico-external"/></svg></a></h3>
-            <p data-i18n="research.p5.d">Multi-modal biomedical imaging platform: retinal imaging, histopathology, radiology and spatial transcriptomics.</p>
           </li>
         </ul>
       </div>
@@ -596,7 +595,7 @@
         <p class="section-sub" data-i18n="li.sub">What I post, share and comment on LinkedIn, hand-picked.</p>
         <div class="li-carousel">
           <button type="button" class="li-arrow li-arrow--prev" id="li-prev" aria-label="Previous">&#8249;</button>
-          <div class="li-track" id="li-track" tabindex="0" aria-label="LinkedIn activity carousel"></div>
+          <div class="li-track" id="li-track" tabindex="0" role="group" aria-label="LinkedIn activity carousel"></div>
           <button type="button" class="li-arrow li-arrow--next" id="li-next" aria-label="Next">&#8250;</button>
         </div>
         <p class="li-count mono" id="li-count" aria-hidden="true"></p>
@@ -625,6 +624,7 @@
         <p class="section-sub" data-i18n="repos.sub">Open-source tools, pipelines, courses and project code, loaded live from the GitHub API.</p>
         <div class="repos-grid" id="repos-grid" aria-live="polite" aria-busy="true">
           <p class="repos-loading" id="repos-loading" data-i18n="repos.loading">Loading repositories…</p>
+          <noscript><p class="repos-loading">This list needs JavaScript. <a href="https://github.com/biopelayo?tab=repositories">See the repositories on GitHub</a>.</p></noscript>
         </div>
         <p class="section-foot"><a href="https://github.com/biopelayo?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="repos.all">All repositories on GitHub →</a></p>
       </div>
@@ -664,6 +664,7 @@
           reproducible workflows.
         </p>
         <ul class="contact-list">
+          <li><a href="cv/Pelayo_Gonzalez_de_Lena_CV_EN.pdf" download><svg aria-hidden="true"><use href="#ico-book"/></svg> <span data-i18n="contact.cv">Curriculum vitae (PDF)</span></a></li>
           <li><a href="mailto:bio.pelayo@gmail.com"><svg aria-hidden="true"><use href="#ico-mail"/></svg> bio.pelayo@gmail.com</a></li>
           <li><a href="mailto:uo172378@uniovi.es"><svg aria-hidden="true"><use href="#ico-mail"/></svg> uo172378@uniovi.es</a></li>
           <li><a href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true"><use href="#ico-github"/></svg> github.com/biopelayo</a></li>
@@ -675,10 +676,11 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <p>&copy; <span id="year"></span> Pelayo González de Lena · <span data-i18n="footer.line">Built by hand, no frameworks. v2</span></p>
-    </footer>
   </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year">2026</span> Pelayo González de Lena · <span data-i18n="footer.line">Built by hand, no frameworks. v2</span></p>
+    </footer>
 
   <script src="js/chromatin-bg.js" defer></script>
   <script src="js/i18n-es.js" defer></script>

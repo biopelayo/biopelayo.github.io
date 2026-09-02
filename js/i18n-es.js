@@ -15,7 +15,9 @@ window.I18N_ES = {
   "nav.beyond": "Fuera del laboratorio",
   "nav.contact": "Contacto",
 
+  "hero.roles": "Doctorando, biólogo computacional, investigador en epigenómica vegetal",
   "hero.cta1": "Ver investigación",
+  "hero.cv": "Descargar CV",
 
   "exp.title": "Experiencia",
   "exp.eprobes.role": "Contrato de investigación · eprObes (Horizonte Europa)",
@@ -119,6 +121,7 @@ window.I18N_ES = {
   "beyond.f.team": "Ficha del equipo",
 
   "contact.title": "Contacto y enlaces",
+  "contact.cv": "Curriculum vitae (PDF)",
   "contact.blurb": "Departamento de Biología de Organismos y Sistemas, Universidad de Oviedo. Abierto a conversaciones sobre cromatina vegetal, bioinformática del cáncer, proteómica de hPTMs y flujos reproducibles.",
 
   "footer.line": "Hecho a mano, sin frameworks. v2"

@@ -178,19 +178,30 @@
       if (!target) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-      if (navToggle) navToggle.checked = false;
+      if (history.pushState) history.pushState(null, '', targetId);
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+      if (navToggle) { navToggle.checked = false; syncToggle(); }
     });
   });
   var toggleLabel = document.getElementById('nav-toggle-label');
+  function syncToggle() {
+    if (toggleLabel && navToggle) toggleLabel.setAttribute('aria-expanded', navToggle.checked ? 'true' : 'false');
+  }
   if (navToggle && toggleLabel) {
-    navToggle.addEventListener('change', function () {
-      toggleLabel.setAttribute('aria-expanded', navToggle.checked ? 'true' : 'false');
+    toggleLabel.addEventListener('click', function () {
+      navToggle.checked = !navToggle.checked;
+      syncToggle();
+      if (navToggle.checked) {
+        var first = document.querySelector('.sidenav-links a');
+        if (first) first.focus();
+      }
     });
-    toggleLabel.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        navToggle.checked = !navToggle.checked;
-        navToggle.dispatchEvent(new Event('change'));
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navToggle.checked) {
+        navToggle.checked = false;
+        syncToggle();
+        toggleLabel.focus();
       }
     });
   }
@@ -203,7 +214,8 @@
   var reposGrid = document.getElementById('repos-grid');
   var FALLBACK_REPOS = [
     { name: 'epiprofile-plants', html_url: 'https://github.com/biopelayo/epiprofile-plants', description: 'EpiProfile 2.0 extension for plant histone PTM quantification (MATLAB).', language: 'MATLAB' },
-    { name: 'K-CHOPORE', html_url: 'https://github.com/biopelayo/K-CHOPORE', description: '9-stage Snakemake + Docker pipeline for nanopore direct RNA-seq.', language: 'Python' },
+    { name: 'kchopore-anac017-drs', html_url: 'https://github.com/biopelayo/kchopore-anac017-drs', description: 'Nanopore direct RNA-seq reanalysis of the Arabidopsis anac017 mutant.', language: 'Python' },
+    { name: 'histone-long-table-at', html_url: 'https://github.com/biopelayo/histone-long-table-at', description: 'Tidy long-format master table for histone PTMs in Arabidopsis.', language: 'Python' },
     { name: 'epiprofile-plants-workflow', html_url: 'https://github.com/biopelayo/epiprofile-plants-workflow', description: 'Snakemake + Docker workflow: PRIDE FTP, msconvert, MS1/MS2 extraction.', language: 'Python' },
     { name: 'epiprofile-dashboard', html_url: 'https://github.com/biopelayo/epiprofile-dashboard', description: 'Dash/Plotly dashboard with 7 analysis tabs for EpiProfile outputs.', language: 'Python' }
   ];
@@ -230,21 +242,46 @@
   }
   function renderRepos(list) {
     if (!reposGrid) return;
+    reposGrid.setAttribute('aria-busy', 'true');
     reposGrid.innerHTML = '';
-    reposGrid.setAttribute('aria-busy', 'false');
     list.forEach(function (r) { reposGrid.appendChild(repoCard(r)); });
+    reposGrid.setAttribute('aria-busy', 'false');
   }
+  var PINNED = [
+    'epiprofile-plants', 'epiprofile-plants-workflow', 'epiprofile-dashboard',
+    'histone-long-table-at', 'kchopore-anac017-drs', 'cap4-histone-ptms-at'
+  ];
+  var REPO_CACHE = 'pela-repos-v1', REPO_TTL = 6 * 3600e3;
+
   if (reposGrid) {
-    fetch('https://api.github.com/users/biopelayo/repos?per_page=100&sort=pushed')
-      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
-      .then(function (repos) {
-        var own = repos.filter(function (r) { return !r.fork && !r.archived; });
-        own.sort(function (a, b) {
-          return (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at));
-        });
-        renderRepos(own.slice(0, 4));
-      })
-      .catch(function () { renderRepos(FALLBACK_REPOS); });
+    var cached = null;
+    try {
+      var raw = sessionStorage.getItem(REPO_CACHE);
+      if (raw) {
+        var c = JSON.parse(raw);
+        if (c && (Date.now() - c.t) < REPO_TTL) cached = c.d;
+      }
+    } catch (e) {}
+
+    if (cached) { renderRepos(cached); }
+    else {
+      fetch('https://api.github.com/users/biopelayo/repos?per_page=100&sort=pushed')
+        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+        .then(function (repos) {
+          var byName = {};
+          repos.forEach(function (r) { byName[r.name] = r; });
+          var list = [];
+          PINNED.forEach(function (name) {
+            var r = byName[name];
+            if (r) list.push({ name: r.name, html_url: r.html_url, description: r.description,
+                               language: r.language, stargazers_count: r.stargazers_count });
+          });
+          if (!list.length) throw new Error('no pinned repos');
+          try { sessionStorage.setItem(REPO_CACHE, JSON.stringify({ t: Date.now(), d: list })); } catch (e) {}
+          renderRepos(list);
+        })
+        .catch(function () { renderRepos(FALLBACK_REPOS); });
+    }
   }
 
   /* ===== LINKEDIN CAROUSEL (data/linkedin.json, curated by hand) ===== */
