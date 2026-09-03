@@ -261,13 +261,16 @@
     </div>
   </header>
 
+  <!-- Fondo. Va fuera del hero a proposito: dentro quedaba por delante del
+       contenido, porque el hero abre contexto de apilamiento con z-index 1. -->
+  <video id="cell-video" aria-hidden="true" muted loop playsinline
+         preload="none" poster="video/cell-poster.jpg"></video>
+  <div id="cell-scrim" aria-hidden="true"></div>
+  <canvas id="nucleosome-canvas" aria-hidden="true"></canvas>
+
   <main id="main">
     <!-- About / hero -->
     <section id="about" class="hero">
-      <video id="cell-video" aria-hidden="true" muted loop playsinline
-             preload="none" poster="video/cell-poster.jpg"></video>
-      <div id="cell-scrim" aria-hidden="true"></div>
-      <canvas id="nucleosome-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <h1 class="hero-name"><span class="hero-name-b">Pelayo</span> <span class="hero-name-a">González</span><br /><span class="hero-name-b">de Lena</span> <span class="hero-name-a">Rodríguez</span></h1>
         <p class="hero-typing"><span class="visually-hidden" data-i18n="hero.roles">PhD candidate, computational biologist, plant epigenomics researcher</span>

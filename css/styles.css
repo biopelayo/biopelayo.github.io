@@ -8,7 +8,7 @@
 /* 1. TOKENS ------------------------------------------------- */
 :root {
   --bg: #0f1520;
-  --surface: rgba(19, 27, 41, 0.93);
+  --surface: #151d2b;
   --surface-solid: #151d2b;
   --text: #e4e8ee;
   --muted: #9aa8bc;
@@ -192,26 +192,23 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
         rgba(15, 21, 32, 0.72) 100%);
   }
 }
-[data-theme="light"] #nucleosome-canvas {
-  position: absolute;
-  height: 100%;
-}
+
 [data-theme="light"] #cell-video { opacity: 0.34; }
 
 /* Pasado el hero el texto ocupa todo el ancho: el video baja para que se lea,
    pero no se apaga, asi el fondo sigue vivo al bajar por la pagina. */
-html.past-hero #cell-video { opacity: 0.15; }
-html.past-hero[data-theme="light"] #cell-video { opacity: 0.22; }
+html.past-hero #cell-video { opacity: 0.34; }
+html.past-hero[data-theme="light"] #cell-video { opacity: 0.3; }
 
 /* Y el velo deja de ser lateral: ahi ya cubre por igual. */
 html.past-hero #cell-scrim {
-  background: rgba(15, 21, 32, 0.82);
+  background: rgba(15, 21, 32, 0.55);
 }
 html.past-hero[data-theme="light"] #cell-scrim {
-  background: rgba(242, 246, 243, 0.88);
+  background: rgba(242, 246, 243, 0.62);
 }
 /* Las piezas tambien bajan: en el hero son el motivo, aqui solo textura. */
-html.past-hero #nucleosome-canvas { opacity: 0.4; }
+html.past-hero #nucleosome-canvas { opacity: 0.7; }
 #nucleosome-canvas { transition: opacity 0.8s ease; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -412,14 +409,15 @@ main {
   border-radius: var(--radius);
 }
 [data-theme="light"] .section {
-  margin: 0;
-  /* Translucido, para que el movimiento del fondo se intuya tambien de dia. */
-  background: rgba(242, 246, 243, 0.88);
-  border: none;
-  border-radius: 0;
+  /* Mismo aire que en oscuro: el fondo asoma alrededor del panel, no detras
+     del texto. Antes iban a sangre y tapaban el video por completo. */
+  margin: 26px clamp(14px, 3vw, 40px);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 /* Light: alternate pale-green grounds give the page rhythm without panels */
-[data-theme="light"] .section:nth-of-type(odd) { background: rgba(232, 241, 235, 0.88); }
+[data-theme="light"] .section:nth-of-type(odd) { background: var(--bg-alt); }
 
 .section-title {
   font-family: var(--font-display);
@@ -470,7 +468,9 @@ section p { max-width: 68ch; }
   overflow: hidden;
 }
 [data-theme="light"] .hero {
-  background: linear-gradient(135deg, #0f1520 0%, #111d30 45%, #14231f 100%);
+  /* Con alfa, para que el video se vea por debajo: antes era opaco y lo tapaba. */
+  background: linear-gradient(135deg, rgba(15, 21, 32, 0.82) 0%,
+              rgba(17, 29, 48, 0.78) 45%, rgba(20, 35, 31, 0.82) 100%);
 }
 .hero-inner {
   position: relative;
