@@ -9,6 +9,8 @@
 :root {
   --bg: #0f1520;
   --surface: #151d2b;
+  --hover-ground: rgba(82, 183, 136, 0.10);
+  --hover-title: var(--accent);
   --surface-solid: #151d2b;
   --text: #e4e8ee;
   --muted: #9aa8bc;
@@ -40,6 +42,8 @@
   --bg: #F2F6F3;
   --bg-alt: #E7F0EA;
   --surface: #ffffff;
+  --hover-ground: rgba(45, 106, 79, 0.11);
+  --hover-title: #1B7A4F;
   --surface-solid: #ffffff;
   --text: #26302B;
   --muted: #4E5B54;
@@ -874,6 +878,81 @@ section p { max-width: 68ch; }
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--dim);
+}
+
+/* 13b. REALCE AL PASAR --------------------------------------- */
+/* La entrada bajo el cursor se aviva: el secundario sube al color principal,
+   el puesto se pone verde y el bloque coge fondo propio. Asi la linea que
+   estas leyendo se despega del fondo aunque pase una fibra por detras. */
+.resume-item,
+.resume-item .resume-main,
+.resume-item .resume-where,
+.resume-item .resume-when,
+.resume-item h3,
+.project-card,
+.repo-card,
+.li-card {
+  transition: color 0.22s ease, background-color 0.22s ease,
+              border-color 0.22s ease, transform 0.22s ease;
+}
+
+.resume-item {
+  position: relative;
+  margin-inline: -16px;
+  padding-inline: 16px;
+  border-radius: 10px;
+}
+.resume-item:hover,
+.resume-item:focus-within {
+  background: var(--hover-ground);
+}
+.resume-item:hover .resume-where,
+.resume-item:focus-within .resume-where,
+.resume-item:hover .resume-when,
+.resume-item:focus-within .resume-when {
+  color: var(--text);
+}
+.resume-item:hover h3,
+.resume-item:focus-within h3 {
+  color: var(--hover-title);
+}
+
+/* Una barra de acento a la izquierda: es la senal que se ve sin mirar. */
+.resume-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.resume-item:hover::before,
+.resume-item:focus-within::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.project-card:hover,
+.repo-card:hover,
+.li-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Los enlaces del cuerpo tambien: subrayado visible al pasar, no solo color. */
+.section-inner p a:hover,
+.section-inner li a:hover {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+@media (hover: none) {
+  /* Sin raton no hay realce que valga: el estado base ya tiene que leerse. */
+  .resume-item { margin-inline: 0; padding-inline: 0; }
 }
 
 /* 14. MOTION ------------------------------------------------ */
