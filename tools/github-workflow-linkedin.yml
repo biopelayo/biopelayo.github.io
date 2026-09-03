@@ -1,0 +1,61 @@
+# Publica en el carrusel desde un issue, para poder hacerlo desde el movil.
+name: LinkedIn carousel
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publicar:
+    if: contains(join(github.event.issue.labels.*.name, ','), 'linkedin')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Volcar el cuerpo del issue
+        env:
+          CUERPO: ${{ github.event.issue.body }}
+        run: printf '%s' "$CUERPO" > /tmp/issue.md
+
+      - name: Anadir la entrada
+        id: add
+        run: python tools/li_from_issue.py --body-file /tmp/issue.md | tee /tmp/salida.txt
+
+      - name: Commit
+        id: commit
+        run: |
+          if git diff --quiet -- data/linkedin.json; then
+            echo "cambios=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/linkedin.json
+          git commit -m "LinkedIn: ${{ github.event.issue.title }}
+
+          Desde el issue #${{ github.event.issue.number }}."
+          git push
+          echo "cambios=si" >> "$GITHUB_OUTPUT"
+
+      - name: Cerrar el issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ steps.commit.outputs.cambios }}" = "si" ]; then
+            gh issue comment ${{ github.event.issue.number }} \
+              --body "Publicado en https://biopelayo.github.io/#linkedin
+
+          $(cat /tmp/salida.txt)"
+            gh issue close ${{ github.event.issue.number }}
+          else
+            gh issue comment ${{ github.event.issue.number }} \
+              --body "Sin cambios: ese enlace ya estaba en el carrusel."
+          fi

@@ -1,0 +1,37 @@
+name: Share on the site
+description: Publish a link in the LinkedIn carousel of biopelayo.github.io
+title: "share: "
+labels: ["linkedin"]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The LinkedIn post, the paper, the repo. Tracking parameters are stripped.
+      placeholder: https://www.linkedin.com/posts/...
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options: [post, repost, comment, like, follow]
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: what-you-want-to-say
+    attributes:
+      label: What you want to say
+      description: Leave it empty and the page description is used.
+      placeholder: Optional.
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      placeholder: Optional. Who wrote it, if it is not yours.
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: Optional, YYYY-MM-DD. Defaults to today.
