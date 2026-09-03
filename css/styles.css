@@ -8,7 +8,7 @@
 /* 1. TOKENS ------------------------------------------------- */
 :root {
   --bg: #0f1520;
-  --surface: rgba(19, 27, 41, 0.86);
+  --surface: rgba(19, 27, 41, 0.93);
   --surface-solid: #151d2b;
   --text: #e4e8ee;
   --muted: #9aa8bc;
@@ -192,15 +192,27 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
         rgba(15, 21, 32, 0.72) 100%);
   }
 }
-[data-theme="light"] #cell-video,
-[data-theme="light"] #cell-scrim,
 [data-theme="light"] #nucleosome-canvas {
   position: absolute;
   height: 100%;
 }
-/* En claro el hero conserva su degradado oscuro, pero el video molesta al
-   resto de la pagina: se queda dentro del hero y mas apagado. */
 [data-theme="light"] #cell-video { opacity: 0.34; }
+
+/* Pasado el hero el texto ocupa todo el ancho: el video baja para que se lea,
+   pero no se apaga, asi el fondo sigue vivo al bajar por la pagina. */
+html.past-hero #cell-video { opacity: 0.15; }
+html.past-hero[data-theme="light"] #cell-video { opacity: 0.22; }
+
+/* Y el velo deja de ser lateral: ahi ya cubre por igual. */
+html.past-hero #cell-scrim {
+  background: rgba(15, 21, 32, 0.82);
+}
+html.past-hero[data-theme="light"] #cell-scrim {
+  background: rgba(242, 246, 243, 0.88);
+}
+/* Las piezas tambien bajan: en el hero son el motivo, aqui solo textura. */
+html.past-hero #nucleosome-canvas { opacity: 0.4; }
+#nucleosome-canvas { transition: opacity 0.8s ease; }
 
 @media (prefers-reduced-motion: reduce) {
   /* Sin movimiento queda el poster, que es un fotograma del propio bucle. */
@@ -401,12 +413,13 @@ main {
 }
 [data-theme="light"] .section {
   margin: 0;
-  background: var(--bg);
+  /* Translucido, para que el movimiento del fondo se intuya tambien de dia. */
+  background: rgba(242, 246, 243, 0.88);
   border: none;
   border-radius: 0;
 }
 /* Light: alternate pale-green grounds give the page rhythm without panels */
-[data-theme="light"] .section:nth-of-type(odd) { background: var(--bg-alt); }
+[data-theme="light"] .section:nth-of-type(odd) { background: rgba(232, 241, 235, 0.88); }
 
 .section-title {
   font-family: var(--font-display);

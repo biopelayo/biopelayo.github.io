@@ -34,3 +34,14 @@
     else v.play().catch(function () {});
   });
 })();
+
+/* Marca cuando el hero ha quedado atras, para que el fondo cambie de papel. */
+(function () {
+  'use strict';
+  var hero = document.querySelector('.hero');
+  if (!hero || !window.IntersectionObserver) return;
+  var raiz = document.documentElement;
+  new IntersectionObserver(function (e) {
+    raiz.classList.toggle('past-hero', !e[0].isIntersecting);
+  }, {rootMargin: '-45% 0px 0px 0px'}).observe(hero);
+})();
