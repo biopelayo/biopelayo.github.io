@@ -1,0 +1,42 @@
+name: Add a manuscript
+description: Publish a preprint or a paper in the Manuscripts section
+title: "manuscript: "
+labels: ["manuscript"]
+body:
+  - type: markdown
+    attributes:
+      value: "Only work that is already public: published, under review with a DOI, or a preprint that is up."
+  - type: input
+    id: doi
+    attributes:
+      label: DOI
+      description: With a DOI the title, journal, authors and year are filled in from Crossref.
+      placeholder: 10.1186/s13148-017-0334-6
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options: [published, review, preprint]
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Only needed when there is no DOI.
+  - type: input
+    id: venue
+    attributes:
+      label: Venue
+      placeholder: Optional. Journal, publisher or preprint server.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: Optional. One or two lines.
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      placeholder: Optional. Used when there is no DOI.

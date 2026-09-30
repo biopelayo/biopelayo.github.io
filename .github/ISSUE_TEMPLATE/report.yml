@@ -1,0 +1,38 @@
+name: Add a report
+description: Publish a technical report or an audit in the Reports section
+title: "report: "
+labels: ["report"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options: [audit, benchmark, validation, technical]
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What was measured, and what held up.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Repository, PDF or page where the report lives.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: Optional, YYYY-MM. Defaults to this month.

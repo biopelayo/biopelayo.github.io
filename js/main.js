@@ -216,79 +216,99 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ===== GITHUB REPOS (live, with static fallback) ===== */
-  var reposGrid = document.getElementById('repos-grid');
-  var FALLBACK_REPOS = [
-    { name: 'epiprofile-plants', html_url: 'https://github.com/biopelayo/epiprofile-plants', description: 'EpiProfile 2.0 extension for plant histone PTM quantification (MATLAB).', language: 'MATLAB' },
-    { name: 'kchopore-anac017-drs', html_url: 'https://github.com/biopelayo/kchopore-anac017-drs', description: 'Nanopore direct RNA-seq reanalysis of the Arabidopsis anac017 mutant.', language: 'Python' },
-    { name: 'histone-long-table-at', html_url: 'https://github.com/biopelayo/histone-long-table-at', description: 'Tidy long-format master table for histone PTMs in Arabidopsis.', language: 'Python' },
-    { name: 'epiprofile-plants-workflow', html_url: 'https://github.com/biopelayo/epiprofile-plants-workflow', description: 'Snakemake + Docker workflow: PRIDE FTP, msconvert, MS1/MS2 extraction.', language: 'Python' },
-    { name: 'epiprofile-dashboard', html_url: 'https://github.com/biopelayo/epiprofile-dashboard', description: 'Dash/Plotly dashboard with 7 analysis tabs for EpiProfile outputs.', language: 'Python' }
-  ];
-  function repoCard(r) {
-    var a = document.createElement('a');
-    a.className = 'repo-card';
-    a.href = r.html_url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    var name = document.createElement('p');
-    name.className = 'repo-name';
-    name.textContent = r.name;
-    var desc = document.createElement('p');
-    desc.className = 'repo-desc';
-    desc.textContent = r.description || '';
-    var meta = document.createElement('p');
-    meta.className = 'repo-meta';
-    var parts = [];
-    if (r.language) parts.push(r.language);
-    if (typeof r.stargazers_count === 'number' && r.stargazers_count > 0) parts.push('★ ' + r.stargazers_count);
-    meta.textContent = parts.join('   ');
-    a.appendChild(name); a.appendChild(desc); a.appendChild(meta);
-    return a;
+  /* ===== MANUSCRIPTS Y REPORTS (data/*.json, curados a mano) =====
+     Misma mecanica que el carrusel: si el JSON no trae entradas, la seccion se
+     queda oculta y no aparece un hueco vacio en la pagina. */
+  var TARJETA_LABELS = {
+    en: {preprint: 'Preprint', review: 'Under review', published: 'Published',
+         audit: 'Audit', benchmark: 'Benchmark', validation: 'Validation',
+         technical: 'Technical report', doi: 'DOI', open: 'Open'},
+    es: {preprint: 'Preprint', review: 'En revisión', published: 'Publicado',
+         audit: 'Auditoría', benchmark: 'Benchmark', validation: 'Validación',
+         technical: 'Informe técnico', doi: 'DOI', open: 'Abrir'}
+  };
+  function etiqueta(clave, lang) {
+    var l = TARJETA_LABELS[lang] || TARJETA_LABELS.en;
+    return l[clave] || clave;
   }
-  function renderRepos(list) {
-    if (!reposGrid) return;
-    reposGrid.setAttribute('aria-busy', 'true');
-    reposGrid.innerHTML = '';
-    list.forEach(function (r) { reposGrid.appendChild(repoCard(r)); });
-    reposGrid.setAttribute('aria-busy', 'false');
-  }
-  var PINNED = [
-    'epiprofile-plants', 'epiprofile-plants-workflow', 'epiprofile-dashboard',
-    'histone-long-table-at', 'kchopore-anac017-drs', 'epiprofile-plants-at-h3h4'
-  ];
-  var REPO_CACHE = 'pela-repos-v1', REPO_TTL = 6 * 3600e3;
 
-  if (reposGrid) {
-    var cached = null;
-    try {
-      var raw = sessionStorage.getItem(REPO_CACHE);
-      if (raw) {
-        var c = JSON.parse(raw);
-        if (c && (Date.now() - c.t) < REPO_TTL) cached = c.d;
-      }
-    } catch (e) {}
+  function tarjeta(item) {
+    var lang = currentLang();
+    var art = document.createElement('article');
+    art.className = 'info-card';
 
-    if (cached) { renderRepos(cached); }
-    else {
-      fetch('https://api.github.com/users/biopelayo/repos?per_page=100&sort=pushed')
-        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
-        .then(function (repos) {
-          var byName = {};
-          repos.forEach(function (r) { byName[r.name] = r; });
-          var list = [];
-          PINNED.forEach(function (name) {
-            var r = byName[name];
-            if (r) list.push({ name: r.name, html_url: r.html_url, description: r.description,
-                               language: r.language, stargazers_count: r.stargazers_count });
-          });
-          if (!list.length) throw new Error('no pinned repos');
-          try { sessionStorage.setItem(REPO_CACHE, JSON.stringify({ t: Date.now(), d: list })); } catch (e) {}
-          renderRepos(list);
-        })
-        .catch(function () { renderRepos(FALLBACK_REPOS); });
+    var head = document.createElement('div');
+    head.className = 'info-card-head';
+    var tipo = item.status || item.kind;
+    if (tipo) {
+      var badge = document.createElement('span');
+      badge.className = 'info-badge';
+      badge.setAttribute('data-kind', tipo);
+      badge.textContent = etiqueta(tipo, lang);
+      head.appendChild(badge);
     }
+    if (item.date || item.year) {
+      var d = document.createElement('span');
+      d.className = 'info-date mono';
+      d.textContent = item.date || item.year;
+      head.appendChild(d);
+    }
+    art.appendChild(head);
+
+    var h3 = document.createElement('h3');
+    h3.className = 'info-title';
+    h3.textContent = item.title || '';
+    art.appendChild(h3);
+
+    if (item.authors || item.venue) {
+      var meta = document.createElement('p');
+      meta.className = 'info-meta';
+      meta.textContent = [item.authors, item.venue].filter(Boolean).join(' · ');
+      art.appendChild(meta);
+    }
+    if (item.summary) {
+      var s = document.createElement('p');
+      s.className = 'info-summary';
+      s.textContent = item.summary;
+      art.appendChild(s);
+    }
+
+    var enlaces = document.createElement('p');
+    enlaces.className = 'link-row';
+    if (item.doi) {
+      var a = document.createElement('a');
+      a.href = item.doi.indexOf('http') === 0 ? item.doi : 'https://doi.org/' + item.doi;
+      a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = etiqueta('doi', lang) + ' ' + item.doi.replace(/^https?:\/\/doi\.org\//, '');
+      enlaces.appendChild(a);
+    }
+    if (item.url) {
+      var b2 = document.createElement('a');
+      b2.href = item.url; b2.target = '_blank'; b2.rel = 'noopener noreferrer';
+      b2.textContent = item.linkText || etiqueta('open', lang);
+      enlaces.appendChild(b2);
+    }
+    if (enlaces.childNodes.length) art.appendChild(enlaces);
+    return art;
   }
+
+  function cargaTarjetas(fichero, idSeccion, idGrid) {
+    var sec = document.getElementById(idSeccion);
+    var grid = document.getElementById(idGrid);
+    if (!sec || !grid) return;
+    fetch(fichero)
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) {
+        var items = (data && data.items) || [];
+        if (!items.length) return;          /* sin datos, sigue oculta */
+        grid.innerHTML = '';
+        items.forEach(function (it) { grid.appendChild(tarjeta(it)); });
+        sec.hidden = false;
+      })
+      .catch(function () { /* sin fichero: la seccion se queda oculta */ });
+  }
+  cargaTarjetas('data/manuscripts.json', 'manuscripts', 'ms-grid');
+  cargaTarjetas('data/reports.json', 'reports', 'rp-grid');
 
   /* ===== LINKEDIN CAROUSEL (data/linkedin.json, curated by hand) ===== */
   var LI_LABELS = {

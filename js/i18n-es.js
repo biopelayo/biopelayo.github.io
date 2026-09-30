@@ -15,6 +15,8 @@ window.I18N_ES = {
   "nav.experience": "Experiencia",
   "nav.research": "Investigación",
   "nav.publications": "Publicaciones",
+  "nav.manuscripts": "Manuscritos",
+  "nav.reports": "Informes",
   "nav.teaching": "Docencia",
   "nav.media": "Referencias",
   "nav.skills": "Habilidades",
@@ -82,6 +84,11 @@ window.I18N_ES = {
   "pubs.sw.where": "Software · extensión de EpiProfile 2.0 para proteómica de histonas en plantas · MATLAB · GPL-3.0",
   "pubs.orcid": "Registro completo en ORCID →",
 
+  "ms.title": "Manuscritos",
+  "ms.sub": "Preprints y manuscritos en revisión, con su DOI.",
+  "rp.title": "Informes",
+  "rp.sub": "Informes técnicos y auditorías de los pipelines: qué se midió y qué aguantó.",
+
   "teach.title": "Docencia y tutoriales",
   "teach.t1.t": "Linux para científicos",
   "teach.t1.d": "Shell, WSL2 y entornos reproducibles para el trabajo diario de investigación. Universidad de Oviedo y Ayuntamiento de Oviedo, de 2019 a 2025.",
@@ -118,19 +125,16 @@ window.I18N_ES = {
   "skills.l4": "Catalán · B1 comprensión oral, A2 resto",
 
   "repos.title": "Repositorios de GitHub",
-  "repos.sub": "El software de la tesis y los pipelines que lo rodean, cargados en vivo desde GitHub.",
-  "repos.loading": "Cargando repositorios…",
-  "repos.all": "Todos los repositorios en GitHub →",
+  "repos.sub": "El software de la tesis y los pipelines que lo rodean.",
+  "repos.all": "github.com/biopelayo",
 
   "beyond.title": "Fuera del laboratorio",
-  "beyond.f.t": "Delantero · Liga Asterov",
-  "beyond.f.d": "Juego todas las semanas. Delantero del San Claudio (Liga Asterov): 20 goles en 21 partidos, 9.º goleador de 1.ª División. Copa Asterov 2026 con el Laviana CF: 2 goles en 4 partidos.",
-  "beyond.f.dash": "Dashboard interactivo",
-  "beyond.f.team": "Ficha del equipo",
+  "beyond.f.t": "Delantero · CF Laviana",
+  "beyond.f.d": "Juego todas las semanas, de delantero en el CF Laviana.",
 
   "contact.title": "Contacto y enlaces",
   "contact.cv": "Curriculum vitae (PDF)",
   "contact.blurb": "Trabajo en el Departamento de Biología de Organismos y Sistemas de la Universidad de Oviedo. Escríbeme sobre cromatina vegetal, proteómica de hPTMs, bioinformática del cáncer o pipelines reproducibles.",
 
-  "footer.line": "Hecho a mano, sin frameworks. v2"
+  "footer.line": "Hecho a mano, sin frameworks. v3"
 };

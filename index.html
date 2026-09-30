@@ -234,6 +234,8 @@
       <a href="#experience" data-i18n="nav.experience">Experience</a>
       <a href="#research" data-i18n="nav.research">Research</a>
       <a href="#publications" data-i18n="nav.publications">Publications</a>
+      <a href="#manuscripts" data-i18n="nav.manuscripts">Manuscripts</a>
+      <a href="#reports" data-i18n="nav.reports">Reports</a>
       <a href="#teaching" data-i18n="nav.teaching">Teaching</a>
       <a href="#media" data-i18n="nav.media">Following</a>
       <a href="#linkedin" data-i18n="nav.linkedin" id="nav-linkedin" hidden>LinkedIn</a>
@@ -510,6 +512,24 @@
       </div>
     </section>
 
+    <!-- Manuscripts -->
+    <section id="manuscripts" class="section" hidden>
+      <div class="section-inner">
+        <h2 class="section-title" data-i18n="ms.title">Manuscripts</h2>
+        <p class="section-sub" data-i18n="ms.sub">Preprints and manuscripts under review, with their DOI.</p>
+        <div class="card-grid" id="ms-grid"></div>
+      </div>
+    </section>
+
+    <!-- Reports -->
+    <section id="reports" class="section" hidden>
+      <div class="section-inner">
+        <h2 class="section-title" data-i18n="rp.title">Reports</h2>
+        <p class="section-sub" data-i18n="rp.sub">Technical reports and audits from the pipelines: what was measured, and what held up.</p>
+        <div class="card-grid" id="rp-grid"></div>
+      </div>
+    </section>
+
     <!-- Teaching -->
     <section id="teaching" class="section">
       <div class="section-inner">
@@ -621,12 +641,12 @@
     <section id="repos" class="section">
       <div class="section-inner">
         <h2 class="section-title" data-i18n="repos.title">GitHub Repositories</h2>
-        <p class="section-sub" data-i18n="repos.sub">The software behind the thesis and the pipelines around it, loaded live from GitHub.</p>
-        <div class="repos-grid" id="repos-grid" aria-live="polite" aria-busy="true">
-          <p class="repos-loading" id="repos-loading" data-i18n="repos.loading">Loading repositories…</p>
-          <noscript><p class="repos-loading">This list needs JavaScript. <a href="https://github.com/biopelayo?tab=repositories">See the repositories on GitHub</a>.</p></noscript>
-        </div>
-        <p class="section-foot"><a href="https://github.com/biopelayo?tab=repositories" target="_blank" rel="noopener noreferrer" data-i18n="repos.all">All repositories on GitHub →</a></p>
+        <p class="section-sub" data-i18n="repos.sub">The software behind the thesis and the pipelines around it.</p>
+        <p class="link-row">
+          <a class="btn btn-ghost" href="https://github.com/biopelayo" target="_blank" rel="noopener noreferrer">
+            <svg class="btn-ico" aria-hidden="true"><use href="#ico-github"/></svg><span data-i18n="repos.all">github.com/biopelayo</span>
+          </a>
+        </p>
       </div>
     </section>
 
@@ -637,18 +657,11 @@
 
         <article class="resume-item">
           <div class="resume-main">
-            <h3><svg class="h3-ico" aria-hidden="true"><use href="#ico-soccer"/></svg> <span data-i18n="beyond.f.t">Striker · Liga Asterov</span></h3>
+            <h3><svg class="h3-ico" aria-hidden="true"><use href="#ico-soccer"/></svg> <span data-i18n="beyond.f.t">Striker · CF Laviana</span></h3>
             <p data-i18n="beyond.f.d">
-              I play every week. Striker for San Claudio (Liga Asterov): 20 goals in
-              21 matches, 9th top scorer of the First Division. Copa Asterov 2026 with Laviana CF:
-              2 goals in 4 matches.
-            </p>
-            <p class="link-row">
-              <a href="https://biopelayo.github.io/asterov-dashboard/" target="_blank" rel="noopener noreferrer" data-i18n="beyond.f.dash">Interactive dashboard</a>
-              <a href="https://cdasterov.es/es/team/15612878" target="_blank" rel="noopener noreferrer" data-i18n="beyond.f.team">Team page</a>
+              I play every week, as a striker for CF Laviana.
             </p>
           </div>
-          <span class="resume-when">2025/26</span>
         </article>
 
       </div>
@@ -679,7 +692,7 @@
   </main>
 
     <footer class="footer">
-      <p>&copy; <span id="year">2026</span> Pelayo González de Lena · <span data-i18n="footer.line">Built by hand, no frameworks. v2</span></p>
+      <p>&copy; <span id="year">2026</span> Pelayo González de Lena · <span data-i18n="footer.line">Built by hand, no frameworks. v3</span></p>
     </footer>
 
   <script src="js/chromatin-bg.js?v=20260903" defer></script>
