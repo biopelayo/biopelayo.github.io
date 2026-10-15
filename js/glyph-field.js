@@ -1,7 +1,8 @@
 /* biopelayo.github.io — glyph field.
-   A grid of faint characters (DNA bases + symbols) that slowly re-scramble.
+   A grid of faint DNA bases (A, T, C, G) that slowly mutate.
    A wave of light drifts across it, the pointer lights up a halo around it,
-   and a click sends an expanding ripple that scrambles what it crosses. */
+   and a click sends an expanding ripple that paints each base its own colour
+   (A green, T red, C blue, G amber) and leaves a fading coloured wake. */
 (function () {
   'use strict';
 
@@ -10,9 +11,10 @@
   var ctx = canvas.getContext('2d');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var CHARS = 'ACGTACGTacgtNRY.:-+*=#%@<>/\\|{}[]01'.split('');
+  var CHARS = ['A', 'T', 'C', 'G'];
+  var BASE = { A: '46,204,113', T: '239,83,80', C: '66,165,245', G: '255,193,7' };
   var CELL = 16, RADIUS = 170;
-  var W = 0, H = 0, DPR = 1, cols = 0, rows = 0, grid = [];
+  var W = 0, H = 0, DPR = 1, cols = 0, rows = 0, grid = [], heat = [];
   var mx = -9999, my = -9999, ripples = [], raf = null, visible = true;
   var color = '52,217,110';
 
@@ -33,6 +35,7 @@
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     cols = Math.ceil(W / CELL) + 1; rows = Math.ceil(H / CELL) + 1;
     grid = new Array(cols * rows);
+    heat = new Float32Array(cols * rows);
     for (var i = 0; i < grid.length; i++) grid[i] = pick();
   }
 
@@ -62,13 +65,19 @@
           var band = Math.abs(Math.sqrt(rx * rx + ry * ry) - R.rad);
           if (band < 26) {
             var f = (1 - band / 26) * Math.max(0, 1 - R.rad / (Math.max(W, H) * 1.3));
-            a += 0.7 * f;
+            if (f > heat[y * cols + x]) heat[y * cols + x] = f;
             if (f > 0.5 && Math.random() < 0.3) grid[y * cols + x] = pick();
           }
         }
-        if (a > 1) a = 1;
-        ctx.fillStyle = 'rgba(' + color + ',' + a.toFixed(3) + ')';
-        ctx.fillText(grid[y * cols + x], px, py);
+        var i = y * cols + x, ch = grid[i], h = heat[i];
+        if (h > 0.03) {
+          heat[i] = h * 0.97;
+          ctx.fillStyle = 'rgba(' + BASE[ch] + ',' + Math.min(1, a + h).toFixed(3) + ')';
+        } else {
+          if (a > 1) a = 1;
+          ctx.fillStyle = 'rgba(' + color + ',' + a.toFixed(3) + ')';
+        }
+        ctx.fillText(ch, px, py);
       }
     }
   }
