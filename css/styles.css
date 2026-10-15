@@ -155,6 +155,7 @@ p a:hover, .link-row a:hover, .section-foot a:hover, .contact-list a:hover {
 /* Dark: fixed behind the whole page. Light: absolute, caged inside the dark hero. */
 #cell-video,
 #cell-scrim,
+#glyph-field,
 #nucleosome-canvas {
   position: fixed;
   top: 0;
@@ -214,6 +215,9 @@ html.past-hero[data-theme="light"] #cell-scrim {
 /* Las piezas tambien bajan: en el hero son el motivo, aqui solo textura. */
 html.past-hero #nucleosome-canvas { opacity: 0.7; }
 #nucleosome-canvas { transition: opacity 0.8s ease; }
+/* Campo de letras: textura viva bajo las piezas; se ilumina con el raton. */
+html.past-hero #glyph-field { opacity: 0.6; }
+#glyph-field { transition: opacity 0.8s ease; }
 
 @media (prefers-reduced-motion: reduce) {
   /* Sin movimiento queda el poster, que es un fotograma del propio bucle. */
@@ -1069,7 +1073,7 @@ section p { max-width: 68ch; }
     --line: #cccccc;
   }
   body { background: #ffffff; color: #111111; font-size: 11pt; }
-  #cell-video, #cell-scrim, #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
+  #cell-video, #cell-scrim, #glyph-field, #nucleosome-canvas, .sidenav, .topbar, .nav-toggle-label, .skip-link,
   .hero-actions, .hero-stack, .typing-cursor, #repos, #linkedin,
   .hero-linkedin { display: none !important; }
   main { margin-left: 0; }
