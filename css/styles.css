@@ -212,11 +212,8 @@ html.past-hero #cell-scrim {
 html.past-hero[data-theme="light"] #cell-scrim {
   background: rgba(242, 246, 243, 0.62);
 }
-/* Las piezas tambien bajan: en el hero son el motivo, aqui solo textura. */
-html.past-hero #nucleosome-canvas { opacity: 0.7; }
-#nucleosome-canvas { transition: opacity 0.8s ease; }
-/* Campo de letras: textura viva bajo las piezas; se ilumina con el raton. */
-html.past-hero #glyph-field { opacity: 0.6; }
+/* Campo de letras: unico motivo del fondo; baja un poco al dejar la portada. */
+html.past-hero #glyph-field { opacity: 0.8; }
 #glyph-field { transition: opacity 0.8s ease; }
 
 @media (prefers-reduced-motion: reduce) {

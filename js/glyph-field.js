@@ -13,7 +13,10 @@
 
   var CHARS = ['A', 'T', 'C', 'G'];
   var BASE = { A: '46,204,113', T: '239,83,80', C: '66,165,245', G: '255,193,7' };
-  var CELL = 16, RADIUS = 170;
+  var CELL = 16, RADIUS = 200;
+  /* Cuanto se ven las letras (0 a 1). Antes 0,05 / 0,05 / 0,6, cuando
+     compartian fondo con los nucleosomas; ahora van solas. */
+  var LUZ_BASE = 0.09, LUZ_ONDA = 0.09, LUZ_HALO = 0.75;
   var W = 0, H = 0, DPR = 1, cols = 0, rows = 0, grid = [], heat = [];
   var mx = -9999, my = -9999, ripples = [], raf = null, visible = true;
   var color = '52,217,110';
@@ -55,10 +58,10 @@
       for (var x = 0; x < cols; x++) {
         var px = x * CELL + CELL / 2;
         // slow drifting wave of light
-        var a = 0.05 + 0.05 * (Math.sin(x * 0.12 + s * 0.7) * Math.cos(y * 0.15 - s * 0.5) + 1) / 2;
+        var a = LUZ_BASE + LUZ_ONDA * (Math.sin(x * 0.12 + s * 0.7) * Math.cos(y * 0.15 - s * 0.5) + 1) / 2;
         // pointer halo
         var dx = px - mx, dy = py - my, d = Math.sqrt(dx * dx + dy * dy);
-        if (d < RADIUS) a += 0.6 * (1 - d / RADIUS) * (1 - d / RADIUS);
+        if (d < RADIUS) a += LUZ_HALO * (1 - d / RADIUS) * (1 - d / RADIUS);
         // click ripples
         for (var j = 0; j < ripples.length; j++) {
           var R = ripples[j], rx = px - R.x, ry = py - R.y;

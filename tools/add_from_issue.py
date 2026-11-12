@@ -87,6 +87,39 @@ def lee_og(url):
     return og("title"), og("description")
 
 
+def doi_meta_datacite(doi):
+    """Lo mismo que doi_meta, para DOIs de DataCite (Zenodo: 10.5281/...).
+       Devuelve las mismas claves: doi, title, venue, authors, year."""
+    try:
+        req = urllib.request.Request("https://api.datacite.org/dois/" + doi,
+                                     headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            a = json.load(r)["data"]["attributes"]
+    except Exception:
+        return {"doi": doi}
+    creadores = a.get("creators") or []
+    autores = []
+    for c in creadores[:3]:
+        if c.get("familyName"):
+            autores.append((c.get("givenName", "")[:1] + ". " if c.get("givenName") else "")
+                           + c["familyName"])
+        elif c.get("name"):
+            autores.append(c["name"])  # institucion, sin nombre de pila
+    if len(creadores) > 3:
+        autores.append("et al.")
+    editor = a.get("publisher") or ""
+    if isinstance(editor, dict):
+        editor = editor.get("name", "")
+    tipo = (a.get("types") or {}).get("resourceType") or (a.get("types") or {}).get("resourceTypeGeneral", "")
+    return {
+        "doi": doi,
+        "title": ((a.get("titles") or [{}])[0]).get("title", ""),
+        "venue": " · ".join(x for x in (editor, tipo) if x),
+        "authors": ", ".join(autores),
+        "year": str(a.get("publicationYear") or ""),
+    }
+
+
 def doi_meta(doi):
     """Titulo, revista, autores y ano desde Crossref. Sin clave ni registro."""
     doi = re.sub(r"^https?://(dx\.)?doi\.org/", "", (doi or "").strip())
@@ -98,7 +131,8 @@ def doi_meta(doi):
         with urllib.request.urlopen(req, timeout=15) as r:
             m = json.load(r)["message"]
     except Exception:
-        return {"doi": doi}
+        # Zenodo, Figshare y los repositorios de datos registran en DataCite
+        return doi_meta_datacite(doi)
     autores = []
     for a in (m.get("author") or [])[:3]:
         nombre = (a.get("given", "")[:1] + ". " if a.get("given") else "") + a.get("family", "")
